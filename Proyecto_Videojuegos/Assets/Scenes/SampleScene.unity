@@ -301,7 +301,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 207153622}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c294f2725a190b9489a86e031c9f3192, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 540761536}
   m_Layer: 0
   m_Name: link
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -557,6 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camara: {fileID: 519420031}
+  rb: {fileID: 0}
   velocidad: 40
   flech: {fileID: 4001273237188026020, guid: b3931017722d5564eab7a3f38446c23c, type: 3}
   arco: {fileID: 1201356595}
@@ -584,8 +585,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &540761536
 BoxCollider2D:
@@ -596,7 +597,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 540761531}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c294f2725a190b9489a86e031c9f3192, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
