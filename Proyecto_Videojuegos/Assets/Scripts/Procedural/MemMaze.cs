@@ -7,7 +7,7 @@ public delegate void VoidFunc3Int(int x, int y, int value);
 
 public class MemMaze
 {
-    private Dictionary<(int, int), int> maze;
+    private Dictionary<(int, int), int> maze; //guarda coordenadas e id de la habitación
 
     private int maxX = 0;
     private int maxY = 0;

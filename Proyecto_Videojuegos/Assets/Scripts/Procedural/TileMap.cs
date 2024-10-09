@@ -10,7 +10,9 @@ using UnityEngine.UIElements;
 public class TileMap : MonoBehaviour
 {
     public GameObject roomPrefab;
-    public GameObject doorPrefab;
+    public GameObject verticalDoorPrefab;
+    public GameObject horizontalDoorPrefab;
+
     private GameObject room;
     private List<GameObject> doorWallColliders;
     private List<GameObject> normalColliders;
@@ -69,9 +71,9 @@ public class TileMap : MonoBehaviour
             {
                 if (i == 0) // puerta arriba
                 {
-                    doorPos.x = roomPos.x;
+                    doorPos.x = roomPos.x- 2;
                     doorPos.y = roomPos.y + 4;
-                    Instantiate(doorPrefab, doorPos, Quaternion.identity);
+                    Instantiate(verticalDoorPrefab, doorPos, Quaternion.identity);
                     doorWallColliders[0].gameObject.SetActive(true);
                     normalColliders[0].gameObject.SetActive(false);
                 }
@@ -79,15 +81,15 @@ public class TileMap : MonoBehaviour
                 {
                     doorPos.x = roomPos.x + 7;
                     doorPos.y = roomPos.y;
-                    Instantiate(doorPrefab, doorPos, Quaternion.identity);
+                    Instantiate(horizontalDoorPrefab, doorPos, Quaternion.identity);
                     doorWallColliders[1].gameObject.SetActive(true);
                     normalColliders[1].gameObject.SetActive(false);
                 }
                 else if (i == 2) // puerta abajo
                 {
-                    doorPos.x = roomPos.x;
+                    doorPos.x = roomPos.x-2;
                     doorPos.y = roomPos.y - 4;
-                    Instantiate(doorPrefab, doorPos, Quaternion.identity);
+                    Instantiate(verticalDoorPrefab, doorPos, Quaternion.identity);
                     doorWallColliders[2].gameObject.SetActive(true);
                     normalColliders[2].gameObject.SetActive(false);
                 }
@@ -95,7 +97,7 @@ public class TileMap : MonoBehaviour
                 {
                     doorPos.x = roomPos.x - 10;
                     doorPos.y = roomPos.y;
-                    Instantiate(doorPrefab, doorPos, Quaternion.identity);
+                    Instantiate(horizontalDoorPrefab, doorPos, Quaternion.identity);
                     doorWallColliders[3].gameObject.SetActive(true);
                     normalColliders[3].gameObject.SetActive(false);
                 }

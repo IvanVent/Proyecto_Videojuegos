@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 1822571227507254290, guid: 5bb8871eaf24ae04880bbf9991e41552, type: 3}
-  doorPrefab: {fileID: 4872105175467304302, guid: 3194fde3dbae3ff428f9b2f06bf239f9, type: 3}
+  verticalDoorPrefab: {fileID: 4872105175467304302, guid: 3194fde3dbae3ff428f9b2f06bf239f9, type: 3}
+  horizontalDoorPrefab: {fileID: 7584693463190544712, guid: 652605380f00b044ebc9ae50061952e8, type: 3}
 --- !u!156049354 &304606770
 Grid:
   m_ObjectHideFlags: 0
@@ -193,6 +194,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -290,6 +292,22 @@ MonoBehaviour:
   maxX: 4
   maxY: 4
   emptyCells: 4
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14de6b36e03adc8429733de0ebfdf95f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 540761533}
+  transitionSpeed: 0.3
+  minPos: {x: 0, y: 0, z: -10}
+  maxPos: {x: 0, y: 0, z: -10}
 --- !u!1 &540761531
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +323,7 @@ GameObject:
   - component: {fileID: 540761536}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Wall
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
