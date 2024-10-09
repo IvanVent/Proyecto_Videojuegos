@@ -22,6 +22,11 @@ public class jugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rb.velocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.None;
         objetivo=camara.ScreenToWorldPoint(Input.mousePosition);
         float angulo=Mathf.Atan2(objetivo.y-transform.position.y,objetivo.x-transform.position.x);
         float anguloGrados=(180/Mathf.PI)*angulo;
@@ -38,18 +43,33 @@ public class jugador : MonoBehaviour
         }
     }
     void OnCollisionEnter2D(Collision2D collision) {
+
         if (collision.gameObject.CompareTag("Wall")) {
+            Vector2 normal = collision.contacts[0].normal;
             // Temporarily freeze horizontal movement
-            
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX & RigidbodyConstraints2D.FreezePositionY;
-            rb.velocity=new Vector2(0,0);
+            if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y)) 
+            {
+                // Horizontal wall, freeze X movement
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            } 
+            else 
+            {
+                // Vertical wall, freeze Y movement
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            }
+
+            rb.velocity = Vector2.zero;
         }
     }
 
     void OnCollisionExit2D(Collision2D collision) {
     // Restore regular movement when leaving the wall
         if (collision.gameObject.CompareTag("Wall")) {
-            rb.constraints = RigidbodyConstraints2D.None;  // Remove all constraints
+            rb.velocity = Vector2.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            rb.constraints = RigidbodyConstraints2D.None;
         }
     }
 

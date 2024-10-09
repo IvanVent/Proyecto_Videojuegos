@@ -1524,7 +1524,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3506427770923551343}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c294f2725a190b9489a86e031c9f3192, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1746,7 +1746,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5114094165910330631}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c294f2725a190b9489a86e031c9f3192, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1823,7 +1823,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5132081713141256775}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c294f2725a190b9489a86e031c9f3192, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1981,6 +1981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2911599080925778606}
   - component: {fileID: 2321086036609078028}
+  - component: {fileID: 1098063099642462281}
   m_Layer: 0
   m_Name: Top_Collider
   m_TagString: Untagged
@@ -2012,7 +2013,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7569280059448468362}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c294f2725a190b9489a86e031c9f3192, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2048,6 +2049,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 15.971583, y: 1.9496546}
   m_EdgeRadius: 0
+--- !u!50 &1098063099642462281
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7569280059448468362}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &7660996928994493010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2136,6 +2164,7 @@ GameObject:
   - component: {fileID: 4829292569899700114}
   - component: {fileID: 4821681398001665101}
   - component: {fileID: 599362630479704356}
+  - component: {fileID: 5382600297394274581}
   m_Layer: 0
   m_Name: Tilemap_grass
   m_TagString: Untagged
@@ -3781,6 +3810,33 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!50 &5382600297394274581
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821595384502609162}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: c294f2725a190b9489a86e031c9f3192, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8535199139366165112
 GameObject:
   m_ObjectHideFlags: 0
