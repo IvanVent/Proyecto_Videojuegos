@@ -1495,7 +1495,7 @@ GameObject:
   - component: {fileID: 547446646525466436}
   m_Layer: 0
   m_Name: Left_Collider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1717,7 +1717,7 @@ GameObject:
   - component: {fileID: 8154850640237851124}
   m_Layer: 0
   m_Name: Right_Collider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1794,7 +1794,7 @@ GameObject:
   - component: {fileID: 8979689907372094362}
   m_Layer: 0
   m_Name: Bot_Collider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1984,7 +1984,7 @@ GameObject:
   - component: {fileID: 1098063099642462281}
   m_Layer: 0
   m_Name: Top_Collider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
