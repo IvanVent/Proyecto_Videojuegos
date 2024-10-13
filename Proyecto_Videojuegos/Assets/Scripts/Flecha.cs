@@ -6,7 +6,7 @@ public class Flecha : MonoBehaviour
 {
     // Start is called before the first frame update
     public float velocidad=55;
-    public float tiempo=6;
+    public float tiempo=2;
     public Vector2 targetVector;
     private
     void Start()
@@ -20,5 +20,11 @@ public class Flecha : MonoBehaviour
     void Update()
     {
        transform.Translate(velocidad*Vector2.right*Time.deltaTime); 
+    }
+    private void OnCollisionEnter2D(Collision2D collision) {
+        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Wall")) {
+            Destroy(gameObject);
+        }
     }
 }
