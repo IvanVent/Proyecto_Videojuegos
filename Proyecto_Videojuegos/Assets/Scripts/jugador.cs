@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*jugador bien sexy*/
 public class jugador : MonoBehaviour
 {
 
