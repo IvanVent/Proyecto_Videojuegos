@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuInicial : MonoBehaviour
 {
     
-    //comienza una partida
+    //comienza una partida comentario editado
     public void Jugar(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //carga la siguiente escena configurada en el build settings
     }
