@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 /*jugador bien sexy*/
 public class jugador : MonoBehaviour
 {
-
+    public UnityEvent<float,int> vida;
+    private float maxlife=3f;
+    private float actuallife=3f;
     private Vector3 objetivo;
     public Camera camara;
     // Start is called before the first frame update
@@ -13,9 +17,12 @@ public class jugador : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 input;
     public float velocidad=2;
-    public GameObject flech,arco;
+    public GameObject flech,arco,heart,halfheart,noheart;
+    
     void Start()
     {
+        vida.Invoke(maxlife,0);
+        
         rb=GetComponent<Rigidbody2D>();
     }
 
