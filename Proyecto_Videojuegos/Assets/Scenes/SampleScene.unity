@@ -520,9 +520,9 @@ MonoBehaviour:
   velocidad: 6
   flech: {fileID: 4001273237188026020, guid: b3931017722d5564eab7a3f38446c23c, type: 3}
   arco: {fileID: 1201356595}
-  heart: {fileID: 8768247953962337728, guid: 7152bf1af663f6d4fadde2261178d297, type: 3}
-  halfheart: {fileID: 2631309316189990394, guid: e233b9791f01a2948858d6567c908ea2, type: 3}
-  noheart: {fileID: 4810938256956115130, guid: c4ac927886ddd5b46ab4c356a92b5e22, type: 3}
+  heart: {fileID: 0}
+  halfheart: {fileID: 0}
+  noheart: {fileID: 0}
 --- !u!50 &540761535
 Rigidbody2D:
   serializedVersion: 4
@@ -768,15 +768,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listacorazones: []
-  heart: {fileID: 6526711790933870328, guid: 7152bf1af663f6d4fadde2261178d297, type: 3}
-  halfheart: {fileID: 6690084992094232015, guid: e233b9791f01a2948858d6567c908ea2, type: 3}
-  empty: {fileID: 1326995176303611612, guid: 247dfd52db211a146bd337a1e63cad6e, type: 3}
-  sjugador: {fileID: 540761534}
+  heart: {fileID: 0}
+  halfheart: {fileID: 0}
+  empty: {fileID: 0}
+  sjugador: {fileID: 0}
   pos: 0
   vida: 0
-  fullheart: {fileID: 21300000, guid: 7c3a6a10f26b4714f9bcc154465ff555, type: 3}
-  half_heart: {fileID: 21300000, guid: 53af9e46c6ad0454e9bfa51b935dc715, type: 3}
-  background: {fileID: 21300000, guid: b2ef76b7e9578614297f97883fb21532, type: 3}
+  fullheart: {fileID: 0}
+  half_heart: {fileID: 0}
+  background: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
