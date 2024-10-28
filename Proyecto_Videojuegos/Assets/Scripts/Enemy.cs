@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float moveDuration;
     [SerializeField] private float cooldownParada;
+    [SerializeField] private float hp=3;
 
 
     private bool isFacingRight = true;
@@ -52,6 +53,18 @@ public class Enemy : MonoBehaviour
             //y el enemigo se detiene durante "cooldownParada" segundos
             isWaiting = true;
             yield return new WaitForSeconds(cooldownParada);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Arrow"))
+        {
+            hp--;
+            if (hp <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

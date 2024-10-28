@@ -24,21 +24,21 @@ public class Flecha : MonoBehaviour
        transform.Translate(velocidad*Vector2.right*Time.deltaTime); 
     }
     
-    /*
-    private void OnCollisionEnter2D(Collision2D collision) {
-        Destroy(gameObject);
-        if (collision.gameObject.CompareTag("Wall")) {
-            Destroy(gameObject);
-        }
-    }*/
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Las paredes tienen el tag de Wall en el prefab de la habitación (en el Tilemap_Border).
-        if (other.gameObject.CompareTag("Wall"))
+        
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") )
         {
             Destroy(gameObject);
         }
     }
     
+    private void OnTriggerEnter2D(Collider2D other) {
+        //La hitbox de la puerta se hace un trigger para que el jugador pueda pasar mientras que al mismo tiempo, destruya las flechas
+        if (other.gameObject.CompareTag("door"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

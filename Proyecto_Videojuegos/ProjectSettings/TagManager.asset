@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - door
+  - Enemy
+  - Arrow
   layers:
   - Default
   - TransparentFX
