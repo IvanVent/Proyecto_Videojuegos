@@ -27,8 +27,8 @@ public class Flecha : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") )
+        //Hitbox de las paredes son colliders por que no queremos que las flechas atraviesen las paredes
+        if (collision.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
@@ -36,7 +36,7 @@ public class Flecha : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         //La hitbox de la puerta se hace un trigger para que el jugador pueda pasar mientras que al mismo tiempo, destruya las flechas
-        if (other.gameObject.CompareTag("door"))
+        if (other.gameObject.CompareTag("door") || other.gameObject.CompareTag("Enemy") )
         {
             Destroy(gameObject);
         }
