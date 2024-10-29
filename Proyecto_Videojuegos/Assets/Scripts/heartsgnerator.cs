@@ -36,9 +36,9 @@ public class heartsgnerator : MonoBehaviour
     private void perdervida(float corazones)
     {
         while(corazones>0&&vida!=0){
-            print("aaaaaaaaaaaaaaaaa\n");
+            //print("aaaaaaaaaaaaaaaaa\n");
             if(vida*10%10==5){
-                print("ccccccccccccccccccc\n");
+                //print("ccccccccccccccccccc\n");
                 listacorazones[pos].sprite=background;
                 pos=pos-1;
                 vida= vida - 0.5f;

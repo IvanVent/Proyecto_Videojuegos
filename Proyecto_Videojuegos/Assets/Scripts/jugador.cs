@@ -67,8 +67,11 @@ public class jugador : MonoBehaviour
 
             rb.velocity = Vector2.zero;
         }
-        else if(collision.gameObject.CompareTag("Enemy")){
-            print("bbbbbbbbb\n");
+      
+    }
+    void OnTriggerEnter2D(Collider2D collider){
+        if(collider.gameObject.CompareTag("Enemy")){
+            //print("bbbbbbbbb");
             vida.Invoke(0.5f, 1);
 
         }
