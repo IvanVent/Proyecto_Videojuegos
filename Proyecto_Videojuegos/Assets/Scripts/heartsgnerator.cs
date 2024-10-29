@@ -27,7 +27,39 @@ public class heartsgnerator : MonoBehaviour
         if(instruccion==0){
             generarcorazones(corazones);
         }
+        if(instruccion==1){
+            perdervida(corazones);
+        }
 
+    }
+
+    private void perdervida(float corazones)
+    {
+        while(corazones>0&&vida!=0){
+            print("aaaaaaaaaaaaaaaaa\n");
+            if(vida*10%10==5){
+                print("ccccccccccccccccccc\n");
+                listacorazones[pos].sprite=background;
+                pos=pos-1;
+                vida= vida - 0.5f;
+                corazones= corazones - 0.5f;
+            }
+            else{
+                if(corazones==0.5){
+                    listacorazones[pos].sprite=half_heart;
+                    vida= vida - 0.5f;
+                    corazones= corazones - 0.5f;
+                }
+                else{
+                    listacorazones[pos].sprite=background;
+                    pos=pos-1;
+                    vida= vida - 1f;
+                    corazones= corazones - 1f;
+                }
+            }
+            
+
+        }
     }
 
     private void generarcorazones(float corazones)
