@@ -9,7 +9,7 @@ public class jugador : MonoBehaviour
 {
     public UnityEvent<float,int> vida;
     private float maxlife=3f;
-    private float actuallife=3f;
+
     private Vector3 objetivo;
     public Camera camara;
     // Start is called before the first frame update
@@ -17,9 +17,7 @@ public class jugador : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 input;
     public float velocidad=2;
-    private float nexTime=0;
     private Boolean inmortal=false;
-    private float sec=0;
     public GameObject flech,arco,heart,halfheart,noheart;
     
     void Start()
@@ -32,13 +30,7 @@ public class jugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inmortal&&Time.time>=nexTime){
-            nexTime++;
-            sec--;
-            if(sec<0){
-                inmortal=false;
-            }
-        }
+        
         rb.velocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -85,19 +77,24 @@ public class jugador : MonoBehaviour
             if(!inmortal){
                 vida.Invoke(0.5f, 1);
                 inmortal=true;
-                sec=1;
-                nexTime=Time.time;
+                StartCoroutine(Invincible());
             }
         }
     }
+
+    private IEnumerator Invincible()
+    {
+        yield return new WaitForSeconds(2);
+        inmortal=false;
+    }
+
     void OnTriggerStay2D(Collider2D collider){
         if(collider.gameObject.CompareTag("Enemy")){
                 //print("bbbbbbbbb");
             if(!inmortal){
                 vida.Invoke(0.5f, 1);
                 inmortal=true;
-                sec=1;
-                nexTime=Time.time;
+                StartCoroutine(Invincible());
             }
         }
     }
