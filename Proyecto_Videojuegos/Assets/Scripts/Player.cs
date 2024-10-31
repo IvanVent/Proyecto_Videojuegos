@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
-/*jugador bien sexy*/
-public class jugador : MonoBehaviour
+
+public class Player : MonoBehaviour
 {
     public UnityEvent<float,int> vida;
     private float maxlife=3f;
@@ -19,11 +19,12 @@ public class jugador : MonoBehaviour
     public float velocidad=2;
     private Boolean inmortal=false;
     public GameObject flech,arco,heart,halfheart,noheart;
+    SpriteRenderer sprite_renderer;
     
     void Start()
     {
         vida.Invoke(maxlife,0);
-        
+        sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         rb=GetComponent<Rigidbody2D>();
     }
 
@@ -84,7 +85,13 @@ public class jugador : MonoBehaviour
 
     private IEnumerator Invincible()
     {
+        
+        Color color = sprite_renderer.color;
+        color.a = Mathf.Clamp01(0.5f);
+        sprite_renderer.color = color;
         yield return new WaitForSeconds(2);
+        color.a = Mathf.Clamp01(1f);
+        sprite_renderer.color = color;
         inmortal=false;
     }
 

@@ -6,20 +6,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class heartsgnerator : MonoBehaviour
+public class HeartsGenerator : MonoBehaviour
 {
     // Start is called before the first frame update
-    public List<Image> listacorazones;
-    public GameObject heart,halfheart,empty;
-    public jugador sjugador;
+    public List<Image> heartsList;
+    public GameObject heart, halfheart;
+    private Player playerScript;
     public int pos;
-    public float vida;
-    public Sprite fullheart;
-    public Sprite half_heart;
-    public Sprite background;
+    public float health;
+    public Sprite fullHeart_sprite;
+    public Sprite halfHeart_sprite;
+    public Sprite bg_sprite;
     
     private void Awake(){
-        sjugador.vida.AddListener(ActualizarCorazones);
+        playerScript= GameObject.Find("Player").GetComponent<Player>();
+        playerScript.vida.AddListener(ActualizarCorazones);
     }
 
     private void ActualizarCorazones(float corazones, int instruccion)
@@ -33,49 +34,53 @@ public class heartsgnerator : MonoBehaviour
 
     }
 
+    // aqui corazones es la cantidad de corazones que se quieren quitar
     private void perdervida(float corazones)
     {
-        while(corazones>0&&vida!=0){
+
+        while(corazones>0 && health!=0){
             //print("aaaaaaaaaaaaaaaaa\n");
-            if(vida*10%10==5){
+            if(health*10%10 == 5){
                 //print("ccccccccccccccccccc\n");
-                listacorazones[pos].sprite=background;
-                pos=pos-1;
-                vida= vida - 0.5f;
-                corazones= corazones - 0.5f;
+                heartsList[pos].sprite = bg_sprite;
+                pos = pos-1;
+                health = health - 0.5f;
+                corazones = corazones - 0.5f;
             }
             else{
                 if(corazones==0.5){
-                    listacorazones[pos].sprite=half_heart;
-                    vida= vida - 0.5f;
+                    heartsList[pos].sprite=halfHeart_sprite;
+                    health= health - 0.5f;
                     corazones= corazones - 0.5f;
                 }
                 else{
-                    listacorazones[pos].sprite=background;
+                    heartsList[pos].sprite=bg_sprite;
                     pos=pos-1;
-                    vida= vida - 1f;
+                    health= health - 1f;
                     corazones= corazones - 1f;
                 }
             }
-            
-
         }
+        if(health <= 0){
+            Debug.Log("MUERTO!!!!!!");
+        }
+
     }
 
     private void generarcorazones(float corazones)
     {
-        vida=corazones;
+        health=corazones;   
         pos=corazones*10%10!=0?(int)corazones:(int)corazones-1;
 
         while(corazones>0){
             if(corazones>=1){
                 GameObject corazon=Instantiate(heart,transform);
-                listacorazones.Add(corazon.GetComponent<Image>());
+                heartsList.Add(corazon.GetComponent<Image>());
 
             }
             else{
                 GameObject corazon=Instantiate(halfheart,transform);
-                listacorazones.Add(corazon.GetComponent<Image>());
+                heartsList.Add(corazon.GetComponent<Image>());
             }
             corazones--;
         }

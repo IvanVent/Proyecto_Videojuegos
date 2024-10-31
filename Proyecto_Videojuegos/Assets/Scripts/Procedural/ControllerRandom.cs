@@ -32,7 +32,6 @@ public class ControllerRandom : MonoBehaviour
        {
            tileMap.AddRoom(x, y, value);
        };
-        Debug.Log("Antes del walk");
        Walk();
     }
 
@@ -47,7 +46,7 @@ public class ControllerRandom : MonoBehaviour
         maze.IterateRect();
     }
 
-    // Limpia la matriz, genera un nuevo mapa aleatorio de habitaciones y llama a UpdateTilemao() para
+    // Limpia la matriz, genera un nuevo mapa aleatorio de habitaciones y llama a UpdateTilemap() para
     // recorrer la matriz e instanciar las habitaciones y sus puertas.
     void Walk()
     {
