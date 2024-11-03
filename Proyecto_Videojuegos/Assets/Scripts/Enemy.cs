@@ -13,11 +13,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float cooldownParada;
     [SerializeField] private float hp=3;
 
+    private Animator animator;
 
     private bool isFacingRight = true;
     private bool isWaiting = false;
+    private bool receivingDamage = false;
 
     void Start(){
+        animator = GetComponent<Animator>();
         StartCoroutine(MoveAndWait());
     }
     void Update()
@@ -28,6 +31,7 @@ public class Enemy : MonoBehaviour
         }
         bool isPlayerRight = transform.position.x < player.position.x;
         Flip(isPlayerRight);
+        animator.SetBool("Damaged", receivingDamage);
     }
 
     private void Flip(bool isPlayerRight)
@@ -62,6 +66,7 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Arrow"))
         {
             hp--;
+            receivingDamage = true;
             if (hp <= 0)
             {
                 Destroy(gameObject);
@@ -69,6 +74,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void DeactivateDamage()
+    {
+        receivingDamage = false;
+    }
     
    }
 

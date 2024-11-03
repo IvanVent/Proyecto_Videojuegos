@@ -671,9 +671,25 @@ PrefabInstance:
       value: Enemigo
       objectReference: {fileID: 0}
     - target: {fileID: 1961436179888651201, guid: be5c9280c80efca4c973b962ada90466, type: 3}
+      propertyPath: hp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961436179888651201, guid: be5c9280c80efca4c973b962ada90466, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961436179888651201, guid: be5c9280c80efca4c973b962ada90466, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 540761533}
+    - target: {fileID: 1961436179888651201, guid: be5c9280c80efca4c973b962ada90466, type: 3}
+      propertyPath: moveDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961436179888651201, guid: be5c9280c80efca4c973b962ada90466, type: 3}
+      propertyPath: cooldownParada
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2176675664489036645, guid: be5c9280c80efca4c973b962ada90466, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9805865
