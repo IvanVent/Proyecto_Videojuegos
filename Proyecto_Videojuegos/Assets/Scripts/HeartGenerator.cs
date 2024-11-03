@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class HeartsGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
+  
     public List<Image> heartsList;
     public GameObject heart, halfheart;
     private Player playerScript;
@@ -17,6 +17,9 @@ public class HeartsGenerator : MonoBehaviour
     public Sprite fullHeart_sprite;
     public Sprite halfHeart_sprite;
     public Sprite bg_sprite;
+    
+    public GameManager gameManager;
+    private bool isDead = false;
     
     private void Awake(){
         playerScript= GameObject.Find("Player").GetComponent<Player>();
@@ -39,9 +42,9 @@ public class HeartsGenerator : MonoBehaviour
     {
 
         while(corazones>0 && health!=0){
-            //print("aaaaaaaaaaaaaaaaa\n");
+           
             if(health*10%10 == 5){
-                //print("ccccccccccccccccccc\n");
+                
                 heartsList[pos].sprite = bg_sprite;
                 pos = pos-1;
                 health = health - 0.5f;
@@ -61,8 +64,11 @@ public class HeartsGenerator : MonoBehaviour
                 }
             }
         }
-        if(health <= 0){
-            Debug.Log("MUERTO!!!!!!");
+        if(health <= 0 && !isDead)
+        {
+            isDead = true;
+            playerScript.SetIsDead();
+            gameManager.GameOver();
         }
 
     }

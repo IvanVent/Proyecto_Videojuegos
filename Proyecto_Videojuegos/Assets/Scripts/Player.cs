@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     private Vector3 objetivo;
     public Camera camara;
-    // Start is called before the first frame update
+ 
     private Vector2 direccion;
     public Rigidbody2D rb;
     private Vector2 input;
@@ -21,14 +21,15 @@ public class Player : MonoBehaviour
     public GameObject flech,arco,heart,halfheart,noheart;
     SpriteRenderer sprite_renderer;
     
+    private bool isDead=false;
+    
     void Start()
     {
         vida.Invoke(maxlife,0);
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         rb=GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -37,20 +38,34 @@ public class Player : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         rb.constraints = RigidbodyConstraints2D.None;
-        objetivo=camara.ScreenToWorldPoint(Input.mousePosition);
-        float angulo=Mathf.Atan2(objetivo.y-transform.position.y,objetivo.x-transform.position.x);
-        float anguloGrados=(180/Mathf.PI)*angulo;
-        transform.rotation=Quaternion.Euler(0,0,anguloGrados);
-        input.x=Input.GetAxisRaw("Horizontal");
-        input.y=Input.GetAxisRaw("Vertical");
-        direccion=input.normalized;
-        rb.MovePosition(rb.position+direccion*velocidad*Time.deltaTime);
-        if(Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)){
-            GameObject flechadis=Instantiate(flech,arco.transform.position,Quaternion.identity);
-            Flecha flecha=flechadis.GetComponent<Flecha>();
-            flecha.targetVector=transform.right;
+
+
+        if (!isDead)
+        {
+            objetivo=camara.ScreenToWorldPoint(Input.mousePosition);
+            float angulo=Mathf.Atan2(objetivo.y-transform.position.y,objetivo.x-transform.position.x);
+            float anguloGrados=(180/Mathf.PI)*angulo;
+            transform.rotation=Quaternion.Euler(0,0,anguloGrados);
+            
+            input.x=Input.GetAxisRaw("Horizontal");
+            input.y=Input.GetAxisRaw("Vertical");
+            direccion=input.normalized;
+            rb.MovePosition(rb.position+direccion*velocidad*Time.deltaTime);
         
+            if(Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)){
+                GameObject flechadis=Instantiate(flech,arco.transform.position,Quaternion.identity);
+                Flecha flecha=flechadis.GetComponent<Flecha>();
+                flecha.targetVector=transform.right;
+        
+            }
         }
+
+    }
+
+    // setter para un booleano que no permite mover el personaje cuando está muerto
+    public void SetIsDead()
+    {
+        isDead=true;
     }
     void OnCollisionEnter2D(Collision2D collision) {
 
@@ -73,8 +88,8 @@ public class Player : MonoBehaviour
       
     }
     void OnTriggerEnter2D(Collider2D collider){
-        if(collider.gameObject.CompareTag("Enemy")){
-                //print("bbbbbbbbb");
+        if(collider.gameObject.CompareTag("Enemy") && !isDead){
+          
             if(!inmortal){
                 vida.Invoke(0.5f, 1);
                 inmortal=true;
@@ -89,15 +104,15 @@ public class Player : MonoBehaviour
         Color color = sprite_renderer.color;
         color.a = Mathf.Clamp01(0.5f);
         sprite_renderer.color = color;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         color.a = Mathf.Clamp01(1f);
         sprite_renderer.color = color;
         inmortal=false;
     }
 
     void OnTriggerStay2D(Collider2D collider){
-        if(collider.gameObject.CompareTag("Enemy")){
-                //print("bbbbbbbbb");
+        if(collider.gameObject.CompareTag("Enemy") && !isDead){
+            
             if(!inmortal){
                 vida.Invoke(0.5f, 1);
                 inmortal=true;
