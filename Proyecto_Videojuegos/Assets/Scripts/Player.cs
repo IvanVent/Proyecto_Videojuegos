@@ -22,12 +22,13 @@ public class Player : MonoBehaviour
     SpriteRenderer sprite_renderer;
     
     private bool isDead=false;
-    
+    public Animator animator;
     void Start()
     {
         vida.Invoke(maxlife,0);
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         rb=GetComponent<Rigidbody2D>();
+        animator=GetComponent<Animator>();
     }
     
     void Update()
@@ -63,10 +64,7 @@ public class Player : MonoBehaviour
     }
 
     // setter para un booleano que no permite mover el personaje cuando está muerto
-    public void SetIsDead()
-    {
-        isDead=true;
-    }
+    
     void OnCollisionEnter2D(Collision2D collision) {
 
         if (collision.gameObject.CompareTag("Wall")) {
@@ -101,12 +99,9 @@ public class Player : MonoBehaviour
     private IEnumerator Invincible()
     {
         
-        Color color = sprite_renderer.color;
-        color.a = Mathf.Clamp01(0.5f);
-        sprite_renderer.color = color;
+        animator.SetBool("Damage",true);
         yield return new WaitForSeconds(1);
-        color.a = Mathf.Clamp01(1f);
-        sprite_renderer.color = color;
+        animator.SetBool("Damage",false);
         inmortal=false;
     }
 
@@ -130,6 +125,10 @@ public class Player : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezePositionY;
             rb.constraints = RigidbodyConstraints2D.None;
         }
+    }
+    public void SetIsDead()
+    {
+        isDead=true;
     }
 
 }
