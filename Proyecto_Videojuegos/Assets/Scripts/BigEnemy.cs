@@ -40,16 +40,19 @@ public class BigEnemy : MonoBehaviour
     {
         if (collision.CompareTag("Arrow"))
         {
-            hp--;
-            receivingDamage = true;
-            Debug.Log(receivingDamage);
-            if (hp <= 0)
-            {
-                Destroy(gameObject);
-            }
+            TakeDamage();
         }
     }
 
+    public void TakeDamage()
+    {
+        hp--;
+        receivingDamage = true;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     public void DeactivateDamage()
     {
         receivingDamage = false;

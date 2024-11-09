@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public UnityEvent<float,int> vida;
     private float maxlife=3f;
 
+    [SerializeField] private float shootCooldown;
+    private bool canShoot = true;
     private Vector3 objetivo;
     public Camera camara;
  
@@ -53,10 +55,11 @@ public class Player : MonoBehaviour
             direccion=input.normalized;
             rb.MovePosition(rb.position+direccion*velocidad*Time.deltaTime);
         
-            if(Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)){
+            if(Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0) && canShoot){
                 GameObject flechadis=Instantiate(flech,arco.transform.position,Quaternion.identity);
                 Flecha flecha=flechadis.GetComponent<Flecha>();
                 flecha.targetVector=transform.right;
+                StartCoroutine(ShootCooldown());
         
             }
         }
@@ -103,6 +106,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1);
         animator.SetBool("Damage",false);
         inmortal=false;
+    }
+
+    private IEnumerator ShootCooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(shootCooldown);
+        canShoot = true;
     }
 
     void OnTriggerStay2D(Collider2D collider){

@@ -579,6 +579,7 @@ MonoBehaviour:
   vida:
     m_PersistentCalls:
       m_Calls: []
+  shootCooldown: 0.6
   camara: {fileID: 519420031}
   rb: {fileID: 540761535}
   velocidad: 6
