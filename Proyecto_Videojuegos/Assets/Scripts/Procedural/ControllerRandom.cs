@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class ControllerRandom : MonoBehaviour
@@ -48,7 +47,7 @@ public class ControllerRandom : MonoBehaviour
 
     // Limpia la matriz, genera un nuevo mapa aleatorio de habitaciones y llama a UpdateTilemap() para
     // recorrer la matriz e instanciar las habitaciones y sus puertas.
-    void Walk()
+    public void Walk()
     {
         Restart();
         while (maze.GetEmptyCount() > emptyCells)
@@ -58,6 +57,7 @@ public class ControllerRandom : MonoBehaviour
         }
         UpdateTilemap();
     }
+    
 
 
 

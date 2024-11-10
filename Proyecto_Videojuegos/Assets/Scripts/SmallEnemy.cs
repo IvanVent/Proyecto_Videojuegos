@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class SmallEnemy : MonoBehaviour
 {
     
     [SerializeField] private Transform player;

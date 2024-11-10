@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
+    //public ControllerRandom control;
 
-    public void Start()
+    private void Start()
     {
-        Debug.Log("GameManager");
+        //control = gameObject.GetComponent<ControllerRandom>();
     }
 
     public void GameOver()

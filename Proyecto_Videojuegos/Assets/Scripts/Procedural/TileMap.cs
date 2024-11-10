@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
+
 
 public class TileMap : MonoBehaviour
 {
@@ -14,20 +16,29 @@ public class TileMap : MonoBehaviour
     public GameObject downDoorPrefab;
     public GameObject leftDoorPrefab;
     public GameObject rightDoorPrefab;
+    
+    public SmallEnemy enemy1Prefab;
+    public BigEnemy enemy2Prefab;
 
     private GameObject room;
-    private List<GameObject> doorWallColliders;
-    private List<GameObject> normalColliders;
+
+    public Transform roomsFather;
+    public Transform enemiesFather;
+    public Transform doorsFather;
+    
+    private List<GameObject> doorWallColliders = new List<GameObject>();
+    private List<GameObject> normalColliders = new List<GameObject>();
     float roomWidth = 9f;
     float roomHeight = 10f;
 
     private void Start()
     {
-
+        ClearTileMap();
     }
     // Este método se llama cada vez que se recorre una celda de la matriz que define el mapa.
     public void AddRoom(float x, float y, int id = 0)
     {
+        
         var roomPos = new Vector3(x * roomWidth * 2, y * roomHeight, 1f);
         
         // Si la habitación actual no tiene puertas (id == 0) no se instancia la habitación, es decir, 
@@ -35,6 +46,7 @@ public class TileMap : MonoBehaviour
         if (id != 0)
         {
             room = Instantiate(roomPrefab, roomPos, Quaternion.identity);
+            room.transform.SetParent(roomsFather);
             
             var doorWallCollider_obj = room.transform.Find("DoorColliders");
             var normalCollider_obj = room.transform.Find("Colliders");
@@ -63,7 +75,7 @@ public class TileMap : MonoBehaviour
     private void AddDoors(int id, Vector3 roomPos)
     {
         var doorPos = new Vector3();
-        
+        GameObject door;
         // Este bucle recorre los bits del id. Dependiendo del bit que esté a 1, se añade una puerta donde corresponde y 
         // se ajustan los colliders.
         for (int i = 0; i < 4; i++)
@@ -75,7 +87,10 @@ public class TileMap : MonoBehaviour
                 {
                     doorPos.x = roomPos.x- 2;
                     doorPos.y = roomPos.y + 4;
-                    Instantiate(upDoorPrefab, doorPos, Quaternion.identity);
+                    
+                    door = Instantiate(upDoorPrefab, doorPos, Quaternion.identity);
+                    door.transform.SetParent(doorsFather);
+                    
                     doorWallColliders[0].gameObject.SetActive(true);
                     normalColliders[0].gameObject.SetActive(false);
                 }
@@ -83,7 +98,8 @@ public class TileMap : MonoBehaviour
                 {
                     doorPos.x = roomPos.x + 7;
                     doorPos.y = roomPos.y;
-                    Instantiate(rightDoorPrefab, doorPos, Quaternion.identity);
+                    door = Instantiate(rightDoorPrefab, doorPos, Quaternion.identity);
+                    door.transform.SetParent(doorsFather);
                     doorWallColliders[1].gameObject.SetActive(true);
                     normalColliders[1].gameObject.SetActive(false);
                 }
@@ -91,7 +107,8 @@ public class TileMap : MonoBehaviour
                 {
                     doorPos.x = roomPos.x-2;
                     doorPos.y = roomPos.y - 4;
-                    Instantiate(downDoorPrefab, doorPos, Quaternion.identity);
+                    door = Instantiate(downDoorPrefab, doorPos, Quaternion.identity);
+                    door.transform.SetParent(doorsFather);
                     doorWallColliders[2].gameObject.SetActive(true);
                     normalColliders[2].gameObject.SetActive(false);
                 }
@@ -99,7 +116,8 @@ public class TileMap : MonoBehaviour
                 {
                     doorPos.x = roomPos.x - 10;
                     doorPos.y = roomPos.y;
-                    Instantiate(leftDoorPrefab, doorPos, Quaternion.identity);
+                    door = Instantiate(leftDoorPrefab, doorPos, Quaternion.identity);
+                    door.transform.SetParent(doorsFather);
                     doorWallColliders[3].gameObject.SetActive(true);
                     normalColliders[3].gameObject.SetActive(false);
                 }
@@ -107,8 +125,48 @@ public class TileMap : MonoBehaviour
         }//for
     }//AddDoors
 
+    // elimina todos las habitaciones, enemigos, puertas y colliders
+    public void ClearTileMap()
+    {
 
+        foreach (Transform roomObj in roomsFather.transform)
+        {
+            Destroy(room.gameObject);
+        }
+        foreach (Transform door in doorsFather.transform)
+        {
+            Destroy(door.gameObject);
+        }
+        foreach (Transform enemy in enemiesFather.transform)
+        {
+            Destroy(enemy.gameObject);
+        }
+        doorWallColliders.Clear();
+        normalColliders.Clear();
+    }
 
-    
+    public void AddEnemies(Vector3 pos)
+    {
+        
+        /*
+        if (x != 0 && y != 0)
+        {
+
+            int n = Random.Range(1, 2);
+
+            if (n == 1)
+            {
+                var enemy1Pos = new Vector3();
+                enemy1Pos.x += 1;
+                enemy1Pos.y += 1;
+
+                SmallEnemy enemy1 = Instantiate(enemy1Prefab, enemy1Pos, Quaternion.identity);
+            }
+
+        }
+        */
+
+    }
+
 
 }
