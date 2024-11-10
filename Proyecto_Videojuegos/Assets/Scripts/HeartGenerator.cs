@@ -34,7 +34,7 @@ public class HeartsGenerator : MonoBehaviour
         playerScript.vida.AddListener(UpdateHearts);
     }
 
-    public void UpdateHearts(float corazones, int instruccion)
+    private void UpdateHearts(float corazones, int instruccion)
     {
         if(instruccion==0){
             GenerateHearts(corazones);
@@ -90,8 +90,6 @@ public class HeartsGenerator : MonoBehaviour
             if(corazones>=1){
                 GameObject corazon=Instantiate(heart,transform);
                 heartsList.Add(corazon.GetComponent<Image>());
-                Debug.Log("hola");
-
             }
             else{
                 GameObject corazon=Instantiate(halfheart,transform);
