@@ -21,24 +21,32 @@ public class HeartsGenerator : MonoBehaviour
     public GameManager gameManager;
     private bool isDead = false;
     
+    //GETTER Y SETTERS
+
+    public List<Image> getHeartsList()
+    {
+        return heartsList;
+    }
+    
+    //FIN GETTER Y SETTERS
     private void Awake(){
         playerScript= GameObject.Find("Player").GetComponent<Player>();
-        playerScript.vida.AddListener(ActualizarCorazones);
+        playerScript.vida.AddListener(UpdateHearts);
     }
 
-    private void ActualizarCorazones(float corazones, int instruccion)
+    public void UpdateHearts(float corazones, int instruccion)
     {
         if(instruccion==0){
-            generarcorazones(corazones);
+            GenerateHearts(corazones);
         }
         if(instruccion==1){
-            perdervida(corazones);
+            loseHearts(corazones);
         }
 
     }
 
     // aqui corazones es la cantidad de corazones que se quieren quitar
-    private void perdervida(float corazones)
+    private void loseHearts(float corazones)
     {
 
         while(corazones>0 && health!=0){
@@ -73,7 +81,7 @@ public class HeartsGenerator : MonoBehaviour
 
     }
 
-    private void generarcorazones(float corazones)
+    private void GenerateHearts(float corazones)
     {
         health=corazones;   
         pos=corazones*10%10!=0?(int)corazones:(int)corazones-1;
@@ -82,6 +90,7 @@ public class HeartsGenerator : MonoBehaviour
             if(corazones>=1){
                 GameObject corazon=Instantiate(heart,transform);
                 heartsList.Add(corazon.GetComponent<Image>());
+                Debug.Log("hola");
 
             }
             else{

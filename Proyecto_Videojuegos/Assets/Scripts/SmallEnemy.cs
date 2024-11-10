@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SmallEnemy : MonoBehaviour
@@ -39,6 +38,14 @@ public class SmallEnemy : MonoBehaviour
 
     }
 
+
+    //GETTER Y SETTERS
+
+    public float getHP()
+    {
+        return hp;
+    }
+    //FIN GETTER Y SETTERS
     private void Flip(bool isPlayerRight)
     {
         if (isPlayerRight && !isFacingRight || !isPlayerRight && isFacingRight)

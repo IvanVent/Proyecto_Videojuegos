@@ -31,6 +31,14 @@ public class BigEnemy : MonoBehaviour
         }
     }
 
+    //GETTER Y SETTERS
+
+    public float getHP()
+    {
+        return hp;
+    }
+    
+    //FIN GETTER Y SETTERS
     private void Flip(bool isPlayerRight)
     {
         if (isPlayerRight && !isFacingRight || !isPlayerRight && isFacingRight)
