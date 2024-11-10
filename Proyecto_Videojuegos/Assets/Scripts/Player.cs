@@ -8,8 +8,10 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     public UnityEvent<float,int> vida;
+    int alterar=0;
     private float maxlife=3f;
-
+    public AudioSource src;
+    public AudioClip sfx1,sfx2,sfx3;
     [SerializeField] private float shootCooldown;
     private bool canShoot = true;
     private Vector3 objetivo;
@@ -56,6 +58,17 @@ public class Player : MonoBehaviour
             rb.MovePosition(rb.position+direccion*velocidad*Time.deltaTime);
         
             if((Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)) && canShoot){
+                if(alterar==0){
+                    
+                    src.clip=sfx2;
+                    src.Play();
+                    alterar=1;
+                }
+                else{
+                    src.clip=sfx2;
+                    src.Play();
+                    alterar=0;
+                }
                 GameObject flechadis=Instantiate(flech,arco.transform.position,Quaternion.identity);
                 Flecha flecha=flechadis.GetComponent<Flecha>();
                 flecha.targetVector=transform.right;
@@ -90,6 +103,8 @@ public class Player : MonoBehaviour
         if(collider.gameObject.CompareTag("Enemy") && !isDead){
           
             if(!inmortal){
+                src.clip=sfx1;
+                src.Play();
                 vida.Invoke(0.5f, 1);
                 inmortal=true;
                 StartCoroutine(Invincible());
@@ -117,6 +132,8 @@ public class Player : MonoBehaviour
         if(collider.gameObject.CompareTag("Enemy") && !isDead){
             
             if(!inmortal){
+                src.clip=sfx1;
+                src.Play();
                 vida.Invoke(0.5f, 1);
                 inmortal=true;
                 StartCoroutine(Invincible());
