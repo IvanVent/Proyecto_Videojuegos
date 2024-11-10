@@ -30,6 +30,8 @@ public class TileMap : MonoBehaviour
     private List<GameObject> normalColliders = new List<GameObject>();
     float roomWidth = 9f;
     float roomHeight = 10f;
+    
+    private RoomController roomController;
 
     private void Start()
     {
@@ -41,12 +43,22 @@ public class TileMap : MonoBehaviour
         
         var roomPos = new Vector3(x * roomWidth * 2, y * roomHeight, 1f);
         
+        
         // Si la habitación actual no tiene puertas (id == 0) no se instancia la habitación, es decir, 
         // hay un hueco vacío en el mapa.
         if (id != 0)
         {
+            
+            
             room = Instantiate(roomPrefab, roomPos, Quaternion.identity);
             room.transform.SetParent(roomsFather);
+            
+            roomController = room.GetComponent<RoomController>();
+            roomController.SetEnemiesFather(enemiesFather);
+            roomController.SetSmallEnemyPrefab(enemy1Prefab);
+            roomController.SetBigEnemyPrefab(enemy2Prefab);
+            
+            room.GetComponent<RoomController>().AddEnemies(new Vector3(roomPos.x - 4, roomPos.y - 1, 0));
             
             var doorWallCollider_obj = room.transform.Find("DoorColliders");
             var normalCollider_obj = room.transform.Find("Colliders");
@@ -76,6 +88,7 @@ public class TileMap : MonoBehaviour
     {
         var doorPos = new Vector3();
         GameObject door;
+        
         // Este bucle recorre los bits del id. Dependiendo del bit que esté a 1, se añade una puerta donde corresponde y 
         // se ajustan los colliders.
         for (int i = 0; i < 4; i++)
@@ -144,29 +157,5 @@ public class TileMap : MonoBehaviour
         doorWallColliders.Clear();
         normalColliders.Clear();
     }
-
-    public void AddEnemies(Vector3 pos)
-    {
-        
-        /*
-        if (x != 0 && y != 0)
-        {
-
-            int n = Random.Range(1, 2);
-
-            if (n == 1)
-            {
-                var enemy1Pos = new Vector3();
-                enemy1Pos.x += 1;
-                enemy1Pos.y += 1;
-
-                SmallEnemy enemy1 = Instantiate(enemy1Prefab, enemy1Pos, Quaternion.identity);
-            }
-
-        }
-        */
-
-    }
-
 
 }

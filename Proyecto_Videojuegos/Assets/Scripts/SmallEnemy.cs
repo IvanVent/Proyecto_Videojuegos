@@ -17,20 +17,26 @@ public class SmallEnemy : MonoBehaviour
     private bool isFacingRight = true;
     private bool isWaiting = false;
     private bool receivingDamage = false;
+    private bool followPlayer = false;
 
     void Start(){
         animator = GetComponent<Animator>();
         StartCoroutine(MoveAndWait());
+        player = GameObject.Find("Player").transform;
     }
     void Update()
     {
-        if(!isWaiting)
+        if (followPlayer)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            if(!isWaiting)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            }
+            bool isPlayerRight = transform.position.x < player.position.x;
+            Flip(isPlayerRight);
+            animator.SetBool("Damaged", receivingDamage);
         }
-        bool isPlayerRight = transform.position.x < player.position.x;
-        Flip(isPlayerRight);
-        animator.SetBool("Damaged", receivingDamage);
+
     }
 
     private void Flip(bool isPlayerRight)
@@ -81,6 +87,16 @@ public class SmallEnemy : MonoBehaviour
     public void DeactivateDamage()
     {
         receivingDamage = false;
+    }
+    
+    public void EnableFollowPlayer()
+    {
+        followPlayer = true;
+    }
+    
+    public void DisableFollowPlayer()
+    {
+        followPlayer = false;
     }
     
    }

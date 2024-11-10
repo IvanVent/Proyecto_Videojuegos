@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
             direccion=input.normalized;
             rb.MovePosition(rb.position+direccion*velocidad*Time.deltaTime);
         
-            if(Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0) && canShoot){
+            if((Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)) && canShoot){
                 GameObject flechadis=Instantiate(flech,arco.transform.position,Quaternion.identity);
                 Flecha flecha=flechadis.GetComponent<Flecha>();
                 flecha.targetVector=transform.right;
@@ -65,8 +65,6 @@ public class Player : MonoBehaviour
         }
 
     }
-
-    // setter para un booleano que no permite mover el personaje cuando está muerto
     
     void OnCollisionEnter2D(Collision2D collision) {
 
@@ -136,6 +134,8 @@ public class Player : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
         }
     }
+    
+    // setter para un booleano que no permite mover el personaje cuando está muerto
     public void SetIsDead()
     {
         isDead=true;

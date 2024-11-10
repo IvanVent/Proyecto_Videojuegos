@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BigEnemy : MonoBehaviour
 {
     [SerializeField] private Transform player;
@@ -12,16 +13,22 @@ public class BigEnemy : MonoBehaviour
     private Animator animator;
     private bool isFacingRight = true;
     private bool receivingDamage = false;
+    private bool followPlayer = false;
+    
 
     void Start(){
         animator = GetComponent<Animator>();
+        player = GameObject.Find("Player").transform;
     }
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        bool isPlayerRight = transform.position.x < player.position.x;
-        Flip(isPlayerRight);
-        animator.SetBool("Damaged", receivingDamage);
+        if (followPlayer)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            bool isPlayerRight = transform.position.x < player.position.x;
+            Flip(isPlayerRight);
+            animator.SetBool("Damaged", receivingDamage);
+        }
     }
 
     private void Flip(bool isPlayerRight)
@@ -56,6 +63,15 @@ public class BigEnemy : MonoBehaviour
     public void DeactivateDamage()
     {
         receivingDamage = false;
+    }
+
+    public void EnableFollowPlayer()
+    {
+        followPlayer = true;
+    }
+    public void DisableFollowPlayer()
+    {
+        followPlayer = false;
     }
 
 }
