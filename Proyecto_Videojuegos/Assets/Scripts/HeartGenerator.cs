@@ -14,6 +14,7 @@ public class HeartsGenerator : MonoBehaviour
     private Player playerScript;
     public int pos;
     public float health;
+    private float max;
     public Sprite fullHeart_sprite;
     public Sprite halfHeart_sprite;
     public Sprite bg_sprite;
@@ -42,7 +43,39 @@ public class HeartsGenerator : MonoBehaviour
         if(instruccion==1){
             loseHearts(corazones);
         }
+        if(instruccion==2){
+            moreHearts(corazones);
+        }
 
+    }
+
+    private void moreHearts(float corazones)
+    {
+        while(corazones>0){
+            if(corazones>=1){
+                if(max*10%10==0){
+                    GameObject corazon=Instantiate(heart,transform);
+                    heartsList.Add(corazon.GetComponent<Image>());
+                    max++;
+                }
+                else{
+                    heartsList[heartsList.Count-1].sprite = fullHeart_sprite;
+                    max+=0.5f;
+                }
+            }
+            else{
+                if(max*10%10==0){
+                    GameObject corazon=Instantiate(halfheart,transform);
+                    heartsList.Add(corazon.GetComponent<Image>());
+                    max+=0.5f;
+                }
+                else{
+                    heartsList[heartsList.Count-1].sprite = fullHeart_sprite;
+                    max+=0.5f;
+                }
+            }
+        }
+        
     }
 
     // aqui corazones es la cantidad de corazones que se quieren quitar
@@ -83,7 +116,8 @@ public class HeartsGenerator : MonoBehaviour
 
     private void GenerateHearts(float corazones)
     {
-        health=corazones;   
+        health=corazones;  
+        max=corazones; 
         pos=corazones*10%10!=0?(int)corazones:(int)corazones-1;
 
         while(corazones>0){
