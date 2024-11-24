@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     public UnityEvent<float,int> vida;
+    public bool doubleshot=false;
     int alterar=0;
     private float maxlife=3f;
     public AudioSource src;
@@ -73,7 +74,9 @@ public class Player : MonoBehaviour
                 Flecha flecha=flechadis.GetComponent<Flecha>();
                 flecha.targetVector=transform.right;
                 StartCoroutine(ShootCooldown());
-        
+                if(doubleshot){
+                    StartCoroutine(Doubleshot());
+                }
             }
         }
 
@@ -120,12 +123,23 @@ public class Player : MonoBehaviour
         animator.SetBool("Damage",false);
         inmortal=false;
     }
-
+    public void SetDoubleshot(){
+        doubleshot=true;
+    }
     private IEnumerator ShootCooldown()
     {
         canShoot = false;
         yield return new WaitForSeconds(shootCooldown);
         canShoot = true;
+    }
+    private IEnumerator Doubleshot()
+    {
+        
+        yield return new WaitForSeconds(0.2f);
+        src.Play();
+        GameObject flechadis=Instantiate(flech,arco.transform.position,Quaternion.identity);
+        Flecha flecha=flechadis.GetComponent<Flecha>();
+        flecha.targetVector=transform.right;
     }
 
     void OnTriggerStay2D(Collider2D collider){

@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Heart : PowerUp
+public class Potion : PowerUp
 {
-    // Start is called before the first frame update
     private HeartsGenerator heartmanager;
+    // Start is called before the first frame update
     public UnityEvent<float,int> vida;
     void Start() { // Encuentra el objeto HeartManager en la escena 
         heartmanager = GameObject.Find("hearts").GetComponent<HeartsGenerator>();  
     }
     public override void ApplyEffect(GameObject player)
     {
-        heartmanager.UpdateHearts(1,2);
+        print("aaaaaaaaaaaaaaaaaaaaa");
+        heartmanager.UpdateHearts(0.5f,3);
     }
-
+        
+    
 }

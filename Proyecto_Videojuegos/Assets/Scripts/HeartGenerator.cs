@@ -35,8 +35,9 @@ public class HeartsGenerator : MonoBehaviour
         playerScript.vida.AddListener(UpdateHearts);
     }
 
-    private void UpdateHearts(float corazones, int instruccion)
+    public void UpdateHearts(float corazones, int instruccion)
     {
+        print("invoke funcionaaaaaaaa");
         if(instruccion==0){
             GenerateHearts(corazones);
         }
@@ -46,7 +47,59 @@ public class HeartsGenerator : MonoBehaviour
         if(instruccion==2){
             moreHearts(corazones);
         }
+        if(instruccion==3){
+            curar(corazones);
+        }
 
+    }
+
+    private void curar(float corazones)
+    {
+        print("aaaaaaaaaaaaaaa");
+        while(corazones>0&&health!=max){
+            if(corazones>=1){
+                if(max-health>=1){
+                    if(health*10%10>0){
+                        heartsList[pos].sprite=fullHeart_sprite;
+                        health+=0.5f;
+                        corazones-=0.5f;
+                    }
+                    else{
+                        pos++;
+                        heartsList[pos].sprite=fullHeart_sprite;
+                        health++;
+                        corazones--;
+                    }
+                }
+                else{
+                    if(health*10%10>0){
+                        heartsList[pos].sprite=fullHeart_sprite;
+                        
+                    }       
+                    else{
+                        pos++;
+                        heartsList[pos].sprite=halfHeart_sprite;
+                    }             
+                    health+=0.5f;
+                    corazones-=0.5f;
+
+                }
+            }
+            else{
+                if(health*10%10>0){
+                    heartsList[pos].sprite=fullHeart_sprite;
+                    health+=0.5f;
+                    corazones-=0.5f;
+                }
+                else{
+                    pos++;
+                    health+=0.5f;
+                    heartsList[pos].sprite=halfHeart_sprite;
+                    corazones-=0.5f;
+                }
+
+            }
+        }
     }
 
     private void moreHearts(float corazones)
@@ -56,22 +109,28 @@ public class HeartsGenerator : MonoBehaviour
                 if(max*10%10==0){
                     GameObject corazon=Instantiate(heart,transform);
                     heartsList.Add(corazon.GetComponent<Image>());
+                    heartsList[heartsList.Count-1].sprite=bg_sprite;
                     max++;
+                    corazones--;
                 }
                 else{
                     heartsList[heartsList.Count-1].sprite = fullHeart_sprite;
                     max+=0.5f;
+                    corazones-=0.5f;
                 }
             }
             else{
                 if(max*10%10==0){
                     GameObject corazon=Instantiate(halfheart,transform);
                     heartsList.Add(corazon.GetComponent<Image>());
+                    heartsList[heartsList.Count-1].sprite=bg_sprite;
                     max+=0.5f;
+                    corazones-=0.5f;
                 }
                 else{
                     heartsList[heartsList.Count-1].sprite = fullHeart_sprite;
                     max+=0.5f;
+                    corazones-=0.5f;
                 }
             }
         }
