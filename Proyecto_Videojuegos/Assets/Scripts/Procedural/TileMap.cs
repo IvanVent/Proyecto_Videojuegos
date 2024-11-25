@@ -60,6 +60,7 @@ public class TileMap : MonoBehaviour
             
             room.GetComponent<RoomController>().AddEnemies(new Vector3(roomPos.x - 4, roomPos.y - 1, 0));
             
+            /*
             var doorWallCollider_obj = room.transform.Find("DoorColliders");
             var normalCollider_obj = room.transform.Find("Colliders");
             
@@ -77,7 +78,7 @@ public class TileMap : MonoBehaviour
             foreach (Transform child in normalCollider_obj.transform)
             {
                 normalColliders.Add(child.gameObject);
-            }
+            }*/
             AddDoors(id, roomPos);
         }
 

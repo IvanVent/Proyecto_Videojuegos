@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        
         music=false;
         vivo=false;
         src.Stop();

@@ -14,8 +14,15 @@ public class RoomController : MonoBehaviour
     private List<SmallEnemy> smallEnemiesList = new List<SmallEnemy>();
     private List<BigEnemy> bigEnemiesList = new List<BigEnemy>();
     
+    private List<GameObject> doorWallColliders = new List<GameObject>();
+    private List<GameObject> normalColliders = new List<GameObject>();
+
+    private int enemyCount = 1;
+    
     void Start()
     {
+        LoadColliders();
+
         
     }
 
@@ -32,6 +39,26 @@ public class RoomController : MonoBehaviour
     public void SetBigEnemyPrefab(BigEnemy prefab2)
     {
         this.enemy2Prefab = prefab2;
+    }
+
+    public void LoadColliders()
+    {
+        var doorWallCollider_obj = transform.Find("DoorColliders");
+        var normalCollider_obj = transform.Find("Colliders");
+        
+        // Se guardan todos los colliders de las paredes sin puerta y se desactivan. Se activan en
+        // AddDoors() solo los que hagan falta.
+        foreach (Transform child in doorWallCollider_obj.transform)
+        {
+            doorWallColliders.Add(child.gameObject);
+            child.gameObject.SetActive(false);
+        }
+
+        // Se guardan todos los colliders de las paredes con puerta.
+        foreach (Transform child in normalCollider_obj.transform)
+        {
+            normalColliders.Add(child.gameObject);
+        }
     }
     
     //crea una instancia de uno de los dos enemigos
