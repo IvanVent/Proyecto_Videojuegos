@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     public UnityEvent<float,int> vida;
+    private int damage;
     public bool doubleshot=false;
     int alterar=0;
     private float maxlife=3f;
@@ -17,7 +18,6 @@ public class Player : MonoBehaviour
     private bool canShoot = true;
     private Vector3 objetivo;
     public Camera camara;
- 
     private Vector2 direccion;
     public Rigidbody2D rb;
     private Vector2 input;
@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         rb=GetComponent<Rigidbody2D>();
         animator=GetComponent<Animator>();
+        damage=1;
     }
     
     void Update()
@@ -119,9 +120,17 @@ public class Player : MonoBehaviour
             shootCooldown-=0.1f;
         }
     }
+    public int getdamage(){
+        return damage;
+    }
     public void ishowspeed(){
         if(velocidad<2.5f){
             velocidad+=0.5f;
+        }
+    }
+    public void moredamage(){
+        if(damage<4){
+            damage++;
         }
     }
     private IEnumerator Invincible()

@@ -10,7 +10,7 @@ public class SmallEnemy : MonoBehaviour
     [SerializeField] private float moveDuration;
     [SerializeField] private float cooldownParada;
     [SerializeField] private float hp=3;
-
+    private Player playera; 
     private Animator animator;
 
     private bool isFacingRight = true;
@@ -22,6 +22,7 @@ public class SmallEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         StartCoroutine(MoveAndWait());
         player = GameObject.Find("Player").transform;
+        playera=GameObject.Find("Player").GetComponent<Player>();
     }
     void Update()
     {
@@ -84,7 +85,7 @@ public class SmallEnemy : MonoBehaviour
 
     public void TakeDamage()
     {
-        hp--;
+        hp-=playera.getdamage();
         receivingDamage = true;
         if (hp <= 0)
         {

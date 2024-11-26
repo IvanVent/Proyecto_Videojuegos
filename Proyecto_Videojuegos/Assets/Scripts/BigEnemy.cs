@@ -9,7 +9,7 @@ public class BigEnemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float hp=6;
 
-
+    private Player playera; 
     private Animator animator;
     private bool isFacingRight = true;
     private bool receivingDamage = false;
@@ -19,6 +19,7 @@ public class BigEnemy : MonoBehaviour
     void Start(){
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
+        playera = GameObject.Find("Player").GetComponent<Player>();
     }
     void Update()
     {
@@ -61,7 +62,7 @@ public class BigEnemy : MonoBehaviour
 
     public void TakeDamage()
     {
-        hp--;
+        hp-=playera.getdamage();
         receivingDamage = true;
         if (hp <= 0)
         {
