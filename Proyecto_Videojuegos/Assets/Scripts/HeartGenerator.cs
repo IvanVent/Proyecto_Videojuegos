@@ -37,7 +37,6 @@ public class HeartsGenerator : MonoBehaviour
 
     public void UpdateHearts(float corazones, int instruccion)
     {
-        print("invoke funcionaaaaaaaa");
         if(instruccion==0){
             GenerateHearts(corazones);
         }
@@ -55,7 +54,6 @@ public class HeartsGenerator : MonoBehaviour
 
     private void curar(float corazones)
     {
-        print("aaaaaaaaaaaaaaa");
         while(corazones>0&&health!=max){
             if(corazones>=1){
                 if(max-health>=1){

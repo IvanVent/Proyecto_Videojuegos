@@ -7,10 +7,7 @@ public abstract class PowerUp : MonoBehaviour
     // Start is called before the first frame update
     public abstract void ApplyEffect(GameObject player);
     public virtual void OnPick(GameObject player){
-        print("trigger");
         ApplyEffect(player);
-        print("efecto");
         Destroy(gameObject);
-        print("eliminar");
     }
 }

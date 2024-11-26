@@ -114,7 +114,16 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    public void XLR8(){
+        if(shootCooldown>0.3f){
+            shootCooldown-=0.1f;
+        }
+    }
+    public void ishowspeed(){
+        if(velocidad<2.5f){
+            velocidad+=0.5f;
+        }
+    }
     private IEnumerator Invincible()
     {
         
