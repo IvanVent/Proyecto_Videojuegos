@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     
     private bool isDead=false;
     public Animator animator;
+    private int rooms_completed = 0;
+    
     void Start()
     {
         vida.Invoke(maxlife,0);
@@ -114,6 +116,14 @@ public class Player : MonoBehaviour
                 StartCoroutine(Invincible());
             }
         }
+    }
+    public void IncrementRoomsCompleted()
+    {
+        rooms_completed++;
+    }
+    public int GetRoomsCompleted()
+    {
+        return rooms_completed;
     }
     public void XLR8(){
         if(shootCooldown>0.3f){
