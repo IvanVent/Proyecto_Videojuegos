@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 5770456155719117706}
   - component: {fileID: 8440397317486304649}
   - component: {fileID: 3227512206896640584}
+  - component: {fileID: -8112298745139627315}
   m_Layer: 0
   m_Name: Room_0
   m_TagString: Wall
@@ -466,12 +467,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68598740f28205d438026bbacf62333b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy1Prefab: {fileID: 1539568736952021438, guid: be5c9280c80efca4c973b962ada90466, type: 3}
-  enemy2Prefab: {fileID: -6975537449636216818, guid: 851f3ef6a9ff64a4393a518f668064b7, type: 3}
   upDoorPrefab: {fileID: 4872105175467304302, guid: b22e35f5bc4d6514f9eaf97db52347c9, type: 3}
   downDoorPrefab: {fileID: 4872105175467304302, guid: 3194fde3dbae3ff428f9b2f06bf239f9, type: 3}
   leftDoorPrefab: {fileID: 7584693463190544712, guid: 652605380f00b044ebc9ae50061952e8, type: 3}
   rightDoorPrefab: {fileID: 7584693463190544712, guid: c36fe87c8125ff8459b87b54421f75ce, type: 3}
+--- !u!114 &-8112298745139627315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822571227507254290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d60f3e5454fca4da039618fb89b9f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallEnemy_prefab: {fileID: 1539568736952021438, guid: be5c9280c80efca4c973b962ada90466, type: 3}
+  bigEnemy_prefab: {fileID: -6975537449636216818, guid: 851f3ef6a9ff64a4393a518f668064b7, type: 3}
 --- !u!1 &2015082461464440845
 GameObject:
   m_ObjectHideFlags: 0
