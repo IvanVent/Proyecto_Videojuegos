@@ -8,27 +8,31 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     public UnityEvent<float,int> vida;
-    private int damage;
-    public bool doubleshot=false;
-    int alterar=0;
-    private float maxlife=3f;
     public AudioSource src;
     public AudioClip sfx1,sfx2,sfx3;
-    [SerializeField] private float shootCooldown;
-    private bool canShoot = true;
-    private Vector3 objetivo;
     public Camera camara;
-    private Vector2 direccion;
     public Rigidbody2D rb;
-    private Vector2 input;
-    public float velocidad=2;
-    private Boolean inmortal=false;
     public GameObject flech,arco,heart,halfheart,noheart;
     SpriteRenderer sprite_renderer;
-    
-    private bool isDead=false;
     public Animator animator;
+
+    private Vector3 mouseCoords;
+    private Vector2 direccion;
+    private Vector2 input;
+
+    [SerializeField] private float shootCooldown;
+    private float maxlife=3f;
+    public float velocidad=2;
+
+    private int damage;
+    int swapShootSFX=0;
     private int rooms_completed = 0;
+
+    private bool inmortal=false;
+    public bool doubleshot=false;
+    private bool canShoot = true;
+    private bool isDead=false;
+    private bool isFacingRight = true;
     
     void Start()
     {
@@ -43,18 +47,16 @@ public class Player : MonoBehaviour
     {
         
         rb.velocity = Vector2.zero;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-        rb.constraints = RigidbodyConstraints2D.None;
 
 
         if (!isDead)
         {
-            objetivo=camara.ScreenToWorldPoint(Input.mousePosition);
-            float angulo=Mathf.Atan2(objetivo.y-transform.position.y,objetivo.x-transform.position.x);
+            mouseCoords=camara.ScreenToWorldPoint(Input.mousePosition);
+            float angulo=Mathf.Atan2(mouseCoords.y-transform.position.y,mouseCoords.x-transform.position.x);
             float anguloGrados=(180/Mathf.PI)*angulo;
-            transform.rotation=Quaternion.Euler(0,0,anguloGrados);
+            bool isMouseRight = transform.position.x < mouseCoords.x;
+            Flip(isMouseRight);
             
             input.x=Input.GetAxisRaw("Horizontal");
             input.y=Input.GetAxisRaw("Vertical");
@@ -62,20 +64,26 @@ public class Player : MonoBehaviour
             rb.MovePosition(rb.position+direccion*velocidad*Time.deltaTime);
         
             if((Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)) && canShoot){
-                if(alterar==0){
+                if(swapShootSFX==0){
                     
                     src.clip=sfx2;
                     src.Play();
-                    alterar=1;
+                    swapShootSFX=1;
                 }
                 else{
                     src.clip=sfx2;
                     src.Play();
-                    alterar=0;
+                    swapShootSFX=0;
                 }
-                GameObject flechadis=Instantiate(flech,arco.transform.position,Quaternion.identity);
-                Flecha flecha=flechadis.GetComponent<Flecha>();
-                flecha.targetVector=transform.right;
+                //Crear flecha y asignarle la dirección
+                GameObject ArrowGO=Instantiate(flech,arco.transform.position,Quaternion.identity);
+                Flecha Arrow=ArrowGO.GetComponent<Flecha>();
+                Arrow.targetVector=mouseCoords-transform.position;
+                //Ignorar colisiones con el jugador
+                Collider2D playerCollider = GetComponent<Collider2D>();
+                Collider2D arrowCollider = ArrowGO.GetComponent<Collider2D>();
+                Physics2D.IgnoreCollision(playerCollider, arrowCollider);
+                //Iniciar cooldown de diparo
                 StartCoroutine(ShootCooldown());
                 if(doubleshot){
                     StartCoroutine(Doubleshot());
@@ -84,23 +92,22 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    private void Flip(bool isMouseRight)
+    {
+        if (isMouseRight && !isFacingRight || !isMouseRight && isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
     
     void OnCollisionEnter2D(Collision2D collision) {
 
         if (collision.gameObject.CompareTag("Wall")) {
-            Vector2 normal = collision.contacts[0].normal;
-            // Temporarily freeze horizontal movement
-            if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y)) 
-            {
-                // Horizontal wall, freeze X movement
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-            } 
-            else 
-            {
-                // Vertical wall, freeze Y movement
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-            }
-
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
             rb.velocity = Vector2.zero;
         }
       
