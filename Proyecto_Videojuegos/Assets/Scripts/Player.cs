@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,10 +16,12 @@ public class Player : MonoBehaviour
     private Vector3 mouseCoords;
     private Vector2 direccion;
     private Vector2 input;
+    //private Vector2 ActualSpeed;              REWORK MOVIMIENTO WIP
 
     [SerializeField] private float shootCooldown;
     private float maxlife=3f;
-    public float velocidad=2;
+    [SerializeField]private float velocidad=10;
+    //[SerializeField]private float suavizado=0.1f; REWORK MOVIMIENTO WIP
 
     private int damage;
     int swapShootSFX=0;
@@ -46,9 +45,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         
-        rb.velocity = Vector2.zero;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
+        //rb.velocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;        
 
         if (!isDead)
         {
@@ -61,8 +59,10 @@ public class Player : MonoBehaviour
             input.x=Input.GetAxisRaw("Horizontal");
             input.y=Input.GetAxisRaw("Vertical");
             direccion=input.normalized;
-            rb.MovePosition(rb.position+direccion*velocidad*Time.deltaTime);
-        
+            rb.MovePosition(rb.position+direccion*velocidad*Time.fixedDeltaTime);
+            animator.SetFloat("Speed", Mathf.Abs(input.x) + Mathf.Abs(input.y));
+            
+
             if((Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)) && canShoot){
                 if(swapShootSFX==0){
                     
@@ -93,6 +93,26 @@ public class Player : MonoBehaviour
 
     }
 
+    //REWORK MOVIMIENTO WIP
+    /*
+    void FixedUpdate()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector2 wantedDirection = new UnityEngine.Vector2(horizontalInput, verticalInput).normalized;
+        Vector2 smoothedDirection = Vector2.Lerp(ActualSpeed, wantedDirection * suavizado);
+        MoveObject(smoothedDirection);
+        animator.SetFloat("Speed", Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
+        ActualSpeed = smoothedDirection;
+        
+    }
+
+    void MoveObject(Vector2 direction)
+    {
+        Vector2 displacement = direction * velocidad * Time.deltaTime;
+        transform.Translate(displacement);
+    }
+    */
     private void Flip(bool isMouseRight)
     {
         if (isMouseRight && !isFacingRight || !isMouseRight && isFacingRight)
@@ -104,14 +124,14 @@ public class Player : MonoBehaviour
         }
     }
     
-    void OnCollisionEnter2D(Collision2D collision) {
+    /*void OnCollisionEnter2D(Collision2D collision) {
 
         if (collision.gameObject.CompareTag("Wall")) {
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
-            rb.velocity = Vector2.zero;
+            //rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+            //rb.velocity = Vector2.zero;
         }
       
-    }
+    }*/
     void OnTriggerEnter2D(Collider2D collider){
         if(collider.gameObject.CompareTag("Enemy") && !isDead){
           
@@ -150,6 +170,11 @@ public class Player : MonoBehaviour
             damage++;
         }
     }
+
+    public void DeactivateShootAnim()
+    {
+        animator.SetBool("Shoots",false);
+    }
     private IEnumerator Invincible()
     {
         
@@ -163,6 +188,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator ShootCooldown()
     {
+        animator.SetBool("Shoots",true);
         canShoot = false;
         yield return new WaitForSeconds(shootCooldown);
         canShoot = true;
@@ -190,7 +216,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision) {
+    /*void OnCollisionExit2D(Collision2D collision) {
     // Restore regular movement when leaving the wall
         if (collision.gameObject.CompareTag("Wall")) {
             rb.velocity = Vector2.zero;
@@ -199,7 +225,7 @@ public class Player : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezePositionY;
             rb.constraints = RigidbodyConstraints2D.None;
         }
-    }
+    }*/
     
     // setter para un booleano que no permite mover el personaje cuando está muerto
     public void SetIsDead()
