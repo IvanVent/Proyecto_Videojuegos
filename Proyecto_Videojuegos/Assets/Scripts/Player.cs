@@ -230,6 +230,7 @@ public class Player : MonoBehaviour
     // setter para un booleano que no permite mover el personaje cuando está muerto
     public void SetIsDead()
     {
+        animator.SetBool("Dead",true);
         isDead=true;
     }
 
