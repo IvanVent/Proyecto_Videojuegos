@@ -14,14 +14,12 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     private Vector3 mouseCoords;
-    private Vector2 direccion;
-    private Vector2 input;
-    //private Vector2 ActualSpeed;              REWORK MOVIMIENTO WIP
+    private Vector2 ActualSpeed;             
 
     [SerializeField] private float shootCooldown;
     private float maxlife=3f;
-    [SerializeField]private float velocidad=10;
-    //[SerializeField]private float suavizado=0.1f; REWORK MOVIMIENTO WIP
+    [SerializeField]private float velocidad=5;
+    [SerializeField]private float suavizado=0.1f;
 
     private int damage;
     int swapShootSFX=0;
@@ -45,7 +43,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         
-        //rb.velocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;        
 
         if (!isDead)
@@ -56,13 +53,6 @@ public class Player : MonoBehaviour
             bool isMouseRight = transform.position.x < mouseCoords.x;
             Flip(isMouseRight);
             
-            input.x=Input.GetAxisRaw("Horizontal");
-            input.y=Input.GetAxisRaw("Vertical");
-            direccion=input.normalized;
-            rb.MovePosition(rb.position+direccion*velocidad*Time.fixedDeltaTime);
-            animator.SetFloat("Speed", Mathf.Abs(input.x) + Mathf.Abs(input.y));
-            
-
             if((Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)) && canShoot){
                 if(swapShootSFX==0){
                     
@@ -93,14 +83,14 @@ public class Player : MonoBehaviour
 
     }
 
-    //REWORK MOVIMIENTO WIP
-    /*
+    
+    //MOVIMIENTO DEL JUGADOR
     void FixedUpdate()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector2 wantedDirection = new UnityEngine.Vector2(horizontalInput, verticalInput).normalized;
-        Vector2 smoothedDirection = Vector2.Lerp(ActualSpeed, wantedDirection * suavizado);
+        Vector2 smoothedDirection = Vector2.Lerp(ActualSpeed, wantedDirection, suavizado);
         MoveObject(smoothedDirection);
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         ActualSpeed = smoothedDirection;
@@ -111,8 +101,9 @@ public class Player : MonoBehaviour
     {
         Vector2 displacement = direction * velocidad * Time.deltaTime;
         transform.Translate(displacement);
+
     }
-    */
+    
     private void Flip(bool isMouseRight)
     {
         if (isMouseRight && !isFacingRight || !isMouseRight && isFacingRight)
