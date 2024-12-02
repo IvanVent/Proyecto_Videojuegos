@@ -20,7 +20,7 @@ public class RoomController : MonoBehaviour
     private Transform doorsFather;
     
     private int room_id;
-    private bool isCompleted;
+    private bool isCompleted = false;
     private EnemySpawner enemy_spawner;
     private Player player;
     
@@ -33,6 +33,18 @@ public class RoomController : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
     }
 
+    // Corutina que va comprobando cuantos enemigos quedan en la sala
+    private IEnumerator EnemyCountCheck()
+    {
+        while (enemy_spawner.GetEnemyCount() > 0)
+        {
+            yield return new WaitForSeconds(0.08f);
+        }
+        isCompleted = true;
+        OpenDoors();
+        yield return null;
+    }
+    
     public void SetRoomID(int id)
     {
         this.room_id = id;
@@ -59,6 +71,38 @@ public class RoomController : MonoBehaviour
         }
     }
     
+    // Ajusta los colliders para que se puede pasar por las puertas correspondientes 
+    public void OpenDoors()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            int mask = 1 << i;
+            if ((room_id & mask) != 0)
+            {
+                if (i == 0) // puerta arriba
+                {
+                    doorWallColliders[0].gameObject.SetActive(true);
+                    normalColliders[0].gameObject.SetActive(false);
+                }
+                else if (i == 1) // puerta derecha
+                {
+                    doorWallColliders[1].gameObject.SetActive(true);
+                    normalColliders[1].gameObject.SetActive(false);
+                }
+                else if (i == 2) // puerta abajo
+                {
+                    doorWallColliders[2].gameObject.SetActive(true);
+                    normalColliders[2].gameObject.SetActive(false);
+                }
+                else if (i == 3) // puerta izquierda
+                {
+                    doorWallColliders[3].gameObject.SetActive(true);
+                    normalColliders[3].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+    
     // Añade las puertas a una habitación, ajustando los colliders de la habitación para adaptarse a ellas.
     public void AddDoors(Vector3 roomPos)
     {
@@ -76,12 +120,8 @@ public class RoomController : MonoBehaviour
                 {
                     doorPos.x = roomPos.x- 2;
                     doorPos.y = roomPos.y + 4;
-                    
                     door = Instantiate(upDoorPrefab, doorPos, Quaternion.identity);
                     door.transform.SetParent(doorsFather);
-                    
-                    doorWallColliders[0].gameObject.SetActive(true);
-                    normalColliders[0].gameObject.SetActive(false);
                 }
                 else if (i == 1) // puerta derecha
                 {
@@ -89,8 +129,6 @@ public class RoomController : MonoBehaviour
                     doorPos.y = roomPos.y;
                     door = Instantiate(rightDoorPrefab, doorPos, Quaternion.identity);
                     door.transform.SetParent(doorsFather);
-                    doorWallColliders[1].gameObject.SetActive(true);
-                    normalColliders[1].gameObject.SetActive(false);
                 }
                 else if (i == 2) // puerta abajo
                 {
@@ -98,8 +136,6 @@ public class RoomController : MonoBehaviour
                     doorPos.y = roomPos.y - 4;
                     door = Instantiate(downDoorPrefab, doorPos, Quaternion.identity);
                     door.transform.SetParent(doorsFather);
-                    doorWallColliders[2].gameObject.SetActive(true);
-                    normalColliders[2].gameObject.SetActive(false);
                 }
                 else if (i == 3) // puerta izquierda
                 {
@@ -107,8 +143,6 @@ public class RoomController : MonoBehaviour
                     doorPos.y = roomPos.y;
                     door = Instantiate(leftDoorPrefab, doorPos, Quaternion.identity);
                     door.transform.SetParent(doorsFather);
-                    doorWallColliders[3].gameObject.SetActive(true);
-                    normalColliders[3].gameObject.SetActive(false);
                 }
             }
         }//for
@@ -133,6 +167,7 @@ public class RoomController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !isCompleted && player.GetRoomsCompleted()>0)
         {
             enemy_spawner.SpawnEnemies(player.GetRoomsCompleted());
+            StartCoroutine("EnemyCountCheck");
         }
     }
     

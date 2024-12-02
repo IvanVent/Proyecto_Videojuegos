@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,8 +13,13 @@ public class EnemySpawner : MonoBehaviour
     public BigEnemy bigEnemy_prefab;
 
     private Transform enemiesFather;
-
+    private List<SmallEnemy> small_list = new List<SmallEnemy>();
+    private List<BigEnemy> big_list = new List<BigEnemy>();
     private Vector3 room_pos;
+    private int enemy_count = 0;
+    
+    private float time_to_follow = 0.75f; //tiempo que tarda el enemigo en empezar a seguirte 
+    
     /* Número de salas que deben ser completadas para que empiecen a spawnear
     los enemigos en spawns de dificultad medium */
     private int rooms_to_medium = 5;
@@ -24,7 +31,15 @@ public class EnemySpawner : MonoBehaviour
         enemiesFather = transform.Find("Enemies").gameObject.transform;
         room_pos = gameObject.transform.position;
     }
-    
+
+    // Devuelve cuantos enemigos quedan vivos
+    public int GetEnemyCount()
+    {
+        small_list.RemoveAll(small => small == null);
+        big_list.RemoveAll(big => big == null);
+        return small_list.Count + big_list.Count;
+    }
+
     // Devuelve el objeto de un prefab de spawn aleatorio de dificultad easy
     private GameObject LoadEasyPrefab()
     {
@@ -61,30 +76,33 @@ public class EnemySpawner : MonoBehaviour
         // Instancia un enemigo en cada posición definida por el prefab
         foreach (Transform spawnPoint in spawn_prefab.transform)
         {
+            enemy_count++;
             if (spawnPoint.name.Contains("Small"))
             {
                 SmallEnemy small_e = Instantiate(smallEnemy_prefab, spawnPoint.position + room_pos, Quaternion.identity);
                 small_e.transform.SetParent(enemiesFather);
+                small_list.Add(small_e);
                 StartCoroutine("SmallWaitToFollow", small_e);
             }
             else if (spawnPoint.name.Contains("Big"))
             {
                 BigEnemy big_e = Instantiate(bigEnemy_prefab, spawnPoint.position + room_pos, Quaternion.identity);
                 big_e.transform.SetParent(enemiesFather);
+                big_list.Add(big_e);
                 StartCoroutine("BigWaitToFollow", big_e);
             }
         }
     }
 
-
+    // corutinas para que los enemigos se esperen antes de perseguir al player
     private IEnumerator SmallWaitToFollow(SmallEnemy enemy)
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(time_to_follow);
         enemy.EnableFollowPlayer();
     }
     private IEnumerator BigWaitToFollow(BigEnemy enemy)
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(time_to_follow);
         enemy.EnableFollowPlayer();
     }
 

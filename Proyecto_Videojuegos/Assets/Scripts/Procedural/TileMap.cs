@@ -18,6 +18,7 @@ public class TileMap : MonoBehaviour
     float roomHeight = 10f;
     
     private RoomController roomController;
+    private bool isFirst = true;
 
     private void Start()
     {
@@ -39,6 +40,11 @@ public class TileMap : MonoBehaviour
             roomController = room.GetComponent<RoomController>();
             roomController.SetRoomID(id);
             roomController.AddDoors(roomPos);
+            if (isFirst)
+            {
+                roomController.OpenDoors();
+                isFirst = false;
+            }
         }
     }
     
