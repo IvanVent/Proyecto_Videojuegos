@@ -590,8 +590,7 @@ MonoBehaviour:
   noheart: {fileID: 0}
   animator: {fileID: 540761537}
   shootCooldown: 0.6
-  velocidad: 4.06
-  suavizado: 0.1
+  velocidad: 5
   doubleshot: 0
 --- !u!50 &540761535
 Rigidbody2D:

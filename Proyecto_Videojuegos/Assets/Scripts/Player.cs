@@ -14,12 +14,15 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     private Vector3 mouseCoords;
-    private Vector2 ActualSpeed;             
 
+    /* MOVIMIENTO ANTIGUO
+    private Vector2 input;
+    private Vector2 moveDirection;
+    */ 
+    
     [SerializeField] private float shootCooldown;
     private float maxlife=3f;
     [SerializeField]private float velocidad=5;
-    [SerializeField]private float suavizado=0.1f;
 
     private int damage;
     int swapShootSFX=0;
@@ -52,7 +55,15 @@ public class Player : MonoBehaviour
             float anguloGrados=(180/Mathf.PI)*angulo;
             bool isMouseRight = transform.position.x < mouseCoords.x;
             Flip(isMouseRight);
-            
+
+            /* MOVIMIENTO ANTIGUO
+            input.x = Input.GetAxisRaw("Horizontal");
+            input.y = Input.GetAxisRaw("Vertical");
+
+            moveDirection = input.normalized;
+            rb.MovePosition(rb.position + moveDirection * velocidad * Time.fixedDeltaTime);
+            FIN MOVIMIENTO ANTIGUO */
+
             if((Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)) && canShoot){
                 if(swapShootSFX==0){
                     
@@ -83,25 +94,15 @@ public class Player : MonoBehaviour
 
     }
 
-    
-    //MOVIMIENTO DEL JUGADOR
-    void FixedUpdate()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector2 wantedDirection = new UnityEngine.Vector2(horizontalInput, verticalInput).normalized;
-        Vector2 smoothedDirection = Vector2.Lerp(ActualSpeed, wantedDirection, suavizado);
-        MoveObject(smoothedDirection);
-        animator.SetFloat("Speed", Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        ActualSpeed = smoothedDirection;
-        
-    }
-
-    void MoveObject(Vector2 direction)
-    {
-        Vector2 displacement = direction * velocidad * Time.deltaTime;
-        transform.Translate(displacement);
-
+    private void FixedUpdate() {
+        if (!isDead)
+        {
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            Vector2 movement = new Vector2(horizontal, vertical);
+            rb.velocity = movement * velocidad;
+            animator.SetFloat("Speed",Mathf.Abs(horizontal)+Mathf.Abs(vertical));
+        }
     }
     
     private void Flip(bool isMouseRight)
