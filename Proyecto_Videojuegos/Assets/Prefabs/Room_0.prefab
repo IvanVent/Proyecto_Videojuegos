@@ -471,6 +471,13 @@ MonoBehaviour:
   downDoorPrefab: {fileID: 4872105175467304302, guid: 3194fde3dbae3ff428f9b2f06bf239f9, type: 3}
   leftDoorPrefab: {fileID: 7584693463190544712, guid: 652605380f00b044ebc9ae50061952e8, type: 3}
   rightDoorPrefab: {fileID: 7584693463190544712, guid: c36fe87c8125ff8459b87b54421f75ce, type: 3}
+  powerups: []
+  attackSpeedPU: {fileID: 2656209127756749122, guid: 4187d1f5864af2b43916db904509ddc9, type: 3}
+  damagePU: {fileID: 4274866320395246351, guid: 4cededc46544d134697e04c99e30b5c7, type: 3}
+  movementSpeedPU: {fileID: 6943280482959696356, guid: af48edaefd235aa4392468a536db9785, type: 3}
+  dobleshotPU: {fileID: 7418558953320111234, guid: fb5abad8e701d7d44bb5516d1d31daa3, type: 3}
+  moreHeartsPU: {fileID: 4262419273485374305, guid: d2f0c74c19dc22b4f8e7d8bd365e9994, type: 3}
+  Potion: {fileID: 5489293878677273858, guid: cfce465dc833bbe41adb7bff057a3fe9, type: 3}
 --- !u!114 &-8112298745139627315
 MonoBehaviour:
   m_ObjectHideFlags: 0

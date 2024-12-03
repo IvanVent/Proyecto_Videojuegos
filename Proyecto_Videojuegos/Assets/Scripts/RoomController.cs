@@ -15,6 +15,16 @@ public class RoomController : MonoBehaviour
     public GameObject downDoorPrefab;
     public GameObject leftDoorPrefab;
     public GameObject rightDoorPrefab;
+
+    //POWERUPS
+
+    public GameObject[] powerups;
+    public GameObject attackSpeedPU;
+    public GameObject damagePU;
+    public GameObject movementSpeedPU;
+    public GameObject dobleshotPU;
+    public GameObject moreHeartsPU;
+    public GameObject Potion;
     
     /* Objeto vacío donde estarán en la escena las instancias de las puertas */
     private Transform doorsFather;
@@ -22,6 +32,7 @@ public class RoomController : MonoBehaviour
     private int room_id;
     private bool isCompleted = false;
     private EnemySpawner enemy_spawner;
+    private GameProgress game_progress;
     private Player player;
     
     /* ----------------------------- M E T O D O S -------------------------------------- */
@@ -31,6 +42,8 @@ public class RoomController : MonoBehaviour
         doorsFather = GameObject.Find("Doors").transform;
         enemy_spawner = gameObject.GetComponent<EnemySpawner>();
         player = GameObject.Find("Player").GetComponent<Player>();
+        game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();
+        powerups = new GameObject[]{moreHeartsPU, Potion, attackSpeedPU, damagePU, movementSpeedPU, dobleshotPU};
     }
 
     // Corutina que va comprobando cuantos enemigos quedan en la sala
@@ -101,8 +114,25 @@ public class RoomController : MonoBehaviour
                 }
             }
         }
+        game_progress.RoomCompleted();
+        SpawnPowerUp();
     }
     
+    private void SpawnPowerUp()
+    {
+        int completedRooms = game_progress.GetRoomsCompleted();
+        if (completedRooms > 0){
+            int random;
+            if (completedRooms <= 4){
+                random = Random.Range(0, 2);
+                GameObject selectedPU = powerups[random];
+                GameObject PUinstance = Instantiate(selectedPU, transform.position, Quaternion.identity);
+                PUinstance.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+            }
+        }
+    }
+
+
     // Añade las puertas a una habitación, ajustando los colliders de la habitación para adaptarse a ellas.
     public void AddDoors(Vector3 roomPos)
     {
