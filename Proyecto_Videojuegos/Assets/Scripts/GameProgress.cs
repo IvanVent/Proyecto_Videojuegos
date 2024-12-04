@@ -7,6 +7,8 @@ public class GameProgress : MonoBehaviour
     private int roomsCompleted = -1; // -1 para que no cuente la sala de inicio como completada
     private int enemiesKilled = 0;
 
+    private bool dobleShotPU_picked = false;
+
     public void RoomCompleted()
     {
         roomsCompleted++;
@@ -15,6 +17,11 @@ public class GameProgress : MonoBehaviour
     public void EnemyKilled()
     {
         enemiesKilled++;
+    }
+
+    public void DobleShotPicked()
+    {
+        dobleShotPU_picked = true;
     }
 
     public int GetRoomsCompleted()
@@ -26,5 +33,10 @@ public class GameProgress : MonoBehaviour
     public int GetEnemiesKilled()
     {
         return enemiesKilled;
+    }
+
+    public bool GetDobleShotPicked()
+    {
+        return dobleShotPU_picked;
     }
 }

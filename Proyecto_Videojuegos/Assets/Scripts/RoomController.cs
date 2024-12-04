@@ -128,6 +128,15 @@ public class RoomController : MonoBehaviour
                 GameObject selectedPU = powerups[random];
                 GameObject PUinstance = Instantiate(selectedPU, transform.position, Quaternion.identity);
                 PUinstance.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+            }else{
+                if(game_progress.GetDobleShotPicked()){ //si ya tiene el dobleShoot no se puede volver a coger
+                    random = Random.Range(0, powerups.Length-1);
+                }else{
+                    random = Random.Range(0, powerups.Length);
+                }
+                GameObject selectedPU = powerups[random];
+                GameObject PUinstance = Instantiate(selectedPU, transform.position, Quaternion.identity);
+                PUinstance.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
             }
         }
     }

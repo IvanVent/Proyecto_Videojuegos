@@ -76,14 +76,7 @@ public class Player : MonoBehaviour
                     src.Play();
                     swapShootSFX=0;
                 }
-                //Crear flecha y asignarle la dirección
-                GameObject ArrowGO=Instantiate(flech,arco.transform.position,Quaternion.identity);
-                Flecha Arrow=ArrowGO.GetComponent<Flecha>();
-                Arrow.targetVector=mouseCoords-transform.position;
-                //Ignorar colisiones con el jugador
-                Collider2D playerCollider = GetComponent<Collider2D>();
-                Collider2D arrowCollider = ArrowGO.GetComponent<Collider2D>();
-                Physics2D.IgnoreCollision(playerCollider, arrowCollider);
+                Shoot();
                 //Iniciar cooldown de diparo
                 StartCoroutine(ShootCooldown());
                 if(doubleshot){
@@ -116,6 +109,18 @@ public class Player : MonoBehaviour
         }
     }
     
+
+    private void Shoot(){
+        //Crear flecha y asignarle la dirección
+        GameObject ArrowGO=Instantiate(flech,arco.transform.position,Quaternion.identity);
+        Flecha Arrow=ArrowGO.GetComponent<Flecha>();
+        Arrow.targetVector=mouseCoords-transform.position;
+        //Ignorar colisiones con el jugador
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        Collider2D arrowCollider = ArrowGO.GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(playerCollider, arrowCollider);
+
+    }
     /*void OnCollisionEnter2D(Collision2D collision) {
 
         if (collision.gameObject.CompareTag("Wall")) {
@@ -190,9 +195,7 @@ public class Player : MonoBehaviour
         
         yield return new WaitForSeconds(0.2f);
         src.Play();
-        GameObject flechadis=Instantiate(flech,arco.transform.position,Quaternion.identity);
-        Flecha flecha=flechadis.GetComponent<Flecha>();
-        flecha.targetVector=transform.right;
+        Shoot();
     }
 
     void OnTriggerStay2D(Collider2D collider){
