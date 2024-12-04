@@ -33,7 +33,6 @@ public class RoomController : MonoBehaviour
     private bool isCompleted = false;
     private EnemySpawner enemy_spawner;
     private GameProgress game_progress;
-    private Player player;
     
     /* ----------------------------- M E T O D O S -------------------------------------- */
     private void Awake()
@@ -41,7 +40,6 @@ public class RoomController : MonoBehaviour
         LoadColliders();
         doorsFather = GameObject.Find("Doors").transform;
         enemy_spawner = gameObject.GetComponent<EnemySpawner>();
-        player = GameObject.Find("Player").GetComponent<Player>();
         game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();
         powerups = new GameObject[]{moreHeartsPU, Potion, attackSpeedPU, damagePU, movementSpeedPU, dobleshotPU};
     }
@@ -203,9 +201,9 @@ public class RoomController : MonoBehaviour
     // Cuando el Player entra a la sala se instancian los enemigos
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !isCompleted && player.GetRoomsCompleted()>0)
+        if (collision.gameObject.CompareTag("Player") && !isCompleted && game_progress.GetRoomsCompleted()>0)
         {
-            enemy_spawner.SpawnEnemies(player.GetRoomsCompleted());
+            enemy_spawner.SpawnEnemies(game_progress.GetRoomsCompleted());
             StartCoroutine("EnemyCountCheck");
         }
     }
@@ -216,7 +214,7 @@ public class RoomController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !isCompleted)
         {
             isCompleted = true;
-            player.IncrementRoomsCompleted();
+            game_progress.RoomCompleted();
         }
     }
 }

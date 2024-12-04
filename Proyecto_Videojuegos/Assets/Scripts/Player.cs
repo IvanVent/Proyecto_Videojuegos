@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
 
     private int damage;
     int swapShootSFX=0;
-    private int rooms_completed = 0;
 
     private bool inmortal=false;
     public bool doubleshot=false;
@@ -47,7 +46,7 @@ public class Player : MonoBehaviour
     {
         
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;        
-
+        if (Time.timeScale == 0) return;
         if (!isDead)
         {
             mouseCoords=camara.ScreenToWorldPoint(Input.mousePosition);
@@ -88,6 +87,7 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate() {
+  
         if (!isDead)
         {
             float horizontal = Input.GetAxis("Horizontal");
@@ -140,14 +140,6 @@ public class Player : MonoBehaviour
                 StartCoroutine(Invincible());
             }
         }
-    }
-    public void IncrementRoomsCompleted()
-    {
-        rooms_completed++;
-    }
-    public int GetRoomsCompleted()
-    {
-        return rooms_completed;
     }
     public void XLR8(){
         if(shootCooldown>0.3f){

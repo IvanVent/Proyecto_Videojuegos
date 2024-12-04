@@ -8,17 +8,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
-    //public ControllerRandom control;
+    public GameObject pauseUI;
+    private bool isPaused = false;
     private bool music=true;
     private bool vivo=true;
     public AudioClip sfx1,sfx2;
     public AudioSource src;
-    
 
     private void Start()
     {
         src.clip=sfx1;
-        //control = gameObject.GetComponent<ControllerRandom>();
     }
     void Update(){
         if(vivo){
@@ -31,6 +30,21 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(deadmusic());
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused)
+            {
+                pauseUI.SetActive(true);
+                Time.timeScale = 0f;
+                isPaused = true;
+            }
+            else
+            {
+                Continue();
+            }
+        }
+        
     }
     private IEnumerator deadmusic(){
         music=false;
@@ -62,6 +76,13 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    
+    public void Continue()
+    {
+        pauseUI.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
     }
     
     
