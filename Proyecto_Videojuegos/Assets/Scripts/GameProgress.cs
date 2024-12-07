@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameProgress : MonoBehaviour
 {
-    private int roomsCompleted = -1; // -1 para que no cuente la sala de inicio como completada
+    private int roomsCompleted = 0; // -1 para que no cuente la sala de inicio como completada
     private int enemiesKilled = 0;
 
     private bool dobleShotPU_picked = false;

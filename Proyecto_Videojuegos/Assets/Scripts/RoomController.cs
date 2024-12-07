@@ -10,6 +10,7 @@ public class RoomController : MonoBehaviour
     /* Listas de colliders de la habitación */
     private List<GameObject> doorWallColliders = new List<GameObject>();
     private List<GameObject> normalColliders = new List<GameObject>();
+    
     /* Prefabs de las puertas */
     public GameObject upDoorPrefab;
     public GameObject downDoorPrefab;
@@ -17,7 +18,6 @@ public class RoomController : MonoBehaviour
     public GameObject rightDoorPrefab;
 
     //POWERUPS
-
     public GameObject[] powerups;
     public GameObject attackSpeedPU;
     public GameObject damagePU;
@@ -29,8 +29,11 @@ public class RoomController : MonoBehaviour
     /* Objeto vacío donde estarán en la escena las instancias de las puertas */
     private Transform doorsFather;
     
+    /* Propiedades de la sala */
     private int room_id;
     private bool isCompleted = false;
+    private float empty_room_probability = 0.1f; // 10% de probabilidad de sala vacía
+    
     private EnemySpawner enemy_spawner;
     private GameProgress game_progress;
     
@@ -51,8 +54,8 @@ public class RoomController : MonoBehaviour
         {
             yield return new WaitForSeconds(0.08f);
         }
-        isCompleted = true;
         OpenDoors();
+        SpawnPowerUp();
         yield return null;
     }
     
@@ -112,8 +115,8 @@ public class RoomController : MonoBehaviour
                 }
             }
         }
+        isCompleted = true;
         game_progress.RoomCompleted();
-        SpawnPowerUp();
     }
     
     private void SpawnPowerUp()
@@ -203,18 +206,17 @@ public class RoomController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !isCompleted && game_progress.GetRoomsCompleted()>0)
         {
+            float randomValue = Random.value;
+            Debug.Log(randomValue);
+            if (randomValue < empty_room_probability)
+            {
+                OpenDoors();
+                return;
+            }
             enemy_spawner.SpawnEnemies(game_progress.GetRoomsCompleted());
             StartCoroutine("EnemyCountCheck");
         }
     }
     
-    // Desactiva los enemigos para perseguir al jugador cuando entre en la habitacion
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && !isCompleted)
-        {
-            isCompleted = true;
-            game_progress.RoomCompleted();
-        }
-    }
+    
 }
