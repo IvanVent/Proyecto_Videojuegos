@@ -11,6 +11,8 @@ public class BigEnemy : MonoBehaviour
 
     private Player playera; 
     private Animator animator;
+    private GameProgress game_progress;
+
     private bool isFacingRight = true;
     private bool receivingDamage = false;
     private bool followPlayer = false;
@@ -20,6 +22,7 @@ public class BigEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         playera = GameObject.Find("Player").GetComponent<Player>();
+        game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();
     }
     void Update()
     {
@@ -37,6 +40,14 @@ public class BigEnemy : MonoBehaviour
     public float getHP()
     {
         return hp;
+    }
+    public void setHP(float hp)
+    {
+        this.hp = hp;
+    }
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
     }
     
     //FIN GETTER Y SETTERS
@@ -67,6 +78,7 @@ public class BigEnemy : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+            game_progress.EnemyKilled();
         }
     }
     public void DeactivateDamage()

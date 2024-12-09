@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     public SmallEnemy smallEnemy_prefab;
     public BigEnemy bigEnemy_prefab;
+    private GameProgress game_progress;
 
     private Transform enemiesFather;
     private List<SmallEnemy> small_list = new List<SmallEnemy>();
@@ -30,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
     {
         enemiesFather = transform.Find("Enemies").gameObject.transform;
         room_pos = gameObject.transform.position;
+        game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();
     }
 
     // Devuelve cuantos enemigos quedan vivos
@@ -77,10 +79,18 @@ public class EnemySpawner : MonoBehaviour
         foreach (Transform spawnPoint in spawn_prefab.transform)
         {
             enemy_count++;
+            int enemiesKilled = game_progress.GetEnemiesKilled();
             if (spawnPoint.name.Contains("Small"))
             {
                 SmallEnemy small_e = Instantiate(smallEnemy_prefab, spawnPoint.position + room_pos, Quaternion.identity);
                 small_e.transform.SetParent(enemiesFather);
+                if (enemiesKilled > 15)
+                {
+                    small_e.setHP(4);
+                    small_e.setSpeed(8.5f);
+                    small_e.setCooldownParada(0.8f);
+                    small_e.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+                }
                 small_list.Add(small_e);
                 StartCoroutine("SmallWaitToFollow", small_e);
             }
@@ -88,6 +98,12 @@ public class EnemySpawner : MonoBehaviour
             {
                 BigEnemy big_e = Instantiate(bigEnemy_prefab, spawnPoint.position + room_pos, Quaternion.identity);
                 big_e.transform.SetParent(enemiesFather);
+                if(enemiesKilled > 15)
+                {
+                    big_e.setHP(10);
+                    big_e.setSpeed(1.7f);
+                    big_e.transform.localScale = new Vector3(-0.185f, 0.185f, 0.185f);
+                }
                 big_list.Add(big_e);
                 StartCoroutine("BigWaitToFollow", big_e);
             }

@@ -12,6 +12,7 @@ public class SmallEnemy : MonoBehaviour
     [SerializeField] private float hp=3;
     private Player playera; 
     private Animator animator;
+    private GameProgress game_progress;
 
     private bool isFacingRight = true;
     private bool isWaiting = false;
@@ -23,6 +24,7 @@ public class SmallEnemy : MonoBehaviour
         StartCoroutine(MoveAndWait());
         player = GameObject.Find("Player").transform;
         playera=GameObject.Find("Player").GetComponent<Player>();
+        game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();
     }
     void Update()
     {
@@ -45,6 +47,18 @@ public class SmallEnemy : MonoBehaviour
     public float getHP()
     {
         return hp;
+    }
+    public void setHP(float hp)
+    {
+        this.hp = hp;
+    }
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+    public void setCooldownParada(float cooldownParada)
+    {
+        this.cooldownParada = cooldownParada;
     }
     //FIN GETTER Y SETTERS
     private void Flip(bool isPlayerRight)
@@ -90,6 +104,7 @@ public class SmallEnemy : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+            game_progress.EnemyKilled();
         }
     }
     public void DeactivateDamage()
