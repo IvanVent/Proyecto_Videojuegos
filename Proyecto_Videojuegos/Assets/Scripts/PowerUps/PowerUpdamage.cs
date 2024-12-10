@@ -11,6 +11,6 @@ public class PowerUpdamage : PowerUp
     }
     public override void ApplyEffect(GameObject other)
     {
-        player.moredamage();
+        player.IncreaseDamage();
     }
 }

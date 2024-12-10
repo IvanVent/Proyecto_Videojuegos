@@ -11,6 +11,6 @@ public class PowerUpmovementspeed : PowerUp
     }
     public override void ApplyEffect(GameObject other)
     {
-        player.ishowspeed();
+        player.IncreaseSpeed();
     }
 }

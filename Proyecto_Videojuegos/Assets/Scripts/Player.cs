@@ -14,13 +14,8 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     private Vector3 mouseCoords;
-
-    /* MOVIMIENTO ANTIGUO
-    private Vector2 input;
-    private Vector2 moveDirection;
-    */ 
     
-    [SerializeField] private float shootCooldown;
+    [SerializeField] private float shootCooldown=0.6f;
     private float maxlife=3f;
     [SerializeField]private float velocidad=5;
 
@@ -54,14 +49,6 @@ public class Player : MonoBehaviour
             float anguloGrados=(180/Mathf.PI)*angulo;
             bool isMouseRight = transform.position.x < mouseCoords.x;
             Flip(isMouseRight);
-
-            /* MOVIMIENTO ANTIGUO
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
-
-            moveDirection = input.normalized;
-            rb.MovePosition(rb.position + moveDirection * velocidad * Time.fixedDeltaTime);
-            FIN MOVIMIENTO ANTIGUO */
 
             if((Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)) && canShoot){
                 if(swapShootSFX==0){
@@ -98,72 +85,38 @@ public class Player : MonoBehaviour
         }
     }
     
-    private void Flip(bool isMouseRight)
-    {
-        if (isMouseRight && !isFacingRight || !isMouseRight && isFacingRight)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-        }
-    }
-    
-
-    private void Shoot(){
-        //Crear flecha y asignarle la dirección
-        GameObject ArrowGO=Instantiate(flech,arco.transform.position,Quaternion.identity);
-        Flecha Arrow=ArrowGO.GetComponent<Flecha>();
-        Arrow.targetVector=mouseCoords-transform.position;
-        //Ignorar colisiones con el jugador
-        Collider2D playerCollider = GetComponent<Collider2D>();
-        Collider2D arrowCollider = ArrowGO.GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(playerCollider, arrowCollider);
-
-    }
-    /*void OnCollisionEnter2D(Collision2D collision) {
-
-        if (collision.gameObject.CompareTag("Wall")) {
-            //rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
-            //rb.velocity = Vector2.zero;
-        }
-      
-    }*/
-    void OnTriggerEnter2D(Collider2D collider){
-        if(collider.gameObject.CompareTag("Enemy") && !isDead){
-          
-            if(!inmortal){
-                src.clip=sfx1;
-                src.Play();
-                vida.Invoke(0.5f, 1);
-                inmortal=true;
-                StartCoroutine(Invincible());
-            }
-        }
-    }
-    public void XLR8(){
-        if(shootCooldown>0.3f){
-            shootCooldown-=0.1f;
-        }
-    }
+    //---------------------- GETTERS Y SETTERS ----------------------
     public int getdamage(){
         return damage;
     }
-    public void ishowspeed(){
-        if(velocidad<2.5f){
-            velocidad+=0.5f;
-        }
+    public float getShootCooldown(){
+        return shootCooldown;
     }
-    public void moredamage(){
-        if(damage<4){
-            damage++;
-        }
+    public float getMaxLife()
+    {
+        return maxlife;
+    }
+    public float getVelocidad()
+    {
+        return velocidad;
+    }
+    public bool getDobleShot()
+    {
+        return doubleshot;
+    }
+    // setter para un booleano que no permite mover el personaje cuando está muerto
+    public void SetIsDead()
+    {
+        animator.SetBool("Dead",true);
+        isDead=true;
+    }
+    public void SetDoubleshot(){
+        doubleshot=true;
     }
 
-    public void DeactivateShootAnim()
-    {
-        animator.SetBool("Shoots",false);
-    }
+    //----------------FIN GETTERS Y SETTERS----------------
+
+    //------------------------CORRUTINAS------------------------
     private IEnumerator Invincible()
     {
         
@@ -172,9 +125,7 @@ public class Player : MonoBehaviour
         animator.SetBool("Damage",false);
         inmortal=false;
     }
-    public void SetDoubleshot(){
-        doubleshot=true;
-    }
+
     private IEnumerator ShootCooldown()
     {
         animator.SetBool("Shoots",true);
@@ -189,7 +140,66 @@ public class Player : MonoBehaviour
         src.Play();
         Shoot();
     }
+    //----------------------FIN DE CORRUTINAS ----------------------
 
+    //-------------------METODOS AUXILIARES-------------------
+    private void Flip(bool isMouseRight)
+    {
+        if (isMouseRight && !isFacingRight || !isMouseRight && isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
+    private void Shoot(){
+        //Crear flecha y asignarle la dirección
+        GameObject ArrowGO=Instantiate(flech,arco.transform.position,Quaternion.identity);
+        Flecha Arrow=ArrowGO.GetComponent<Flecha>();
+        Arrow.targetVector=mouseCoords-transform.position;
+        //Ignorar colisiones con el jugador
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        Collider2D arrowCollider = ArrowGO.GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(playerCollider, arrowCollider);
+
+    }
+    public void DecreaseShootCooldown(){
+        if(shootCooldown>0.3f){
+            shootCooldown-=0.1f;
+        }
+    }
+
+    public void IncreaseSpeed(){
+        if(velocidad<7f){
+            velocidad+=0.5f;
+        }
+    }
+    public void IncreaseDamage(){
+        if(damage<4){
+            damage++;
+        }
+    }
+
+    public void DeactivateShootAnim()
+    {
+        animator.SetBool("Shoots",false);
+    }
+    //-------------------FIN METODOS AUXILIARES-------------------
+
+    //-------------------COLISIONES-------------------
+    void OnTriggerEnter2D(Collider2D collider){
+        if(collider.gameObject.CompareTag("Enemy") && !isDead){
+          
+            if(!inmortal){
+                src.clip=sfx1;
+                src.Play();
+                vida.Invoke(0.5f, 1);
+                inmortal=true;
+                StartCoroutine(Invincible());
+            }
+        }
+    }
     void OnTriggerStay2D(Collider2D collider){
         if(collider.gameObject.CompareTag("Enemy") && !isDead){
             
@@ -202,23 +212,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    /*void OnCollisionExit2D(Collision2D collision) {
-    // Restore regular movement when leaving the wall
-        if (collision.gameObject.CompareTag("Wall")) {
-            rb.velocity = Vector2.zero;
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-            rb.constraints = RigidbodyConstraints2D.None;
-        }
-    }*/
+    //-------------------FIN COLISIONES-------------------
     
-    // setter para un booleano que no permite mover el personaje cuando está muerto
-    public void SetIsDead()
-    {
-        animator.SetBool("Dead",true);
-        isDead=true;
-    }
 
 }

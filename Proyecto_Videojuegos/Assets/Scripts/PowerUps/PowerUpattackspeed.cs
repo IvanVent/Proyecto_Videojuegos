@@ -11,7 +11,7 @@ public class PowerUpattackspeed : PowerUp
     }
     public override void ApplyEffect(GameObject other)
     {
-        player.XLR8();
+        player.DecreaseShootCooldown();
     }
         
 }

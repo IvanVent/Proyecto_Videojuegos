@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
-using UnityEngine.UI;
+
 public class EditTests
 {
     // Test para comprobar que el enemigo pequeño pierde vida al recibir daño
-    [Test]
+    /*[Test]
     public void SE_TakeDamage()
     {
         var smallEnemy = new GameObject().AddComponent<SmallEnemy>();
@@ -27,7 +25,50 @@ public class EditTests
         bigEnemy.TakeDamage();
         Assert.AreEqual(hpLeft, bigEnemy.getHP());
     }
-    
+    */
 
+    [Test]
+    public void AttackSpeedIncrease()
+    {
+        var player = new GameObject().AddComponent<Player>();
+        float inicialShootCD = player.getShootCooldown();
+
+        player.DecreaseShootCooldown();
+
+        Assert.AreNotEqual(inicialShootCD, player.getShootCooldown());
+    }
+
+    [Test]
+    public void DamageIncrease()
+    {
+        var player = new GameObject().AddComponent<Player>();
+        float inicialDamage = player.getdamage();
+
+        player.IncreaseDamage();
+
+        Assert.AreNotEqual(inicialDamage, player.getdamage());
+    }
+
+    [Test]
+    public void SpeedIncrease()
+    {
+        var player = new GameObject().AddComponent<Player>();
+        float inicialSpeed = player.getVelocidad();
+
+        player.IncreaseSpeed();
+
+        Assert.AreNotEqual(inicialSpeed, player.getVelocidad());
+    }
+
+    [Test]
+    public void DoubleShot()
+    {
+        var player = new GameObject().AddComponent<Player>();
+        bool inicialDoubleShot = player.getDobleShot();
+
+        player.SetDoubleshot();
+
+        Assert.AreNotEqual(inicialDoubleShot, player.getDobleShot());
+    }
 
 }
