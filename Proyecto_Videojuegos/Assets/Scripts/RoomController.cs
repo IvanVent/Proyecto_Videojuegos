@@ -64,6 +64,15 @@ public class RoomController : MonoBehaviour
         this.room_id = id;
     }
 
+    public List<GameObject> GetDoorWallColliders()
+    {
+        return doorWallColliders;
+    }
+    public List<GameObject> GetNormalColliders()
+    {
+        return normalColliders;
+    }
+
     // Guarda los colliders de una habitación en listas para luego acceder a ellos facilmente
     public void LoadColliders()
     {

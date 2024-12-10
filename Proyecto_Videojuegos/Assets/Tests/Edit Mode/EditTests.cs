@@ -42,22 +42,22 @@ public class EditTests
     public void DamageIncrease()
     {
         var player = new GameObject().AddComponent<Player>();
-        float inicialDamage = player.getdamage();
+        float inicialDamage = player.getDamage();
 
         player.IncreaseDamage();
 
-        Assert.AreNotEqual(inicialDamage, player.getdamage());
+        Assert.AreNotEqual(inicialDamage, player.getDamage());
     }
 
     [Test]
     public void SpeedIncrease()
     {
         var player = new GameObject().AddComponent<Player>();
-        float inicialSpeed = player.getVelocidad();
+        float inicialSpeed = player.getSpeed();
 
         player.IncreaseSpeed();
 
-        Assert.AreNotEqual(inicialSpeed, player.getVelocidad());
+        Assert.AreNotEqual(inicialSpeed, player.getSpeed());
     }
 
     [Test]

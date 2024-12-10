@@ -99,7 +99,7 @@ public class SmallEnemy : MonoBehaviour
 
     public void TakeDamage()
     {
-        hp-=playera.getdamage();
+        hp-=playera.getDamage();
         receivingDamage = true;
         if (hp <= 0)
         {

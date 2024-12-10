@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
     
     [SerializeField] private float shootCooldown=0.6f;
     private float maxlife=3f;
-    [SerializeField]private float velocidad=5;
+    [FormerlySerializedAs("velocidad")] [SerializeField]private float speed=5;
 
     private int damage;
     int swapShootSFX=0;
@@ -80,13 +81,13 @@ public class Player : MonoBehaviour
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
             Vector2 movement = new Vector2(horizontal, vertical);
-            rb.velocity = movement * velocidad;
+            rb.velocity = movement * speed;
             animator.SetFloat("Speed",Mathf.Abs(horizontal)+Mathf.Abs(vertical));
         }
     }
     
     //---------------------- GETTERS Y SETTERS ----------------------
-    public int getdamage(){
+    public int getDamage(){
         return damage;
     }
     public float getShootCooldown(){
@@ -96,9 +97,9 @@ public class Player : MonoBehaviour
     {
         return maxlife;
     }
-    public float getVelocidad()
+    public float getSpeed()
     {
-        return velocidad;
+        return speed;
     }
     public bool getDobleShot()
     {
@@ -135,7 +136,6 @@ public class Player : MonoBehaviour
     }
     private IEnumerator Doubleshot()
     {
-        
         yield return new WaitForSeconds(0.2f);
         src.Play();
         Shoot();
@@ -171,8 +171,8 @@ public class Player : MonoBehaviour
     }
 
     public void IncreaseSpeed(){
-        if(velocidad<7f){
-            velocidad+=0.5f;
+        if(speed<7f){
+            speed+=0.5f;
         }
     }
     public void IncreaseDamage(){

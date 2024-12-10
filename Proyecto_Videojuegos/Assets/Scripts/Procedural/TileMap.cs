@@ -24,6 +24,11 @@ public class TileMap : MonoBehaviour
     {
         ClearTileMap();
     }
+
+    public RoomController GetRoomController()
+    {
+        return roomController;
+    }
     
     // Este método se llama cada vez que se recorre una celda de la matriz que define el mapa.
     public void AddRoom(float x, float y, int id = 0)
