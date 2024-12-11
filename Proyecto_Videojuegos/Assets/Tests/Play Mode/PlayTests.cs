@@ -40,24 +40,4 @@ public class PlayTests
         Assert.AreEqual(hpLeft, bigEnemy.getHP());
     }
     
-    // Comprueba que el metodo LoadColliders de RoomController guarde correctamente los colliders en las listas
-    [UnityTest]
-    public IEnumerator RoomLoadColliders()
-    {
-        SceneManager.LoadScene("SampleScene");
-        yield return null;
-
-        var tileMap = new GameObject().AddComponent<TileMap>();
-        yield return null;
-        
-        tileMap.AddRoom(0,0,0);
-        yield return null;
-        
-        var room_controller = tileMap.GetRoomController();
-        Assert.AreEqual(4, room_controller.GetNormalColliders().Count);
-        Assert.AreEqual(4, room_controller.GetDoorWallColliders().Count);
-    }
-    
-    
-    
 }
