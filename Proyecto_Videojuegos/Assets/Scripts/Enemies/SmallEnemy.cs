@@ -18,8 +18,10 @@ public class SmallEnemy : MonoBehaviour
     private bool isWaiting = false;
     private bool receivingDamage = false;
     private bool followPlayer = false;
-
+    public AudioClip sfx1,sfx2;
+    private AudioSource src;
     void Start(){
+        src=GameObject.Find("Enemydamagesound").GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         StartCoroutine(MoveAndWait());
         player = GameObject.Find("Player").transform;
@@ -99,12 +101,19 @@ public class SmallEnemy : MonoBehaviour
 
     public void TakeDamage()
     {
+        
         hp-=playera.getDamage();
         receivingDamage = true;
         if (hp <= 0)
         {
+            src.clip=sfx2;
+            src.Play();
             Destroy(gameObject);
             game_progress.EnemyKilled();
+        }
+        else{
+            src.clip=sfx1;
+            src.Play();
         }
     }
     public void DeactivateDamage()

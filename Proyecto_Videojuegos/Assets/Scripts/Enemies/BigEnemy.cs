@@ -17,8 +17,10 @@ public class BigEnemy : MonoBehaviour
     private bool receivingDamage = false;
     private bool followPlayer = false;
     
-
+    public AudioClip sfx1,sfx2;
+    private AudioSource src;
     void Start(){
+        src=GameObject.Find("Enemydamagesound").GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         playera = GameObject.Find("Player").GetComponent<Player>();
@@ -77,8 +79,14 @@ public class BigEnemy : MonoBehaviour
         receivingDamage = true;
         if (hp <= 0)
         {
+            src.clip=sfx2;
+            src.Play();
             Destroy(gameObject);
             game_progress.EnemyKilled();
+        }
+        else{
+            src.clip=sfx1;
+            src.Play();
         }
     }
     public void DeactivateDamage()
