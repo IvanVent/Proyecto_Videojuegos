@@ -44,7 +44,7 @@ public class RoomController : MonoBehaviour
         doorsFather = GameObject.Find("Doors").transform;
         enemy_spawner = gameObject.GetComponent<EnemySpawner>();
         game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();
-        powerups = new GameObject[]{moreHeartsPU, Potion, attackSpeedPU, damagePU, movementSpeedPU, dobleshotPU};
+        powerups = new GameObject[]{Potion, moreHeartsPU, attackSpeedPU, damagePU, movementSpeedPU, dobleshotPU};
     }
 
     // Corutina que va comprobando cuantos enemigos quedan en la sala
@@ -134,15 +134,25 @@ public class RoomController : MonoBehaviour
         if (completedRooms > 0){
             int random;
             if (completedRooms <= 4){
-                random = Random.Range(0, 2);
+                random = Random.Range(0, 100);
+                if (random < 70){                           //70% de probabilidad de que salga pocion
+                    random = 0;
+                } else{                                     //30% de probabilidad de que salga corazon extra
+                    random = 1;
+                }
                 GameObject selectedPU = powerups[random];
                 GameObject PUinstance = Instantiate(selectedPU, transform.position, Quaternion.identity);
                 PUinstance.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
             }else{
-                if(game_progress.GetDobleShotPicked()){ //si ya tiene el dobleShoot no se puede volver a coger
-                    random = Random.Range(0, powerups.Length-1);
-                }else{
-                    random = Random.Range(0, powerups.Length);
+                random = Random.Range(0,100);
+                if (random < 70){                           //70% de probabilidad de que salga pocion
+                    random = 0;
+                }else{                                      //30% de probabilidad de que salga otro PU
+                    if(game_progress.GetDobleShotPicked()){ //si ya tiene el dobleShoot no se puede volver a coger
+                        random = Random.Range(1, powerups.Length-1);
+                    }else{
+                        random = Random.Range(1, powerups.Length);
+                    }
                 }
                 GameObject selectedPU = powerups[random];
                 GameObject PUinstance = Instantiate(selectedPU, transform.position, Quaternion.identity);
@@ -151,6 +161,8 @@ public class RoomController : MonoBehaviour
         }
     }
 
+    
+    
 
     // Añade las puertas a una habitación, ajustando los colliders de la habitación para adaptarse a ellas.
     public void AddDoors(Vector3 roomPos)

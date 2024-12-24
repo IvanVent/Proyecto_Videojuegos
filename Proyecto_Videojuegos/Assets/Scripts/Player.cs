@@ -110,6 +110,7 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("Dead",true);
         isDead=true;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
     public void SetDoubleshot(){
         doubleshot=true;
