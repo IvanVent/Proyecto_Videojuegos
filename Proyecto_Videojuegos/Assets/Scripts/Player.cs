@@ -15,10 +15,16 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     private Vector3 mouseCoords;
+    private Vector2 movement;
     
     [SerializeField] private float shootCooldown=0.6f;
     private float maxlife=3f;
     [FormerlySerializedAs("velocidad")] [SerializeField]private float speed=5;
+    private float horizontal;
+    private float vertical;
+    [SerializeField] private float dashSpeed=10f;
+    [SerializeField] private float dashDuration=0.1f;
+    [SerializeField] private float dashCooldown=1f;
 
     private int damage;
     int swapShootSFX=0;
@@ -28,6 +34,8 @@ public class Player : MonoBehaviour
     private bool canShoot = true;
     private bool isDead=false;
     private bool isFacingRight = true;
+    private bool isDashing=false;
+    private bool canDash;
     
     void Start()
     {
@@ -36,11 +44,13 @@ public class Player : MonoBehaviour
         rb=GetComponent<Rigidbody2D>();
         animator=GetComponent<Animator>();
         damage=1;
+        canDash=true;
     }
     
     void Update()
     {
-        
+        if (isDashing) return; //si se hace un dash no queremos que se ejecute nada mas durante el dash
+
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;        
         if (Time.timeScale == 0) return;
         if (!isDead)
@@ -70,21 +80,41 @@ public class Player : MonoBehaviour
                     StartCoroutine(Doubleshot());
                 }
             }
+            if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
+                StartCoroutine(Dash());
+            }
         }
 
-    }
 
+    }
+    //------------------------MOVIMIENTO------------------------
     private void FixedUpdate() {
   
         if (!isDead)
         {
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-            Vector2 movement = new Vector2(horizontal, vertical);
+            if (isDashing) return;//si se hace un dash no queremos que se ejecute nada mas durante el dash
+
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+            movement = new Vector2(horizontal, vertical);
             rb.velocity = movement * speed;
             animator.SetFloat("Speed",Mathf.Abs(horizontal)+Mathf.Abs(vertical));
         }
     }
+
+    private IEnumerator Dash(){
+        inmortal=true;
+        canDash=false;
+        isDashing=true;
+        rb.velocity = new Vector2(movement.x * dashSpeed, movement.y * dashSpeed);
+        yield return new WaitForSeconds(dashDuration);
+        isDashing=false;
+        inmortal=false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash=true;
+    }
+    //----------------------FIN MOVIMIENTO----------------------
     
     //---------------------- GETTERS Y SETTERS ----------------------
     public int getDamage(){
@@ -144,6 +174,7 @@ public class Player : MonoBehaviour
     //----------------------FIN DE CORRUTINAS ----------------------
 
     //-------------------METODOS AUXILIARES-------------------
+
     private void Flip(bool isMouseRight)
     {
         if (isMouseRight && !isFacingRight || !isMouseRight && isFacingRight)

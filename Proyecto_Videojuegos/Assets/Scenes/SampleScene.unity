@@ -941,6 +941,9 @@ MonoBehaviour:
   animator: {fileID: 540761537}
   shootCooldown: 0.6
   speed: 5
+  dashSpeed: 10
+  dashDuration: 0.5
+  dashCooldown: 1
   doubleshot: 0
 --- !u!50 &540761535
 Rigidbody2D:
