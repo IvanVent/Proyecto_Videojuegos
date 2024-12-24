@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,9 +36,7 @@ public class GameManager : MonoBehaviour
         {
             if (!isPaused)
             {
-                pauseUI.SetActive(true);
-                Time.timeScale = 0f;
-                isPaused = true;
+                PauseGame();
             }
             else
             {
@@ -45,6 +44,13 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+    public void PauseGame()
+    {
+        pauseUI.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+        GameObject.Find("PauseButton").GetComponent<Button>().interactable = false;
     }
     private IEnumerator deadmusic(){
         music=false;
@@ -83,6 +89,8 @@ public class GameManager : MonoBehaviour
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        GameObject.Find("PauseButton").GetComponent<Button>().interactable = true;
+
     }
     
     
