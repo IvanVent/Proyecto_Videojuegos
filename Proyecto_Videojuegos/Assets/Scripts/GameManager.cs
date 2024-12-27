@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public AudioClip sfx1,sfx2;
     public AudioSource src;
     private Player playera;
+    public VolumeControl volumeControl;
     private void Start()
     {
         src.clip=sfx1;
@@ -106,10 +107,10 @@ public class GameManager : MonoBehaviour
         pauseUI.SetActive(true);
     }
     public void addVolume(){
-        VolumeControl.addVolume();
+        volumeControl.AddVolume();
     }
     public void lessVolume(){
-        VolumeControl.lessVolume();
+        volumeControl.LessVolume();
     }
     public void changeautorecolect(){
         playera.autorecolect=!playera.autorecolect;
