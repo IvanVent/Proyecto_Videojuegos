@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     private bool isFacingRight = true;
     private bool isDashing=false;
     private bool canDash;
-    
+    public bool autorecolect=false;
     void Start()
     {
         vida.Invoke(maxlife,0);

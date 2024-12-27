@@ -10,15 +10,17 @@ public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
     public GameObject pauseUI;
+    public GameObject optionsUI;
     private bool isPaused = false;
     private bool music=true;
     private bool vivo=true;
     public AudioClip sfx1,sfx2;
     public AudioSource src;
-
+    private Player playera;
     private void Start()
     {
         src.clip=sfx1;
+        playera = GameObject.Find("Player").GetComponent<Player>();
     }
     void Update(){
         if(vivo){
@@ -59,9 +61,12 @@ public class GameManager : MonoBehaviour
         music=true;
     }
     private IEnumerator backmusic(){
+        float startTime=Time.unscaledTime;
         music=false;
         src.Play();
-        yield return new WaitForSeconds(12);
+        while(Time.unscaledTime-startTime<12){
+            yield return null;
+        }
         music=true;
     }
     public void GameOver()
@@ -91,6 +96,23 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         GameObject.Find("PauseButton").GetComponent<Button>().interactable = true;
 
+    }
+    public void Options(){
+        pauseUI.SetActive(false);
+        optionsUI.SetActive(true);
+    }
+    public void Volver(){
+        optionsUI.SetActive(false);
+        pauseUI.SetActive(true);
+    }
+    public void addVolume(){
+        VolumeControl.addVolume();
+    }
+    public void lessVolume(){
+        VolumeControl.lessVolume();
+    }
+    public void changeautorecolect(){
+        playera.autorecolect=!playera.autorecolect;
     }
     
     
