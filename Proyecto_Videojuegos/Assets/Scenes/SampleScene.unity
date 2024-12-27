@@ -373,7 +373,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0000047684, y: -18}
-  m_SizeDelta: {x: 109.048, y: 30}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &203177071
 MonoBehaviour:
@@ -778,7 +778,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000015259, y: -184}
-  m_SizeDelta: {x: 60.974, y: 30}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340175937
 MonoBehaviour:
@@ -1123,8 +1123,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0.0000047683716}
-  m_SizeDelta: {x: 876.9025, y: 258.8346}
+  m_AnchoredPosition: {x: 0.00050354, y: -0.27902}
+  m_SizeDelta: {x: 3150, y: 264.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &521770397
 MonoBehaviour:
@@ -1159,7 +1159,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Autorecollector is enabled
+  m_Text: Autorecollector is disabled
 --- !u!222 &521770398
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2232,8 +2232,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0.0000047683716}
-  m_SizeDelta: {x: 876.9025, y: 258.8346}
+  m_AnchoredPosition: {x: 0.00049591064, y: -0.27902985}
+  m_SizeDelta: {x: 1800, y: 264.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146757697
 MonoBehaviour:
@@ -2891,7 +2891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1450780276}
   pauseUI: {fileID: 1070615560}
-  optionsUI: {fileID: 0}
+  optionsUI: {fileID: 1774340794}
   sfx1: {fileID: 8300000, guid: 95b430dda7483744896fcb0b4a7c91ac, type: 3}
   sfx2: {fileID: 8300000, guid: 069ae3775bb0ed548a94d8f4c353f887, type: 3}
   src: {fileID: 1556476953}
@@ -3198,8 +3198,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: -228.575}
-  m_SizeDelta: {x: 60.974, y: 30}
+  m_AnchoredPosition: {x: -0.000015259, y: 312}
+  m_SizeDelta: {x: 350, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1594505667
 MonoBehaviour:
@@ -3246,8 +3246,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1556476950}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: MainMenu
+        m_TargetAssemblyTypeName: GameManager, Scripts
+        m_MethodName: changeautorecolect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3508,7 +3508,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0000047684, y: 147}
-  m_SizeDelta: {x: 109.048, y: 30}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708939745
 MonoBehaviour:
@@ -3880,8 +3880,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0.0000047683716}
-  m_SizeDelta: {x: 876.9025, y: 258.8346}
+  m_AnchoredPosition: {x: 0.00049591064, y: -0.27900982}
+  m_SizeDelta: {x: 1800, y: 264.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061771331
 MonoBehaviour:
@@ -4011,8 +4011,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1556476950}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: 
+        m_TargetAssemblyTypeName: GameManager, Scripts
+        m_MethodName: Options
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
