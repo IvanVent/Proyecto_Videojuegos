@@ -5,9 +5,11 @@ using UnityEngine;
 public class PowerUpPickup : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool automatic=false;
+    private Player playera;
+    
     public void OnTriggerEnter2D(Collider2D trigger){
-        if(Input.GetKeyDown(KeyCode.E)||automatic){
+        playera=GameObject.Find("Player").GetComponent<Player>();
+        if(Input.GetKeyDown(KeyCode.E)||playera.autorecolect){
             if(trigger.CompareTag("Player")){
                 PowerUp powerUp=GetComponent<PowerUp>();
                 if(powerUp!=null){
@@ -17,7 +19,8 @@ public class PowerUpPickup : MonoBehaviour
         }
     }
     public void OnTriggerStay2D(Collider2D trigger){
-        if(Input.GetKeyDown(KeyCode.E)||automatic){
+        playera=GameObject.Find("Player").GetComponent<Player>();
+        if(Input.GetKeyDown(KeyCode.E)||playera.autorecolect){
             if(trigger.CompareTag("Player")){
                 PowerUp powerUp=GetComponent<PowerUp>();
                 if(powerUp!=null){

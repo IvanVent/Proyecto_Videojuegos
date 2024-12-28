@@ -18,10 +18,13 @@ public class GameManager : MonoBehaviour
     public AudioSource src;
     private Player playera;
     public VolumeControl volumeControl;
+    public Text uiText;
+    private bool options=false;
     private void Start()
     {
         src.clip=sfx1;
         playera = GameObject.Find("Player").GetComponent<Player>();
+        uiText.text="Autorecollect is disabled";
     }
     void Update(){
         if(vivo){
@@ -43,7 +46,13 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Continue();
+                if(options){
+                    Volver();
+                }
+                
+                    Continue();
+                
+                
             }
         }
         
@@ -99,10 +108,12 @@ public class GameManager : MonoBehaviour
 
     }
     public void Options(){
+        options=true;
         pauseUI.SetActive(false);
         optionsUI.SetActive(true);
     }
     public void Volver(){
+        options=false;
         optionsUI.SetActive(false);
         pauseUI.SetActive(true);
     }
@@ -113,7 +124,14 @@ public class GameManager : MonoBehaviour
         volumeControl.LessVolume();
     }
     public void changeautorecolect(){
+
         playera.autorecolect=!playera.autorecolect;
+        if(playera.autorecolect){
+            uiText.text="Autorecollect is enabled";
+        }
+        else{
+            uiText.text="Autorecollect is disabled";
+        }
     }
     
     
