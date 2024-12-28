@@ -37,10 +37,13 @@ public class RoomController : MonoBehaviour
     private EnemySpawner enemy_spawner;
     private GameProgress game_progress;
     
+    
     /* ----------------------------- M E T O D O S -------------------------------------- */
     private void Awake()
     {
+
         LoadColliders();
+        
         doorsFather = GameObject.Find("Doors").transform;
         enemy_spawner = gameObject.GetComponent<EnemySpawner>();
         game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();
