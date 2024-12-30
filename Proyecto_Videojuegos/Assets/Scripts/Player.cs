@@ -106,9 +106,11 @@ public class Player : MonoBehaviour
         inmortal=true;
         canDash=false;
         isDashing=true;
+        animator.SetBool("Dashing",isDashing);
         rb.velocity = new Vector2(movement.x * dashSpeed, movement.y * dashSpeed);
         yield return new WaitForSeconds(dashDuration);
         isDashing=false;
+        animator.SetBool("Dashing",isDashing);
         inmortal=false;
 
         yield return new WaitForSeconds(dashCooldown);

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb313e2e38c1552468ff13e2c4195fd4
+guid: fba1862697e21974f81a847c03f14de3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 1
-  spriteBorder: {x: 6, y: 0, z: 6, w: 9}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -110,12 +110,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Viking_Base_Arrowww_0
+      name: Viking_Base_Arrowww 1_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 5
         y: 0
-        width: 20
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4eefed21cefa367448a249afd2ead36b
-      internalID: 1250875329
+      spriteID: baab4e29a6fec9e4d8824198e97fb43f
+      internalID: -1853848702
       vertices: []
       indices: 
       edges: []
@@ -134,14 +134,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Viking_Base_Arrowww_0: 1250875329
+      Viking_Base_Arrowww 1_0: -1853848702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

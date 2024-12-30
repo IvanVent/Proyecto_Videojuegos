@@ -113,9 +113,9 @@ TextureImporter:
       name: deathbed_0
       rect:
         serializedVersion: 2
-        x: 24
+        x: 23
         y: 0
-        width: 20
+        width: 23
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b90ee0464e85cb44e9180512134fffbe
-      internalID: -1722021284
+      spriteID: 8194ee7ed5d6b794f98d757bb3da37e6
+      internalID: -1542210019
       vertices: []
       indices: 
       edges: []
@@ -134,9 +134,9 @@ TextureImporter:
       name: deathbed_1
       rect:
         serializedVersion: 2
-        x: 87
+        x: 86
         y: 0
-        width: 30
+        width: 32
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d201a87fa5938e54cba2fdbae9c5e735
-      internalID: 264763857
+      spriteID: 9fc2b7b47d53d7f48b3f80413ec8dffd
+      internalID: -293149527
       vertices: []
       indices: 
       edges: []
@@ -155,10 +155,10 @@ TextureImporter:
       name: deathbed_2
       rect:
         serializedVersion: 2
-        x: 149
+        x: 148
         y: 0
         width: 29
-        height: 30
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 889f608bcd13c0749b580251cc25717d
-      internalID: -682518219
+      spriteID: 2fbfa8a80f43d4b409e7ce18e9c7f290
+      internalID: -201117980
       vertices: []
       indices: 
       edges: []
@@ -178,7 +178,7 @@ TextureImporter:
         serializedVersion: 2
         x: 202
         y: 0
-        width: 48
+        width: 49
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b6fc00a5c06ce64693aeafccf1264f9
-      internalID: 1132812124
+      spriteID: a71514b9abc9dda45b5cdb4c4f972f45
+      internalID: 306677965
       vertices: []
       indices: 
       edges: []
@@ -199,7 +199,7 @@ TextureImporter:
         serializedVersion: 2
         x: 263
         y: 0
-        width: 51
+        width: 49
         height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -208,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dd6623afa743484ebab3825ddcf0bed
-      internalID: -1391866849
+      spriteID: f518388cddce138498842522ff25dc8a
+      internalID: 1262881484
       vertices: []
       indices: 
       edges: []
@@ -220,7 +220,7 @@ TextureImporter:
         serializedVersion: 2
         x: 320
         y: 0
-        width: 61
+        width: 62
         height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c8d3e8fbf9115148ae4d371edae3339
-      internalID: 1227334058
+      spriteID: d6b5df856a72fb449997bd7d4fd9b73d
+      internalID: -713502906
       vertices: []
       indices: 
       edges: []
@@ -241,7 +241,7 @@ TextureImporter:
         serializedVersion: 2
         x: 382
         y: 0
-        width: 65
+        width: 62
         height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -250,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a06c31d0d6a7736439f19a610c8a4a80
-      internalID: 1212185776
+      spriteID: 703623f98124a40478b1e6169b45b356
+      internalID: 1176540633
       vertices: []
       indices: 
       edges: []
@@ -260,9 +260,9 @@ TextureImporter:
       name: deathbed_7
       rect:
         serializedVersion: 2
-        x: 453
+        x: 445
         y: 0
-        width: 55
+        width: 63
         height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 073c31fb58dd2a842ad4846e2d1055bf
-      internalID: -1592613851
+      spriteID: bf695491cbf6a274db525314bd1a212d
+      internalID: 1532635401
       vertices: []
       indices: 
       edges: []
@@ -292,8 +292,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26e54d0bba9278c40a7ebaf2203ea21f
-      internalID: 1630064539
+      spriteID: b86e3622206399047818b9ffa8b75291
+      internalID: 885329116
       vertices: []
       indices: 
       edges: []
@@ -309,15 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      deathbed_0: -1722021284
-      deathbed_1: 264763857
-      deathbed_2: -682518219
-      deathbed_3: 1132812124
-      deathbed_4: -1391866849
-      deathbed_5: 1227334058
-      deathbed_6: 1212185776
-      deathbed_7: -1592613851
-      deathbed_8: 1630064539
+      deathbed_0: -1542210019
+      deathbed_1: -293149527
+      deathbed_2: -201117980
+      deathbed_3: 306677965
+      deathbed_4: 1262881484
+      deathbed_5: -713502906
+      deathbed_6: 1176540633
+      deathbed_7: 1532635401
+      deathbed_8: 885329116
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

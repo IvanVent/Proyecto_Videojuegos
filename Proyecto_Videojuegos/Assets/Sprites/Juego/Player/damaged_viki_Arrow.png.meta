@@ -113,9 +113,9 @@ TextureImporter:
       name: damaged_viki_Arrow_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 6
         y: 0
-        width: 21
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2b2c3cbe52b6a644b2be22f32d4c8af
-      internalID: -1870717995
+      spriteID: 1a64cbef6cd9e7640b2263f48361f911
+      internalID: -379260309
       vertices: []
       indices: 
       edges: []
@@ -134,9 +134,9 @@ TextureImporter:
       name: damaged_viki_Arrow_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 36
         y: 0
-        width: 21
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1d580cff69a27d4994f95ddcfe4a756
-      internalID: -1253788633
+      spriteID: c2b1c6c075a245746919f52ff0717e5d
+      internalID: -636756566
       vertices: []
       indices: 
       edges: []
@@ -155,9 +155,9 @@ TextureImporter:
       name: damaged_viki_Arrow_2
       rect:
         serializedVersion: 2
-        x: 70
+        x: 69
         y: 0
-        width: 21
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eda1bc4ace123c94a999cc4ce881bef4
-      internalID: 1218281814
+      spriteID: d9f38ea9be4ec2d469406d83d3da15eb
+      internalID: -342952975
       vertices: []
       indices: 
       edges: []
@@ -176,9 +176,9 @@ TextureImporter:
       name: damaged_viki_Arrow_3
       rect:
         serializedVersion: 2
-        x: 103
+        x: 102
         y: 0
-        width: 21
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95d78f82d4d4b294f999da53c86a741c
-      internalID: 325298119
+      spriteID: 5718186d1bdcdd44dbb60f98bf79d4ce
+      internalID: 485886754
       vertices: []
       indices: 
       edges: []
@@ -197,9 +197,9 @@ TextureImporter:
       name: damaged_viki_Arrow_4
       rect:
         serializedVersion: 2
-        x: 135
+        x: 134
         y: 0
-        width: 21
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -208,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a488a61e9341ff47bfcfbb35c183a1c
-      internalID: 813394895
+      spriteID: 5a3d592977cda7448a27d39a5d5271f4
+      internalID: -436760981
       vertices: []
       indices: 
       edges: []
@@ -218,9 +218,9 @@ TextureImporter:
       name: damaged_viki_Arrow_5
       rect:
         serializedVersion: 2
-        x: 167
+        x: 166
         y: 0
-        width: 21
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61713d2b4062a894a82bb82f3ba9e999
-      internalID: -1269090997
+      spriteID: 253f51179ea286948a0f7eb9ae1b39d3
+      internalID: 1695609577
       vertices: []
       indices: 
       edges: []
@@ -239,9 +239,9 @@ TextureImporter:
       name: damaged_viki_Arrow_6
       rect:
         serializedVersion: 2
-        x: 199
+        x: 198
         y: 0
-        width: 21
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -250,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 621d04f6c333c674c945fd1e5784180b
-      internalID: 1737635019
+      spriteID: cdc3532333093ec4a9204d18c4471511
+      internalID: -830143687
       vertices: []
       indices: 
       edges: []
@@ -260,9 +260,9 @@ TextureImporter:
       name: damaged_viki_Arrow_7
       rect:
         serializedVersion: 2
-        x: 231
+        x: 230
         y: 0
-        width: 21
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27338151fcec35c49bc2643db9a04f2f
-      internalID: 1922711683
+      spriteID: 90d939273da41884684fcc8267dd2305
+      internalID: 1877034558
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      damaged_viki_Arrow_0: -1870717995
-      damaged_viki_Arrow_1: -1253788633
-      damaged_viki_Arrow_2: 1218281814
-      damaged_viki_Arrow_3: 325298119
-      damaged_viki_Arrow_4: 813394895
-      damaged_viki_Arrow_5: -1269090997
-      damaged_viki_Arrow_6: 1737635019
-      damaged_viki_Arrow_7: 1922711683
+      damaged_viki_Arrow_0: -379260309
+      damaged_viki_Arrow_1: -636756566
+      damaged_viki_Arrow_2: -342952975
+      damaged_viki_Arrow_3: 485886754
+      damaged_viki_Arrow_4: -436760981
+      damaged_viki_Arrow_5: 1695609577
+      damaged_viki_Arrow_6: -830143687
+      damaged_viki_Arrow_7: 1877034558
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

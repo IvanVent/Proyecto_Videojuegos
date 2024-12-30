@@ -113,9 +113,9 @@ TextureImporter:
       name: walk_cycle_anim_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 6
         y: 0
-        width: 19
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc7ae0045a42b024a867f09179aa91f4
-      internalID: 167516873
+      spriteID: f617bd14a7317fa4c81597639c2497c9
+      internalID: -503275588
       vertices: []
       indices: 
       edges: []
@@ -134,9 +134,9 @@ TextureImporter:
       name: walk_cycle_anim_1
       rect:
         serializedVersion: 2
-        x: 39
+        x: 38
         y: 0
-        width: 18
+        width: 21
         height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19264fcc73ce3664cb1afecf84fff896
-      internalID: 339736974
+      spriteID: 864cdc24839a1d645acb0d8966800b40
+      internalID: 1684597239
       vertices: []
       indices: 
       edges: []
@@ -155,9 +155,9 @@ TextureImporter:
       name: walk_cycle_anim_2
       rect:
         serializedVersion: 2
-        x: 71
+        x: 70
         y: 0
-        width: 20
+        width: 21
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdbb5d38484cd0646830e391c1d37eb2
-      internalID: -1876933863
+      spriteID: e2ece503881511e4495899feb682ed6f
+      internalID: 1828276929
       vertices: []
       indices: 
       edges: []
@@ -176,9 +176,9 @@ TextureImporter:
       name: walk_cycle_anim_3
       rect:
         serializedVersion: 2
-        x: 103
+        x: 102
         y: 0
-        width: 20
+        width: 21
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 525cfc4e9d2973c45b253c5e38f68507
-      internalID: 558011658
+      spriteID: 2b2862cf6cff1f24cbe1e7a3ddd36c7a
+      internalID: 1087949757
       vertices: []
       indices: 
       edges: []
@@ -197,9 +197,9 @@ TextureImporter:
       name: walk_cycle_anim_4
       rect:
         serializedVersion: 2
-        x: 135
+        x: 134
         y: 0
-        width: 20
+        width: 21
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -208,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6237bcb1a9ed82b4eb528d0935824ffd
-      internalID: 1496459969
+      spriteID: f745817aa57fd9c4b903d0ce584a0e7e
+      internalID: 454931891
       vertices: []
       indices: 
       edges: []
@@ -218,9 +218,9 @@ TextureImporter:
       name: walk_cycle_anim_5
       rect:
         serializedVersion: 2
-        x: 167
+        x: 166
         y: 0
-        width: 19
+        width: 21
         height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b25d2c0034726c4eb4ded71889432aa
-      internalID: -1808912044
+      spriteID: 21a6ad57dc1053144830f3897010469b
+      internalID: 297081716
       vertices: []
       indices: 
       edges: []
@@ -239,9 +239,9 @@ TextureImporter:
       name: walk_cycle_anim_6
       rect:
         serializedVersion: 2
-        x: 199
+        x: 198
         y: 0
-        width: 20
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -250,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 160f77e509238654a87e2fb0619b7ca6
-      internalID: 177336097
+      spriteID: f34ae243ca682b84f8171fd5671c25af
+      internalID: -912101734
       vertices: []
       indices: 
       edges: []
@@ -260,9 +260,9 @@ TextureImporter:
       name: walk_cycle_anim_7
       rect:
         serializedVersion: 2
-        x: 231
+        x: 230
         y: 0
-        width: 20
+        width: 22
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54745879838c90c42b9e2aa8ffbf74ee
-      internalID: -1438469228
+      spriteID: dcc1938fc6449ad4797f137aada44166
+      internalID: -58056444
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      walk_cycle_anim_0: 167516873
-      walk_cycle_anim_1: 339736974
-      walk_cycle_anim_2: -1876933863
-      walk_cycle_anim_3: 558011658
-      walk_cycle_anim_4: 1496459969
-      walk_cycle_anim_5: -1808912044
-      walk_cycle_anim_6: 177336097
-      walk_cycle_anim_7: -1438469228
+      walk_cycle_anim_0: -503275588
+      walk_cycle_anim_1: 1684597239
+      walk_cycle_anim_2: 1828276929
+      walk_cycle_anim_3: 1087949757
+      walk_cycle_anim_4: 454931891
+      walk_cycle_anim_5: 297081716
+      walk_cycle_anim_6: -912101734
+      walk_cycle_anim_7: -58056444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e154540dfd7f544bb698d09c345b34a
+guid: 3db6ea4bf85aa9d439b41bcc4f676664
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,12 +110,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idle_viking 1_0
+      name: Shoot_0
       rect:
         serializedVersion: 2
         x: 6
         y: 0
-        width: 22
+        width: 23
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09a3b80d1390eb14583d8fcc5c2473ef
-      internalID: 1633477133
+      spriteID: 77ae196ef36f1a740a37dd281fd7acc1
+      internalID: -1942597307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_viking 1_1
+      name: Shoot_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 69
         y: 0
-        width: 22
+        width: 24
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,19 +145,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea2e84ec51e207147bfe8cb05aefea98
-      internalID: 1093861429
+      spriteID: 8909bbac146ced94eb0fb265b199770c
+      internalID: -257227196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_viking 1_2
+      name: Shoot_2
       rect:
         serializedVersion: 2
-        x: 70
+        x: 133
         y: 0
-        width: 22
+        width: 21
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,83 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfe4fcf9855887c4a9ba7c5d1dd7905d
-      internalID: 86615639
+      spriteID: c0b2af00cf433bc499aa8a5b1545a685
+      internalID: -1533621516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_viking 1_3
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 0
-        width: 22
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 599e49dfde7aab6418cf896b42c1e497
-      internalID: 1799233613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_4
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c68f545e1afb9941b5ff926f095e34f
-      internalID: -898750024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_5
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e0307d4dadda0845ab90beddfd03520
-      internalID: -453820099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_6
+      name: Shoot_3
       rect:
         serializedVersion: 2
         x: 198
         y: 0
         width: 22
-        height: 22
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,41 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff6c9c5004104154ba0592be8989dc2e
-      internalID: 1825150484
+      spriteID: 237614bd1808ae24e8d8de54c8cc5f66
+      internalID: -310288255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_viking 1_7
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 202c24b39bbc25542aa0a3e1985b5273
-      internalID: -2064131800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_8
+      name: Shoot_4
       rect:
         serializedVersion: 2
         x: 262
         y: 0
-        width: 22
-        height: 22
+        width: 21
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1ce0dc934d257644a1a19b1009cce3d
-      internalID: 535385636
+      spriteID: eeb257b7978816d4698b07f28ded9435
+      internalID: 2146888297
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_viking 1_9
+      name: Shoot_5
       rect:
         serializedVersion: 2
-        x: 294
+        x: 326
         y: 0
-        width: 22
-        height: 22
+        width: 20
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -313,8 +229,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1326ffde9a61e94ba06b7d5e369186b
-      internalID: 2000342473
+      spriteID: b86e10181df38c14fbe7d7b945f1ad78
+      internalID: 1786940401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_6
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 0
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59847b33dd436924b8aedac49d14bc02
+      internalID: 1515793330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_7
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 0
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b09f83ee502cef34cb7b5e9ed87274b9
+      internalID: -342330453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_8
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 0
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9525f9c44b098f64d902411d8ccb9733
+      internalID: 1821627816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_9
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 0
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f3ff72553d8db4479611da516aaf365
+      internalID: 324300776
       vertices: []
       indices: 
       edges: []
@@ -330,16 +330,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      idle_viking 1_0: 1633477133
-      idle_viking 1_1: 1093861429
-      idle_viking 1_2: 86615639
-      idle_viking 1_3: 1799233613
-      idle_viking 1_4: -898750024
-      idle_viking 1_5: -453820099
-      idle_viking 1_6: 1825150484
-      idle_viking 1_7: -2064131800
-      idle_viking 1_8: 535385636
-      idle_viking 1_9: 2000342473
+      Shoot_0: -1942597307
+      Shoot_1: -257227196
+      Shoot_2: -1533621516
+      Shoot_3: -310288255
+      Shoot_4: 2146888297
+      Shoot_5: 1786940401
+      Shoot_6: 1515793330
+      Shoot_7: -342330453
+      Shoot_8: 1821627816
+      Shoot_9: 324300776
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

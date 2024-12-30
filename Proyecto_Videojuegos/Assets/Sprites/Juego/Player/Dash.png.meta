@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e154540dfd7f544bb698d09c345b34a
+guid: acdcca02d4151694bb59eafb37dc05b6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,12 +110,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idle_viking 1_0
+      name: Dash_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 5
         y: 0
-        width: 22
+        width: 16
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09a3b80d1390eb14583d8fcc5c2473ef
-      internalID: 1633477133
+      spriteID: 399f2ea990eeece498a90d2a72ecd7a9
+      internalID: 1613249284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_viking 1_1
+      name: Dash_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 35
         y: 0
-        width: 22
+        width: 17
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,19 +145,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea2e84ec51e207147bfe8cb05aefea98
-      internalID: 1093861429
+      spriteID: 22694143f0321a347af51235a6f30f60
+      internalID: -1085531276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_viking 1_2
+      name: Dash_2
       rect:
         serializedVersion: 2
-        x: 70
-        y: 0
-        width: 22
+        x: 68
+        y: 1
+        width: 17
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,19 +166,187 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfe4fcf9855887c4a9ba7c5d1dd7905d
-      internalID: 86615639
+      spriteID: 363727d50a1ba844f8eb936389f2ae8c
+      internalID: 1019570940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_viking 1_3
+      name: Dash_3
       rect:
         serializedVersion: 2
-        x: 102
+        x: 100
+        y: 4
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 754640f29b7e4014f9be41223738c201
+      internalID: -1401213758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_4
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 1
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9df447e53a0884bb307c073ca19fd8
+      internalID: 1081134026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_5
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 0
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2934b8b79fdf74f4d8653b96f9800b3e
+      internalID: 138334893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_6
+      rect:
+        serializedVersion: 2
+        x: 195
         y: 0
         width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15216a9d102d55b4ba68af2508455d9a
+      internalID: -696052069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_7
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 0
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eee262e017c0f1c4185a450571014f17
+      internalID: -1290061595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_8
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 0
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d117dba79a8ef47b8cb44d86b57166
+      internalID: -911766380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_9
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 0
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43bf50952c9932f4d9bd20b1972fc4e1
+      internalID: -341761298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_10
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c995666fbc9d82142a2b1e344f502fe4
+      internalID: -1797809039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_11
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 0
+        width: 16
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -187,134 +355,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 599e49dfde7aab6418cf896b42c1e497
-      internalID: 1799233613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_4
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c68f545e1afb9941b5ff926f095e34f
-      internalID: -898750024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_5
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e0307d4dadda0845ab90beddfd03520
-      internalID: -453820099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_6
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ff6c9c5004104154ba0592be8989dc2e
-      internalID: 1825150484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_7
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 202c24b39bbc25542aa0a3e1985b5273
-      internalID: -2064131800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_8
-      rect:
-        serializedVersion: 2
-        x: 262
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1ce0dc934d257644a1a19b1009cce3d
-      internalID: 535385636
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_viking 1_9
-      rect:
-        serializedVersion: 2
-        x: 294
-        y: 0
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1326ffde9a61e94ba06b7d5e369186b
-      internalID: 2000342473
+      spriteID: 6fd23134130858a48bbc05e35648e234
+      internalID: -1714633190
       vertices: []
       indices: 
       edges: []
@@ -330,16 +372,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      idle_viking 1_0: 1633477133
-      idle_viking 1_1: 1093861429
-      idle_viking 1_2: 86615639
-      idle_viking 1_3: 1799233613
-      idle_viking 1_4: -898750024
-      idle_viking 1_5: -453820099
-      idle_viking 1_6: 1825150484
-      idle_viking 1_7: -2064131800
-      idle_viking 1_8: 535385636
-      idle_viking 1_9: 2000342473
+      Dash_0: 1613249284
+      Dash_1: -1085531276
+      Dash_10: -1797809039
+      Dash_11: -1714633190
+      Dash_2: 1019570940
+      Dash_3: -1401213758
+      Dash_4: 1081134026
+      Dash_5: 138334893
+      Dash_6: -696052069
+      Dash_7: -1290061595
+      Dash_8: -911766380
+      Dash_9: -341761298
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
