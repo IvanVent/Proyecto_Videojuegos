@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        pauseUI.SetActive(false);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
     
