@@ -25,6 +25,7 @@ public class PowerUpPickup : MonoBehaviour
         playera=GameObject.Find("Player").GetComponent<Player>();
         if(trigger.CompareTag("Player")){
             PopupEUI.SetActive(true);
+            PopupEUI.transform.position = gameObject.transform.position + new Vector3(303, 250);
         }
         if(Input.GetKeyDown(KeyCode.E)||playera.autorecolect){
             if(trigger.CompareTag("Player")){
