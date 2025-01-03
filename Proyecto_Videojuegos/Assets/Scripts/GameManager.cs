@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -13,21 +14,21 @@ public class GameManager : MonoBehaviour
     public GameObject optionsUI;
     private bool isPaused = false;
     private bool music=true;
-    private bool vivo=true;
+    private bool alive=true;
     public AudioClip sfx1,sfx2;
     public AudioSource src;
     private Player playera;
     public VolumeControl volumeControl;
-    public Text uiText;
+    public Text optionText;
     private bool options=false;
     private void Start()
     {
         src.clip=sfx1;
         playera = GameObject.Find("Player").GetComponent<Player>();
-        uiText.text="Autorecollect is disabled";
+        optionText.text="Auto Pick Up: OFF";
     }
     void Update(){
-        if(vivo){
+        if(alive){
             if(music){
                 StartCoroutine(backmusic());
             }
@@ -57,13 +58,8 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    public void PauseGame()
-    {
-        pauseUI.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
-        GameObject.Find("PauseButton").GetComponent<Button>().interactable = false;
-    }
+    
+    // ---------------SONIDOS------------------
     private IEnumerator deadmusic(){
         music=false;
         src.Play();
@@ -79,28 +75,43 @@ public class GameManager : MonoBehaviour
         }
         music=true;
     }
+    
+    // Pantalla de pausa al pulsar el botón de pausa
+    public void PauseGame()
+    {
+        if (alive)
+        {
+            pauseUI.SetActive(true);
+            Time.timeScale = 0f;
+            isPaused = true;
+            GameObject.Find("PauseButton").GetComponent<Button>().interactable = false;
+        }
+    }
+    // Pantalla de Game Over
     public void GameOver()
     {
         music=false;
-        vivo=false;
+        alive=false;
         src.Stop();
         src.clip=sfx2;
         gameOverUI.SetActive(true);
         music=true;
     }
-
+    
+    // Acción del botón de Restart en la pantalla de Game Over
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    // Acción del botón de Salir
     public void MainMenu()
     {
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
-    
+    // Acción del botón de Continuar en la pantalla de pausa
     public void Continue()
     {
         pauseUI.SetActive(false);
@@ -109,30 +120,34 @@ public class GameManager : MonoBehaviour
         GameObject.Find("PauseButton").GetComponent<Button>().interactable = true;
 
     }
+    // Acción del botón de Opciones en la pantalla de pausa
     public void Options(){
         options=true;
         pauseUI.SetActive(false);
         optionsUI.SetActive(true);
     }
+    // Acción del botón de Volver en la pantalla de pausa
     public void Volver(){
         options=false;
         optionsUI.SetActive(false);
         pauseUI.SetActive(true);
     }
+    
+    // Acciones de los botones de ajuste de opciones
     public void addVolume(){
         volumeControl.AddVolume();
     }
     public void lessVolume(){
         volumeControl.LessVolume();
     }
-    public void changeautorecolect(){
+    public void toogleAutoPickUp(){
 
         playera.autorecolect=!playera.autorecolect;
         if(playera.autorecolect){
-            uiText.text="Autorecollect is enabled";
+            optionText.text="Auto Pick Up: ON";
         }
         else{
-            uiText.text="Autorecollect is disabled";
+            optionText.text="Auto Pick Up: OFF";
         }
     }
     
