@@ -22,6 +22,8 @@ public class MenuInicial : MonoBehaviour
     GameObject canvas;
     GameObject pause;
     GameObject hearts;
+    GameObject eventsystem2;
+    GameObject [] objetosprimeraescena;
 
     void Start(){
         SceneManager.LoadScene(1,LoadSceneMode.Additive);
@@ -50,9 +52,22 @@ public class MenuInicial : MonoBehaviour
         Debug.Log("Salir");
         Application.Quit();
     }
+    public void Opciones(){
+        GameObject options=Buscarhijo(canvas,"OptionsScreen");
+        options.SetActive(true);
+    }
     private GameObject Buscaren2(String quiero){
         GameObject velero=null;
         foreach(GameObject obj in objetossegundaescena){
+            if(obj.name==quiero){
+                return obj;
+            }
+        }
+        return velero;
+    }
+    private GameObject Buscaren1(String quiero){
+        GameObject velero=null;
+        foreach(GameObject obj in objetosprimeraescena){
             if(obj.name==quiero){
                 return obj;
             }
@@ -76,12 +91,14 @@ public class MenuInicial : MonoBehaviour
 
             // Ahora podemos acceder a los objetos de la escena cargada
             objetossegundaescena = scene.GetRootGameObjects();
-
+            objetosprimeraescena = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
             // Imprime los objetos raíz en la escena
             foreach (GameObject obj in objetossegundaescena)
             {
                 Debug.Log("Objeto raíz: " + obj.name);
             }
+            eventsystem2=Buscaren2("EventSystem");
+            eventsystem2.SetActive(false);
 
             // Busca el Canvas y otros objetos en la escena
             canvas = Buscaren2("Canvas");
@@ -100,6 +117,7 @@ public class MenuInicial : MonoBehaviour
             {
                 Debug.LogError("No se encontró el Canvas.");
             }
+
         }
     }
 }
