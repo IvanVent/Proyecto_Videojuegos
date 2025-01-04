@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
     // Acción del botón de Restart en la pantalla de Game Over
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name,LoadSceneMode.Single);
     }
 
     // Acción del botón de Salir
