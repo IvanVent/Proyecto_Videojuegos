@@ -419,7 +419,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1556476950}
         m_TargetAssemblyTypeName: GameManager, Scripts
-        m_MethodName: addVolume
+        m_MethodName: lessVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

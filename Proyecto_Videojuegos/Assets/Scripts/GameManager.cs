@@ -128,9 +128,28 @@ public class GameManager : MonoBehaviour
     }
     // Acción del botón de Volver en la pantalla de pausa
     public void Volver(){
-        options=false;
-        optionsUI.SetActive(false);
-        pauseUI.SetActive(true);
+        if(SceneManager.GetSceneByBuildIndex(0).isLoaded){
+            GameObject[] objetos= SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
+            GameObject[] otros=SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
+            optionsUI.SetActive(false);
+            foreach(GameObject obj in otros){
+                if(obj.name=="EventSystem"){
+                    obj.SetActive(false);
+                }
+            }
+            foreach(GameObject obj in objetos){
+                if(obj.name=="EventSystem"){
+                    obj.SetActive(true);
+                }
+            }
+
+        }
+        else{
+            options=false;
+            optionsUI.SetActive(false);
+            pauseUI.SetActive(true);
+        }
+       
     }
     
     // Acciones de los botones de ajuste de opciones

@@ -43,7 +43,20 @@ public class MenuInicial : MonoBehaviour
         listo=true;
     }
     public void Jugar(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //carga la siguiente escena configurada en el build settings
+        Scene escenaactual=SceneManager.GetActiveScene();
+        Buscaren1("EventSystem").SetActive(false);
+        Buscaren2("EventSystem").SetActive(true); 
+        pause = Buscarhijo(canvas, "PauseButton");
+        hearts = Buscarhijo(canvas, "hearts");
+
+        // Desactiva los objetos si están encontrados
+        if (hearts != null)
+            hearts.SetActive(true);
+        if (pause != null)
+            pause.SetActive(true);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
+        SceneManager.UnloadSceneAsync(escenaactual);
+
     }
 
 
@@ -55,6 +68,8 @@ public class MenuInicial : MonoBehaviour
     public void Opciones(){
         GameObject options=Buscarhijo(canvas,"OptionsScreen");
         options.SetActive(true);
+        Buscaren1("EventSystem").SetActive(false);
+        Buscaren2("EventSystem").SetActive(true);
     }
     private GameObject Buscaren2(String quiero){
         GameObject velero=null;

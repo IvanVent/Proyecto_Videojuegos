@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CamTrigger : MonoBehaviour
 {
@@ -11,7 +12,15 @@ public class CamTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camControl = Camera.main.GetComponent<CamController>();
+        GameObject[] a =SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
+        foreach(GameObject obj in a){
+            if(obj.name=="Main Camera"){
+                print("lets goooooo");
+                camControl = obj.GetComponent<CamController>();
+                break;
+            }
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other){
