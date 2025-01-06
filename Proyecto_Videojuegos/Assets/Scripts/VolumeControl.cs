@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using TMPro;
+using UnityEngine.UI;
 
 public class VolumeControl : MonoBehaviour
 {
     private float safedvolume = 0.5f; // Almacena el volumen actual
-    public TextMeshProUGUI volumetxt; // Referencia al TextMeshProUGUI en la UI
+    public Text volumetxt; // Referencia al TextMeshProUGUI en la UI
     public AudioMixer audioMixer; // Referencia al AudioMixer desde el inspector
 
     void Start()
