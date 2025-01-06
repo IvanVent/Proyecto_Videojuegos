@@ -7,15 +7,29 @@ using Random = UnityEngine.Random;
 public class RoomController : MonoBehaviour
 {
     
-    /* Listas de colliders de la habitación */
-    private List<GameObject> doorWallColliders = new List<GameObject>();
-    private List<GameObject> normalColliders = new List<GameObject>();
+    /* Lista de instancias de puertas cerradas */
+    private List<GameObject> closedDoors = new List<GameObject>();
     
-    /* Prefabs de las puertas */
-    public GameObject upDoorPrefab;
-    public GameObject downDoorPrefab;
-    public GameObject leftDoorPrefab;
-    public GameObject rightDoorPrefab;
+    /* Prefabs de las puertas cerradas */
+    [Header("Closed Doors Prefabs")]
+    public GameObject closed_upDoorPrefab;
+    public GameObject closed_downDoorPrefab;
+    public GameObject closed_leftDoorPrefab;
+    public GameObject closed_rightDoorPrefab;
+    
+    /* Prefabs de las puertas abiertas */
+    [Header("Open Doors Prefabs")]
+    public GameObject open_upDoorPrefab;
+    public GameObject open_downDoorPrefab;
+    public GameObject open_leftDoorPrefab;
+    public GameObject open_rightDoorPrefab;
+    
+    /* Prefabs de las paredes en los huecos de las puertas */
+    [Header("Door Walls Prefabs")]
+    public GameObject upDoorWallPrefab;
+    public GameObject downDoorWallPrefab;
+    public GameObject leftDoorWallPrefab;
+    public GameObject rightDoorWallPrefab;
 
     //POWERUPS
     public GameObject[] powerups;
@@ -31,18 +45,17 @@ public class RoomController : MonoBehaviour
     
     /* Propiedades de la sala */
     private int room_id;
+    private Vector3 roomPos;
     private bool isCompleted = false;
     private float empty_room_probability = 0.1f; // 10% de probabilidad de sala vacía
     
     private EnemySpawner enemy_spawner;
     private GameProgress game_progress;
     
-    
     /* ----------------------------- M E T O D O S -------------------------------------- */
     private void Awake()
     {
-
-        LoadColliders();
+        //LoadColliders(); UPDATE: NEW TILES
         
         doorsFather = GameObject.Find("Doors").transform;
         enemy_spawner = gameObject.GetComponent<EnemySpawner>();
@@ -67,39 +80,22 @@ public class RoomController : MonoBehaviour
         this.room_id = id;
     }
 
-    public List<GameObject> GetDoorWallColliders()
+    public void SetRoomPos(Vector3 pos)
     {
-        return doorWallColliders;
-    }
-    public List<GameObject> GetNormalColliders()
-    {
-        return normalColliders;
-    }
-
-    // Guarda los colliders de una habitación en listas para luego acceder a ellos facilmente
-    public void LoadColliders()
-    {
-
-        var doorWallCollider_obj = transform.Find("DoorColliders");
-        var normalCollider_obj = transform.Find("Colliders");
-
-        // Se guardan todos los colliders de las paredes con los huecos vacios de las puertas 
-        foreach (Transform child in doorWallCollider_obj.transform)
-        {
-            doorWallColliders.Add(child.gameObject);
-            child.gameObject.SetActive(false);
-        }
-
-        // Se guardan todos los colliders de las paredes (sin huecos donde las puerta).
-        foreach (Transform child in normalCollider_obj.transform)
-        {
-            normalColliders.Add(child.gameObject);
-        }
+        this.roomPos = pos;
     }
     
-    // Ajusta los colliders para que se puede pasar por las puertas correspondientes 
+    // Instancia puertas abiertas donde corresponde
     public void OpenDoors()
     {
+        var doorPos = new Vector3();
+        
+        // Se destruyen las instancias de las puertas cerradas
+        foreach (var door in closedDoors)
+        {
+            Destroy(door);
+        }
+        
         for (int i = 0; i < 4; i++)
         {
             int mask = 1 << i;
@@ -107,23 +103,31 @@ public class RoomController : MonoBehaviour
             {
                 if (i == 0) // puerta arriba
                 {
-                    doorWallColliders[0].gameObject.SetActive(true);
-                    normalColliders[0].gameObject.SetActive(false);
+                    doorPos.x = roomPos.x- 2;
+                    doorPos.y = roomPos.y + 4;
+                    Instantiate(open_upDoorPrefab, doorPos, Quaternion.identity);
                 }
                 else if (i == 1) // puerta derecha
                 {
-                    doorWallColliders[1].gameObject.SetActive(true);
-                    normalColliders[1].gameObject.SetActive(false);
+                    doorPos.x = roomPos.x + 6;
+                    doorPos.y = roomPos.y;
+                    Instantiate(open_rightDoorPrefab, doorPos, Quaternion.identity);
                 }
                 else if (i == 2) // puerta abajo
                 {
-                    doorWallColliders[2].gameObject.SetActive(true);
-                    normalColliders[2].gameObject.SetActive(false);
+                    doorPos.x = roomPos.x-2;
+                    doorPos.y = roomPos.y - 4;
+                    Instantiate(open_downDoorPrefab, doorPos, Quaternion.identity);
                 }
                 else if (i == 3) // puerta izquierda
                 {
-                    doorWallColliders[3].gameObject.SetActive(true);
-                    normalColliders[3].gameObject.SetActive(false);
+                    doorPos.x = roomPos.x - 9;
+                    doorPos.y = roomPos.y;
+                    Instantiate(open_leftDoorPrefab, doorPos, Quaternion.identity);
+                }
+                else
+                {
+                    throw new Exception("Invalid bit number of the room id");
                 }
             }
         }
@@ -164,17 +168,15 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    
-    
-
-    // Añade las puertas a una habitación, ajustando los colliders de la habitación para adaptarse a ellas.
-    public void AddDoors(Vector3 roomPos)
+    // Añade las puertas cerradas y las paredes en los huecos correspondientes de la habitación
+    public void AddDoors()
     {
         var doorPos = new Vector3();
-        GameObject door;
+        GameObject door = null;
+        GameObject wall = null;
         
         /* Este bucle recorre los bits del id. Dependiendo del bit que esté a 1, se añade una puerta donde  
-        corresponde y se ajustan los colliders */
+        corresponde*/
         for (int i = 0; i < 4; i++)
         {
             int mask = 1 << i;
@@ -184,30 +186,66 @@ public class RoomController : MonoBehaviour
                 {
                     doorPos.x = roomPos.x- 2;
                     doorPos.y = roomPos.y + 4;
-                    door = Instantiate(upDoorPrefab, doorPos, Quaternion.identity);
-                    door.transform.SetParent(doorsFather);
+                    door = Instantiate(closed_upDoorPrefab, doorPos, Quaternion.identity);
                 }
                 else if (i == 1) // puerta derecha
                 {
-                    doorPos.x = roomPos.x + 7;
+                    doorPos.x = roomPos.x + 5;
                     doorPos.y = roomPos.y;
-                    door = Instantiate(rightDoorPrefab, doorPos, Quaternion.identity);
-                    door.transform.SetParent(doorsFather);
+                    door = Instantiate(closed_rightDoorPrefab, doorPos, Quaternion.identity);
                 }
                 else if (i == 2) // puerta abajo
                 {
                     doorPos.x = roomPos.x-2;
                     doorPos.y = roomPos.y - 4;
-                    door = Instantiate(downDoorPrefab, doorPos, Quaternion.identity);
-                    door.transform.SetParent(doorsFather);
+                    door = Instantiate(closed_downDoorPrefab, doorPos, Quaternion.identity);
                 }
                 else if (i == 3) // puerta izquierda
                 {
-                    doorPos.x = roomPos.x - 10;
+                    doorPos.x = roomPos.x - 9;
                     doorPos.y = roomPos.y;
-                    door = Instantiate(leftDoorPrefab, doorPos, Quaternion.identity);
-                    door.transform.SetParent(doorsFather);
+                    door = Instantiate(closed_leftDoorPrefab, doorPos, Quaternion.identity);
+                    
                 }
+                else
+                {
+                    throw new Exception("Invalid bit number of the room id");
+                }
+                door.transform.SetParent(doorsFather);
+                closedDoors.Add(door);
+            }
+            else // Si no hay una puerta, se pone la pared
+            {
+                if (i == 0) // pared arriba
+                {
+                    doorPos.x = roomPos.x- 2;
+                    doorPos.y = roomPos.y + 4;
+                    wall = Instantiate(upDoorWallPrefab, doorPos, Quaternion.identity);
+                }
+                else if (i == 1) // pared derecha
+                {
+                    doorPos.x = roomPos.x + 5;
+                    doorPos.y = roomPos.y;
+                    wall = Instantiate(rightDoorWallPrefab, doorPos, Quaternion.identity);
+                }
+                else if (i == 2) // pared abajo
+                {
+                    doorPos.x = roomPos.x-2;
+                    doorPos.y = roomPos.y - 4;
+                    wall = Instantiate(downDoorWallPrefab, doorPos, Quaternion.identity);
+                }
+                else if (i == 3) // pared izquierda
+                {
+                    doorPos.x = roomPos.x - 9;
+                    doorPos.y = roomPos.y;
+                    wall = Instantiate(leftDoorWallPrefab, doorPos, Quaternion.identity);
+                    
+                }
+                else
+                {
+                    throw new Exception("Invalid bit number of the room id");
+                }
+                wall.transform.SetParent(doorsFather);
             }
         }//for
     }//AddDoors
@@ -220,9 +258,6 @@ public class RoomController : MonoBehaviour
         {
             Destroy(door.gameObject);
         }
-        // clear de los colliders
-        doorWallColliders.Clear();
-        normalColliders.Clear();
     }
     
     // Cuando el Player entra a la sala se instancian los enemigos
@@ -231,7 +266,6 @@ public class RoomController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !isCompleted && game_progress.GetRoomsCompleted()>0)
         {
             float randomValue = Random.value;
-            Debug.Log(randomValue);
             if (randomValue < empty_room_probability)
             {
                 OpenDoors();

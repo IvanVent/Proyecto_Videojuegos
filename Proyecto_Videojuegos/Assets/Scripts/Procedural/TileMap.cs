@@ -44,7 +44,8 @@ public class TileMap : MonoBehaviour
             
             roomController = room.GetComponent<RoomController>();
             roomController.SetRoomID(id);
-            roomController.AddDoors(roomPos);
+            roomController.SetRoomPos(roomPos);
+            roomController.AddDoors();
             if (isFirst)
             {
                 roomController.OpenDoors();

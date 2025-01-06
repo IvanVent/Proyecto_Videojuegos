@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.4992695, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1.998539, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &7189506121278202757
 MonoBehaviour:
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newCamPos: {x: 0, y: -10, z: 0}
-  newPlayerPos: {x: 0, y: -2.4, z: 0}
+  newPlayerPos: {x: 0, y: -3.5, z: 0}
 --- !u!1 &3950956618124406681
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,14 +137,34 @@ Tilemap:
   - first: {x: 1, y: -1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 27
-      m_TileSpriteIndex: 27
+      m_TileIndex: 26
+      m_TileSpriteIndex: 26
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 2, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 26
+      m_TileSpriteIndex: 26
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: 1, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 28
+      m_TileSpriteIndex: 28
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 2, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 28
@@ -208,12 +228,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 90f6a2e6d4aa6924cb12f9999613fdaa, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 5fe40d7b004adde4293bdf59101e1f97, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 74d33214d8663e14a9ff6f916f417124, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: c481b73dc4694544490ed6ec5227cc2c, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -267,21 +287,21 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 189475156, guid: 03feb9ae86353114db62444031f95c95, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300112, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300110, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: -2141721813, guid: 03feb9ae86353114db62444031f95c95, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
-      e00: 1
-      e01: 0
+      e00: -1
+      e01: 0.00000008742278
       e02: 0
       e03: 0
-      e10: 0
-      e11: 1
+      e10: -0.00000008742278
+      e11: -1
       e12: 0
       e13: 0
       e20: 0
@@ -292,8 +312,80 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  m_TileColorArray:
   - m_RefCount: 2
+    m_Data:
+      e00: 1
+      e01: -0.00000008742278
+      e02: -0.00000008742278
+      e03: 0
+      e10: -0.00000008742278
+      e11: -1
+      e12: 0
+      e13: 0
+      e20: -0.00000008742278
+      e21: 7.642742e-15
+      e22: -1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - m_RefCount: 0
+    m_Data:
+      e00: 6.4716163e-18
+      e01: 7e-45
+      e02: 4.000073e-36
+      e03: 0
+      e10: 1.58e-43
+      e11: NaN
+      e12: 4.5904e-41
+      e13: 0
+      e20: 9.4271e-41
+      e21: 0
+      e22: 6.4716096e-18
+      e23: 0
+      e30: 0
+      e31: 7.34684e-40
+      e32: 1.58e-43
+      e33: 1
+  - m_RefCount: 0
+    m_Data:
+      e00: 6.4716163e-18
+      e01: 1.1e-44
+      e02: 4.000073e-36
+      e03: 0
+      e10: 1.58e-43
+      e11: 0
+      e12: 4.5904e-41
+      e13: 0
+      e20: 9.4271e-41
+      e21: 0
+      e22: 6.4716096e-18
+      e23: 0
+      e30: 0
+      e31: 7.34684e-40
+      e32: 1.58e-43
+      e33: 1
+  - m_RefCount: 0
+    m_Data:
+      e00: 6.469836e-18
+      e01: 6e-45
+      e02: 4.000073e-36
+      e03: 0
+      e10: 1.58e-43
+      e11: 1e-45
+      e12: 4.5904e-41
+      e13: 0
+      e20: 9.4271e-41
+      e21: 0
+      e22: 6.4698296e-18
+      e23: 0
+      e30: 0
+      e31: 7.34684e-40
+      e32: 1.58e-43
+      e33: 1
+  m_TileColorArray:
+  - m_RefCount: 4
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -359,7 +451,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -378,9 +470,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1118920356541857568}
   - component: {fileID: 7320878866086792194}
-  - component: {fileID: 3191775812413199068}
   m_Layer: 0
-  m_Name: DownDoor
+  m_Name: OpenDownDoor
   m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,48 +506,3 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!61 &3191775812413199068
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4872105175467304302}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.5, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2}
-  m_EdgeRadius: 0
