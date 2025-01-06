@@ -3553,9 +3553,9 @@ MonoBehaviour:
   halfheart: {fileID: 6690084992094232015, guid: e233b9791f01a2948858d6567c908ea2, type: 3}
   pos: 0
   health: 0
-  fullHeart_sprite: {fileID: 21300000, guid: 7c3a6a10f26b4714f9bcc154465ff555, type: 3}
-  halfHeart_sprite: {fileID: 21300000, guid: 53af9e46c6ad0454e9bfa51b935dc715, type: 3}
-  bg_sprite: {fileID: 21300000, guid: b2ef76b7e9578614297f97883fb21532, type: 3}
+  fullHeart_sprite: {fileID: 21300000, guid: d398ed0c9e36ef5489a6b54bc9726c07, type: 3}
+  halfHeart_sprite: {fileID: 21300000, guid: 9a87cbf2fafda814caf48f8382c95651, type: 3}
+  bg_sprite: {fileID: 21300000, guid: f8db4372a9a078248b530cb2d14df913, type: 3}
   gameManager: {fileID: 1556476950}
 --- !u!1 &2003816649
 GameObject:
