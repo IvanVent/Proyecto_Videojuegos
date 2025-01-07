@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +10,8 @@ public class HeartsGenerator : MonoBehaviour
 {
   
     public List<Image> heartsList;
-    public GameObject heart, halfheart;
+    public List<Image> backList;
+    public GameObject heart, halfheart,back;
     private Player playerScript;
     public int pos;
     public float health;
@@ -18,7 +19,9 @@ public class HeartsGenerator : MonoBehaviour
     public Sprite fullHeart_sprite;
     public Sprite halfHeart_sprite;
     public Sprite bg_sprite;
-    
+    public Sprite backsprite;
+    public Sprite firstsprite;
+    public Sprite lastsprite;
     public GameManager gameManager;
     private bool isDead = false;
     
@@ -99,14 +102,23 @@ public class HeartsGenerator : MonoBehaviour
             }
         }
     }
-
+    public void repite(){
+        int i=0;
+        while(i<max){
+            heartsList[i].sprite=heartsList[i].sprite;
+            i++;
+        }
+    }
     private void moreHearts(float corazones)
     {
         while(corazones>0){
             if(corazones>=1){
                 if(max*10%10==0){
-                    GameObject corazon=Instantiate(heart,transform);
-                    heartsList.Add(corazon.GetComponent<Image>());
+                    backList[backList.Count-1].sprite=backsprite;
+                    GameObject nuevo=Instantiate(back,transform);
+                    heartsList.Add(nuevo.transform.GetChild(0).gameObject.GetComponent<Image>());
+                    backList.Add(nuevo.GetComponent<Image>());
+                    backList[backList.Count-1].sprite=lastsprite;
                     heartsList[heartsList.Count-1].sprite=bg_sprite;
                     max++;
                     corazones--;
@@ -119,9 +131,13 @@ public class HeartsGenerator : MonoBehaviour
             }
             else{
                 if(max*10%10==0){
-                    GameObject corazon=Instantiate(halfheart,transform);
-                    heartsList.Add(corazon.GetComponent<Image>());
+                    backList[backList.Count-1].sprite=backsprite;
+                    GameObject nuevo=Instantiate(back,transform);
+
+                    heartsList.Add(nuevo.transform.GetChild(0).gameObject.GetComponent<Image>());
+                    backList.Add(nuevo.GetComponent<Image>());
                     heartsList[heartsList.Count-1].sprite=bg_sprite;
+                    backList[backList.Count-1].sprite=lastsprite;
                     max+=0.5f;
                     corazones-=0.5f;
                 }
@@ -178,13 +194,22 @@ public class HeartsGenerator : MonoBehaviour
         pos=corazones*10%10!=0?(int)corazones:(int)corazones-1;
 
         while(corazones>0){
-            if(corazones>=1){
-                GameObject corazon=Instantiate(heart,transform);
-                heartsList.Add(corazon.GetComponent<Image>());
+            if(corazones==max){
+                GameObject first=Instantiate(back,transform);
+                heartsList.Add(first.transform.GetChild(0).gameObject.GetComponent<Image>());
+                backList.Add(first.GetComponent<Image>());
+                backList[0].sprite=firstsprite;
             }
-            else{
-                GameObject corazon=Instantiate(halfheart,transform);
-                heartsList.Add(corazon.GetComponent<Image>());
+            else if(corazones>1){
+                GameObject medio=Instantiate(back,transform);
+                heartsList.Add(medio.transform.GetChild(0).gameObject.GetComponent<Image>());
+                backList.Add(medio.GetComponent<Image>());
+            }
+            else if(corazones==1){
+                GameObject last=Instantiate(back,transform);
+                heartsList.Add(last.transform.GetChild(0).gameObject.GetComponent<Image>());
+                backList.Add(last.GetComponent<Image>());
+                backList[pos].sprite=lastsprite;
             }
             corazones--;
         }
