@@ -13,6 +13,7 @@ public class TileMap : MonoBehaviour
 {
     public GameObject roomPrefab;
     public Transform roomsFather; // Objeto vacío donde estarán las instancias de las habitaciones
+    public GameObject[] floorPrefabs; 
     
     float roomWidth = 9f;
     float roomHeight = 10f;
@@ -23,6 +24,7 @@ public class TileMap : MonoBehaviour
     private void Start()
     {
         ClearTileMap();
+        floorPrefabs = Resources.LoadAll<GameObject>("Floors");
     }
 
     public RoomController GetRoomController()
@@ -39,9 +41,18 @@ public class TileMap : MonoBehaviour
         hay un hueco vacío en el mapa. */
         if (id != 0)
         {
+            //instancia el room
             GameObject room = Instantiate(roomPrefab, roomPos, Quaternion.identity);
-            room.transform.SetParent(roomsFather);
             
+            //instancia el floor del room
+            GameObject floorPrefab = floorPrefabs[Random.Range(0, floorPrefabs.Length)];
+            GameObject floor = Instantiate(floorPrefab, roomPos, Quaternion.identity);
+            
+            //guarda las instancias en el empty object father
+            room.transform.SetParent(roomsFather);
+            floor.transform.SetParent(roomsFather);
+            
+            //prepara el room
             roomController = room.GetComponent<RoomController>();
             roomController.SetRoomID(id);
             roomController.SetRoomPos(roomPos);
