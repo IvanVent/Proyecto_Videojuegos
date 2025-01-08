@@ -41,16 +41,17 @@ public class SmallEnemy : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
                 bool isMoving = Vector2.Distance(previousPosition, transform.position) > 0.01f;
-                                            Debug.Log(isMoving);
                 animator.SetBool("IsMoving", isMoving);
             }else
             {
                 animator.SetBool("IsMoving", false);
-                Debug.Log("Esperando");
             }
             bool isPlayerRight = transform.position.x < player.position.x;
             Flip(isPlayerRight);
             animator.SetBool("Damaged", receivingDamage);
+        }else
+        {
+            animator.SetBool("IsMoving", false);
         }
     }
 

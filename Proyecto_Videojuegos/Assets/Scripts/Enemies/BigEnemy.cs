@@ -30,10 +30,18 @@ public class BigEnemy : MonoBehaviour
     {
         if (followPlayer)
         {
+            Vector2 previousPosition = transform.position;
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+
+            bool isMoving = Vector2.Distance(previousPosition, transform.position) > 0.01f;
+            animator.SetBool("IsMoving", isMoving);
+
             bool isPlayerRight = transform.position.x < player.position.x;
             Flip(isPlayerRight);
             animator.SetBool("Damaged", receivingDamage);
+        }else
+        {
+            animator.SetBool("IsMoving", false);
         }
     }
 
@@ -71,6 +79,10 @@ public class BigEnemy : MonoBehaviour
         {
             TakeDamage();
         }
+        if (collision.CompareTag("Player"))
+        {
+            animator.SetBool("Attack", true);
+        }
     }
 
     public void TakeDamage()
@@ -92,6 +104,11 @@ public class BigEnemy : MonoBehaviour
     public void DeactivateDamage()
     {
         receivingDamage = false;
+    }
+
+    public void DeactivateAttack()
+    {
+        animator.SetBool("Attack", false);
     }
 
     public void EnableFollowPlayer()
