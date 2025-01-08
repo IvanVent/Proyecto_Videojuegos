@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class SmallEnemy : MonoBehaviour
@@ -13,6 +14,7 @@ public class SmallEnemy : MonoBehaviour
     private Player playera; 
     private Animator animator;
     private GameProgress game_progress;
+    private Rigidbody2D rb;
 
     private bool isFacingRight = true;
     private bool isWaiting = false;
@@ -27,6 +29,7 @@ public class SmallEnemy : MonoBehaviour
         player = GameObject.Find("Player").transform;
         playera=GameObject.Find("Player").GetComponent<Player>();
         game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();
+        rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -34,13 +37,21 @@ public class SmallEnemy : MonoBehaviour
         {
             if(!isWaiting)
             {
+                Vector2 previousPosition = transform.position;
                 transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+
+                bool isMoving = Vector2.Distance(previousPosition, transform.position) > 0.01f;
+                                            Debug.Log(isMoving);
+                animator.SetBool("IsMoving", isMoving);
+            }else
+            {
+                animator.SetBool("IsMoving", false);
+                Debug.Log("Esperando");
             }
             bool isPlayerRight = transform.position.x < player.position.x;
             Flip(isPlayerRight);
             animator.SetBool("Damaged", receivingDamage);
         }
-
     }
 
 
