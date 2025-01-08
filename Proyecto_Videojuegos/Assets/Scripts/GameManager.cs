@@ -159,6 +159,13 @@ public class GameManager : MonoBehaviour
     public void lessVolume(){
         volumeControl.LessVolume();
     }
+    public void addSfx(){
+        print("eh");
+        volumeControl.AddSfx();
+    }
+    public void lessSfx(){
+        volumeControl.LessSfx();
+    }
     public void toogleAutoPickUp(){
 
         playera.autorecolect=!playera.autorecolect;
