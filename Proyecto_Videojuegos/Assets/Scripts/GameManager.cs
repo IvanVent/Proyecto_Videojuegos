@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject pauseUI;
     public GameObject optionsUI;
+    public GameObject controlsUI;
     private bool isPaused = false;
     private bool music=true;
     private bool alive=true;
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
         }
         music=true;
     }
+    // -----------------------------------------
     
     // Pantalla de pausa al pulsar el botón de pausa
     public void PauseGame()
@@ -125,6 +127,12 @@ public class GameManager : MonoBehaviour
         options=true;
         pauseUI.SetActive(false);
         optionsUI.SetActive(true);
+    }
+
+    public void Controls()
+    {
+        controlsUI.SetActive(true);
+        pauseUI.SetActive(false);
     }
     // Acción del botón de Volver en la pantalla de pausa
     public void Volver(){
