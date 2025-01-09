@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 8
+  speed: 7
   moveDuration: 0.5
-  cooldownParada: 1
+  cooldownParada: 1.25
   hp: 3
   sfx1: {fileID: 8300000, guid: 62c0c3c0fd90d004fb7f294d9042e6b4, type: 3}
   sfx2: {fileID: 8300000, guid: 9742c5491e8f89748abeef2b68edcb8c, type: 3}

@@ -206,11 +206,11 @@ public class Player : MonoBehaviour
 
     public void IncreaseSpeed(){
         if(speed<7f){
-            speed+=0.5f;
+            speed+=0.25f;
         }
     }
     public void IncreaseDamage(){
-        if(damage<4){
+        if(damage<3){
             damage++;
         }
     }

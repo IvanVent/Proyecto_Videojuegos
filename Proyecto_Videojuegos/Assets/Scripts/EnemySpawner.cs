@@ -87,9 +87,9 @@ public class EnemySpawner : MonoBehaviour
                 if (enemiesKilled > 15)
                 {
                     small_e.setHP(4);
-                    small_e.setSpeed(8.5f);
-                    small_e.setCooldownParada(0.8f);
-                    small_e.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+                    small_e.setSpeed(8f);
+                    small_e.setCooldownParada(1f);
+                    small_e.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
                 }
                 small_list.Add(small_e);
                 StartCoroutine("SmallWaitToFollow", small_e);
@@ -101,8 +101,8 @@ public class EnemySpawner : MonoBehaviour
                 if(enemiesKilled > 15)
                 {
                     big_e.setHP(10);
-                    big_e.setSpeed(1.7f);
-                    big_e.transform.localScale = new Vector3(-0.185f, 0.185f, 0.185f);
+                    big_e.setSpeed(1.8f);
+                    big_e.transform.localScale = new Vector3(0.075f, 0.075f, 0.075f);
                 }
                 big_list.Add(big_e);
                 StartCoroutine("BigWaitToFollow", big_e);
