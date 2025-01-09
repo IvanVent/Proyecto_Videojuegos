@@ -13,6 +13,7 @@ public class Playerintro : MonoBehaviour
     SpriteRenderer sprite_renderer;
     public Animator animator;
     private UnityEngine.Vector2 movement;
+    private bool cae=false;
     [FormerlySerializedAs("velocidad")] [SerializeField]private float speed=0f;
     public GameObject segundapared,arbol1,arbol2,nubes1,nubes2;
     private bool anda=false;
@@ -48,6 +49,9 @@ public class Playerintro : MonoBehaviour
             rb.velocity = movement * speed;
             animator.SetFloat("Speed",Mathf.Abs(0.25f)+Mathf.Abs(0));
         }
+        else if(cae){
+            rb.velocity=new UnityEngine.Vector2(0.1f, -1);
+        }
         else{
             movement = new UnityEngine.Vector2(0, 0);
             rb.velocity = movement * speed;
@@ -68,6 +72,18 @@ public class Playerintro : MonoBehaviour
         nubes1.SetActive(false);
 
 
+    }
+    public void Cae(){
+        cae=true;
+    }
+    public void OnTriggerEnter2D(Collider2D trigger){
+        
+        
+        
+        if(trigger.CompareTag("abajo")){
+            gameObject.SetActive(false);
+        }
+        
     }
 
 }

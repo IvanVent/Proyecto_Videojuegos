@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Arrow
   - Playerintro
+  - abajo
   layers:
   - Default
   - TransparentFX
