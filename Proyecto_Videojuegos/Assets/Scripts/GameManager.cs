@@ -136,9 +136,9 @@ public class GameManager : MonoBehaviour
     }
     // Acción del botón de Volver en la pantalla de pausa
     public void Volver(){
-        if(SceneManager.GetSceneByBuildIndex(0).isLoaded){
-            GameObject[] objetos= SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
-            GameObject[] otros=SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
+        if(SceneManager.GetSceneByBuildIndex(1).isLoaded){
+            GameObject[] objetos= SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
+            GameObject[] otros=SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
             optionsUI.SetActive(false);
             foreach(GameObject obj in otros){
                 if(obj.name=="EventSystem"){

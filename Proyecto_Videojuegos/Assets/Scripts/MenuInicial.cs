@@ -24,9 +24,10 @@ public class MenuInicial : MonoBehaviour
     GameObject hearts;
     GameObject eventsystem2;
     GameObject [] objetosprimeraescena;
+    GameObject [] objetosintro;
 
     void Start(){
-        SceneManager.LoadScene(1,LoadSceneMode.Additive);
+        SceneManager.LoadScene(2,LoadSceneMode.Additive);
         SceneManager.sceneLoaded += OnSceneLoaded; 
     }
     
@@ -45,8 +46,8 @@ public class MenuInicial : MonoBehaviour
     public void Jugar(){
         Scene escenaactual=SceneManager.GetActiveScene();
         Buscaren1("EventSystem").SetActive(false);
-        Buscaren2("EventSystem").SetActive(true); 
-        pause = Buscarhijo(canvas, "PauseButton");
+        Buscaren2("EventSystem").SetActive(false); 
+        /*pause = Buscarhijo(canvas, "PauseButton");
         hearts = Buscarhijo(canvas, "hearts");
 
         // Desactiva los objetos si están encontrados
@@ -54,8 +55,13 @@ public class MenuInicial : MonoBehaviour
             hearts.SetActive(true);
         if (pause != null)
             pause.SetActive(true);
+            */
+        SceneManager.LoadScene(0,LoadSceneMode.Additive);
+        SceneManager.sceneLoaded+=OnSceneLoaded;
+        /*
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
         SceneManager.UnloadSceneAsync(escenaactual);
+        */
 
     }
 
@@ -89,6 +95,14 @@ public class MenuInicial : MonoBehaviour
         }
         return velero;
     }
+    private GameObject Buscarenintro(String quiero){
+        foreach(GameObject obj in objetosintro){
+            if(obj.name==quiero){
+                return obj;
+            }
+        }
+        return null;
+    }
     private GameObject Buscarhijo(GameObject padre,String nombrehijo){
         foreach(Transform hijo in padre.transform){
             if(hijo.name==nombrehijo){
@@ -100,13 +114,20 @@ public class MenuInicial : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Verifica que la escena cargada sea la que esperamos
-        if (scene.buildIndex == 1)  // Asegúrate de que el buildIndex corresponde a la escena correcta
+        if(scene.buildIndex==0){
+            print("jijija");
+            objetosintro=scene.GetRootGameObjects();
+            Buscarenintro("Main Camara").SetActive(false);
+            Buscarenintro("PlayerIntro").SetActive(false);
+
+        }
+        if (scene.buildIndex == 2)  // Asegúrate de que el buildIndex corresponde a la escena correcta
         {
             Debug.Log("Escena cargada correctamente");
 
             // Ahora podemos acceder a los objetos de la escena cargada
             objetossegundaescena = scene.GetRootGameObjects();
-            objetosprimeraescena = SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
+            objetosprimeraescena = SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
             // Imprime los objetos raíz en la escena
             foreach (GameObject obj in objetossegundaescena)
             {
