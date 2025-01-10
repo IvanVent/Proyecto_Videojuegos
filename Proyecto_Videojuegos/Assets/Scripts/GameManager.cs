@@ -22,10 +22,17 @@ public class GameManager : MonoBehaviour
     public VolumeControl volumeControl;
     public Text optionText;
     private bool options=false;
+    private GameObject []objetos;
     private void Start()
     {
         src.clip=sfx1;
-        playera = GameObject.Find("Player").GetComponent<Player>();
+        objetos=SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
+        foreach(GameObject obj in objetos){
+            if(obj.name=="Player"){
+                playera = obj.GetComponent<Player>();
+                break;
+            }
+        }
         optionText.text="Auto Pick Up: OFF";
     }
     void Update(){

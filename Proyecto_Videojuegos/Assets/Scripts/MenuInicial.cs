@@ -25,10 +25,13 @@ public class MenuInicial : MonoBehaviour
     GameObject eventsystem2;
     GameObject [] objetosprimeraescena;
     GameObject [] objetosintro;
+    int escena=-1;
 
     void Start(){
+        escena=2;
         SceneManager.LoadScene(2,LoadSceneMode.Additive);
-        SceneManager.sceneLoaded += OnSceneLoaded; 
+        objetosprimeraescena=SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
+
     }
     
     public void Update(){
@@ -44,9 +47,14 @@ public class MenuInicial : MonoBehaviour
         listo=true;
     }
     public void Jugar(){
+        objetosintro=SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
+        Buscaren1("Canvas").GetComponent<AudioSource>().Stop();
         Scene escenaactual=SceneManager.GetActiveScene();
-        Buscaren1("EventSystem").SetActive(false);
-        Buscaren2("EventSystem").SetActive(false); 
+        Buscarenintro("PlayerIntro").SetActive(true);
+        Buscarenintro("Main Camera").SetActive(true);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(2));
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(1));
         /*pause = Buscarhijo(canvas, "PauseButton");
         hearts = Buscarhijo(canvas, "hearts");
 
@@ -56,8 +64,7 @@ public class MenuInicial : MonoBehaviour
         if (pause != null)
             pause.SetActive(true);
             */
-        SceneManager.LoadScene(0,LoadSceneMode.Additive);
-        SceneManager.sceneLoaded+=OnSceneLoaded;
+        
         /*
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
         SceneManager.UnloadSceneAsync(escenaactual);
@@ -71,11 +78,14 @@ public class MenuInicial : MonoBehaviour
         Debug.Log("Salir");
         Application.Quit();
     }
+    
     public void Opciones(){
-        GameObject options=Buscarhijo(canvas,"OptionsScreen");
+        objetossegundaescena=SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
+        GameObject options=Buscarhijo(Buscaren2("Canvas"),"OptionsScreen");
         options.SetActive(true);
-        Buscaren1("EventSystem").SetActive(false);
+        //Buscaren1("EventSystem").SetActive(false);
         Buscaren2("EventSystem").SetActive(true);
+        Buscaren1("EventSystem").SetActive(false);
     }
     private GameObject Buscaren2(String quiero){
         GameObject velero=null;
@@ -111,49 +121,5 @@ public class MenuInicial : MonoBehaviour
         }
         return null;
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Verifica que la escena cargada sea la que esperamos
-        if(scene.buildIndex==0){
-            print("jijija");
-            objetosintro=scene.GetRootGameObjects();
-            Buscarenintro("Main Camara").SetActive(false);
-            Buscarenintro("PlayerIntro").SetActive(false);
-
-        }
-        if (scene.buildIndex == 2)  // Asegúrate de que el buildIndex corresponde a la escena correcta
-        {
-            Debug.Log("Escena cargada correctamente");
-
-            // Ahora podemos acceder a los objetos de la escena cargada
-            objetossegundaescena = scene.GetRootGameObjects();
-            objetosprimeraescena = SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
-            // Imprime los objetos raíz en la escena
-            foreach (GameObject obj in objetossegundaescena)
-            {
-                Debug.Log("Objeto raíz: " + obj.name);
-            }
-            eventsystem2=Buscaren2("EventSystem");
-            eventsystem2.SetActive(false);
-
-            // Busca el Canvas y otros objetos en la escena
-            canvas = Buscaren2("Canvas");
-            if (canvas != null)
-            {
-                pause = Buscarhijo(canvas, "PauseButton");
-                hearts = Buscarhijo(canvas, "hearts");
-
-                // Desactiva los objetos si están encontrados
-                if (hearts != null)
-                    hearts.SetActive(false);
-                if (pause != null)
-                    pause.SetActive(false);
-            }
-            else
-            {
-                Debug.LogError("No se encontró el Canvas.");
-            }
-
-        }
-    }
+    
 }

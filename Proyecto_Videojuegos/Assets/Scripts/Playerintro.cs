@@ -15,6 +15,7 @@ public class Playerintro : MonoBehaviour
     private UnityEngine.Vector2 movement;
     float caidax=7f;
     float caiday=0f;
+    public Iniciadorsiguienteintro ini;
     private bool cae=false;
     [FormerlySerializedAs("velocidad")] [SerializeField]private float speed=0f;
     public GameObject segundapared,arbol1,arbol2,nubes1,nubes2;
@@ -93,9 +94,11 @@ public class Playerintro : MonoBehaviour
         
         
         if(trigger.CompareTag("abajo")){
+            ini.siguiente();
             gameObject.SetActive(false);
         }
         
     }
+    
 
 }

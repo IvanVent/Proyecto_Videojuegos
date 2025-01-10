@@ -12,7 +12,7 @@ public class CamTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject[] a =SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
+        GameObject[] a =SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
         foreach(GameObject obj in a){
             if(obj.name=="Main Camera"){
                 print("lets goooooo");
