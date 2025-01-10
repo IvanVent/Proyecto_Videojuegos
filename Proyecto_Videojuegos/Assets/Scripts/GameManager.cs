@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         optionText.text="Auto Pick Up: OFF";
     }
     void Update(){
+        if(SceneManager.GetActiveScene()!=SceneManager.GetSceneByBuildIndex(1)){
         if(alive){
             if(music){
                 StartCoroutine(backmusic());
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
                 
                 
             }
+        }
         }
         
     }
