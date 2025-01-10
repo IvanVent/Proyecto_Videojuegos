@@ -25,9 +25,22 @@ public class Iniciadorsiguienteintro : MonoBehaviour
     }
     public void siguiente(){
         print("mmmmmm");
-        
-        
+
+        StartCoroutine(transicion());
+    }
+    IEnumerator transicion()
+    {
+        Color newcolor=image.color;
+        float i=0;
+        while(i<=1f){
+            newcolor.a=i;
+            image.color=newcolor;
+            yield return new WaitForSeconds(0.25f);
+            i+=0.25f;
+        }
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(2,LoadSceneMode.Single);
+
     }
     private GameObject Buscaren2(String quiero){
         GameObject velero=null;
