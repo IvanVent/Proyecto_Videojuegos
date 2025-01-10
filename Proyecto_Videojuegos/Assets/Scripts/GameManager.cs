@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class GameManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject optionsUI;
     public GameObject controlsUI;
+    public GameObject deadPanel;
+    public GameObject pauseButton;
+    
     private bool isPaused = false;
     private bool music=true;
     private bool alive=true;
+    
     public AudioClip sfx1,sfx2;
     public AudioSource src;
     private Player playera;
@@ -59,10 +64,7 @@ public class GameManager : MonoBehaviour
                 if(options){
                     Volver();
                 }
-                
                 Continue();
-                
-                
             }
         }
         }
@@ -101,11 +103,36 @@ public class GameManager : MonoBehaviour
     // Pantalla de Game Over
     public void GameOver()
     {
+        
         music=false;
         alive=false;
         src.Stop();
         src.clip=sfx2;
+        StartCoroutine(effectBeforeGameOver());
+    }
+    
+    private IEnumerator effectBeforeGameOver()
+    {
+        deadPanel.SetActive(true);
+        Image panel = deadPanel.GetComponent<Image>();
+        Color panelColor = panel.color;
+        
+        // Reducir gradualmente la opacidad
+        float fadeDuration = 0.5f; // Duración del desvanecimiento en segundos
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime; // Incrementar el tiempo transcurrido
+            float newOpacity = Mathf.Lerp(0.15f, 0f, elapsed / fadeDuration); // Interpolar opacidad
+            panel.color = new Color(panelColor.r, panelColor.g, panelColor.b, newOpacity); 
+            yield return null;
+        }
+        panel.color = new Color(panelColor.r, panelColor.g, panelColor.b, 0f);
+        yield return new WaitForSeconds(1f);
+    
+        deadPanel.SetActive(false);
         gameOverUI.SetActive(true);
+        pauseButton.SetActive(false);
         music=true;
     }
     

@@ -59,7 +59,13 @@ public class Player : MonoBehaviour
             float angulo=Mathf.Atan2(mouseCoords.y-transform.position.y,mouseCoords.x-transform.position.x);
             float anguloGrados=(180/Mathf.PI)*angulo;
             bool isMouseRight = transform.position.x < mouseCoords.x;
-            Flip(isMouseRight);
+            
+            if (isMouseRight && !isFacingRight || !isMouseRight && isFacingRight)
+            {
+                Flip();
+            }
+
+            
 
             if((Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0)) && canShoot){
                 if(swapShootSFX==0){
@@ -81,6 +87,14 @@ public class Player : MonoBehaviour
                 }
             }
             if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
+
+                if (horizontal < 0 && isFacingRight)
+                {
+                    Flip();
+                }else if(horizontal > 0 && !isFacingRight)
+                {
+                    Flip();
+                }
                 StartCoroutine(Dash());
             }
         }
@@ -177,15 +191,12 @@ public class Player : MonoBehaviour
 
     //-------------------METODOS AUXILIARES-------------------
 
-    private void Flip(bool isMouseRight)
+    private void Flip()
     {
-        if (isMouseRight && !isFacingRight || !isMouseRight && isFacingRight)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-        }
+        isFacingRight = !isFacingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
     private void Shoot(){
         //Crear flecha y asignarle la dirección

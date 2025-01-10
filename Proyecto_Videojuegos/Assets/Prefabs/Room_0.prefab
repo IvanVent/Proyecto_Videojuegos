@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 472840565004363737}
   - component: {fileID: 4267327319953173924}
   - component: {fileID: 7942285581964532889}
-  - component: {fileID: 6677308594186216554}
+  - component: {fileID: 2690882675787709696}
   m_Layer: 0
   m_Name: Tilemap_Border
   m_TagString: Wall
@@ -1369,7 +1369,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &6677308594186216554
+--- !u!19719996 &2690882675787709696
 TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2516,7 +2516,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.505109, y: 4.2593145}
+  m_Offset: {x: 3.4937649, y: 4.257655}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2527,7 +2527,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.0187764, y: 1.1940627}
+  m_Size: {x: 5.0721283, y: 1.1907463}
   m_EdgeRadius: 0
 --- !u!1 &6111322106749560342
 GameObject:
