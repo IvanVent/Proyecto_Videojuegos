@@ -89,7 +89,7 @@ public class EnemySpawner : MonoBehaviour
                     small_e.setHP(4);
                     small_e.setSpeed(8f);
                     small_e.setCooldownParada(1f);
-                    small_e.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
+                    small_e.transform.localScale = new Vector3(0.035f, 0.035f, 0.04f);
                 }
                 small_list.Add(small_e);
                 StartCoroutine("SmallWaitToFollow", small_e);
