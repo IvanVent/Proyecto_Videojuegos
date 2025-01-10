@@ -60,7 +60,7 @@ public class Gestorescena2 : MonoBehaviour
                 
                 Buscaren2("Player").SetActive(false);
                 Buscaren2("Main Camera").SetActive(true);
-                SceneManager.LoadScene(0,LoadSceneMode.Additive);
+                
                 /*
                 objetosintro=SceneManager.GetSceneByName("Intro").GetRootGameObjects();
                 foreach (GameObject obj in objetosintro)

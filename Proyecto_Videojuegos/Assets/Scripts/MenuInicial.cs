@@ -47,14 +47,7 @@ public class MenuInicial : MonoBehaviour
         listo=true;
     }
     public void Jugar(){
-        objetosintro=SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
-        Buscaren1("Canvas").GetComponent<AudioSource>().Stop();
-        Scene escenaactual=SceneManager.GetActiveScene();
-        Buscarenintro("PlayerIntro").SetActive(true);
-        Buscarenintro("Main Camera").SetActive(true);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(2));
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(1));
+        SceneManager.LoadScene(0,LoadSceneMode.Single);
         /*pause = Buscarhijo(canvas, "PauseButton");
         hearts = Buscarhijo(canvas, "hearts");
 

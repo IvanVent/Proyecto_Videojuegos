@@ -11,6 +11,7 @@ public class Iniciadorsiguienteintro : MonoBehaviour
     private int escena=-1;
     private GameObject [] objetossegundaescena;
     private GameObject [] objetosintro;
+    public Image image;
     void Start()
     {
         objetosintro=SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
@@ -24,7 +25,8 @@ public class Iniciadorsiguienteintro : MonoBehaviour
     }
     public void siguiente(){
         print("mmmmmm");
-        escena=2;
+        
+        
         SceneManager.LoadScene(2,LoadSceneMode.Single);
     }
     private GameObject Buscaren2(String quiero){
@@ -45,33 +47,5 @@ public class Iniciadorsiguienteintro : MonoBehaviour
         }
         return velero;
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Verifica que la escena cargada sea la que esperamos
-        
-        if (escena == 2)  // Asegúrate de que el buildIndex corresponde a la escena correcta
-        {
-            Debug.Log("Escena cargada correctamente");
-
-            // ora podemos acceder a los objetos de la escena cargada
-            
-            objetossegundaescena = SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
-            print("ns");
-            Buscaren2("Player").SetActive(true);
-            Buscarenintro("Main Camera").SetActive(false);
-            print("Se romperá?");
-            Buscaren2("Main Camera").SetActive(true);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
-            print("aaaaaaaaaaamatmé");
-            SceneManager.UnloadSceneAsync(0);
-            /*
-            objetosintro=SceneManager.GetSceneByName("Intro").GetRootGameObjects();
-            foreach (GameObject obj in objetosintro)
-            {
-                Debug.Log("Objeto raíz: " + obj.name);
-            }
-            */
-
-        }
-    }
+    
 }
