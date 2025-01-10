@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class Playerintro : MonoBehaviour
 {
     public AudioSource src;
-    public AudioClip sfx1;
+    public AudioClip sfx1,sfx2;
     public Rigidbody2D rb;
     SpriteRenderer sprite_renderer;
     public Animator animator;
@@ -18,7 +18,7 @@ public class Playerintro : MonoBehaviour
     public Iniciadorsiguienteintro ini;
     private bool cae=false;
     [FormerlySerializedAs("velocidad")] [SerializeField]private float speed=0f;
-    public GameObject segundapared,arbol1,arbol2,nubes1,nubes2;
+    public GameObject segundapared,arbol1,arbol2,nubes1,nubes2,talkingtext;
     private bool anda=false;
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,7 @@ public class Playerintro : MonoBehaviour
         
     }
     void Awake(){
+        talkingtext.SetActive(true);
         src.clip=sfx1;
         src.Play();
         StartCoroutine(waitandstart(9));
@@ -41,6 +42,7 @@ public class Playerintro : MonoBehaviour
         anda=false;
         yield return new WaitForSeconds(f);
         anda=true;
+        talkingtext.SetActive(false);
 
     }
 
@@ -78,6 +80,8 @@ public class Playerintro : MonoBehaviour
     }
     public void Cae(){
         cae=true;
+        src.clip=sfx2;
+        src.Play();
         StartCoroutine(parabola());
     }
     IEnumerator parabola()
