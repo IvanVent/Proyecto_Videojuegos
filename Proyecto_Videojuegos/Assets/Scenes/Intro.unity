@@ -1098,6 +1098,7 @@ MonoBehaviour:
   arbol2: {fileID: 1954910457}
   nubes1: {fileID: 1986019916}
   nubes2: {fileID: 418579407}
+  talkingtext: {fileID: 423612159}
 --- !u!1 &871095717
 GameObject:
   m_ObjectHideFlags: 0
