@@ -50,6 +50,7 @@ public class HeartsGenerator : MonoBehaviour
             moreHearts(corazones);
         }
         if(instruccion==3){
+            print(corazones);
             curar(corazones);
         }
 
@@ -62,8 +63,8 @@ public class HeartsGenerator : MonoBehaviour
                 if(max-health>=1){
                     if(health*10%10>0){
                         heartsList[pos].sprite=fullHeart_sprite;
-                        health+=1f;
-                        corazones-=1f;
+                        health+=0.5f;
+                        corazones-=0.5f;
                     }
                     else{
                         pos++;
