@@ -36,9 +36,11 @@ public class Player : MonoBehaviour
     private bool isFacingRight = true;
     private bool isDashing=false;
     private bool canDash;
+    public bool IsInIntroAnim;
     public int autorecolect=0;
     void Start()
     {
+        IsInIntroAnim=true;
         vida.Invoke(maxlife,0);
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         rb=GetComponent<Rigidbody2D>();
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        if (IsInIntroAnim) return;
         if (isDashing) return; //si se hace un dash no queremos que se ejecute nada mas durante el dash
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;        
@@ -104,6 +107,8 @@ public class Player : MonoBehaviour
     }
     //------------------------MOVIMIENTO------------------------
     private void FixedUpdate() {
+
+        if (IsInIntroAnim) return;
   
         if (!isDead)
         {
@@ -188,6 +193,7 @@ public class Player : MonoBehaviour
         src.Play();
         Shoot();
     }
+
     //----------------------FIN DE CORRUTINAS ----------------------
 
     //-------------------METODOS AUXILIARES-------------------
@@ -235,6 +241,12 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("Shoots",false);
     }
+
+    public void OnIntroAnimationEnd(){
+        animator.SetTrigger("IntroFinished");
+        IsInIntroAnim=false;
+    }
+
     //-------------------FIN METODOS AUXILIARES-------------------
 
     //-------------------COLISIONES-------------------
