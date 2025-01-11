@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
         if (!isDead)
         {
             mouseCoords=camara.ScreenToWorldPoint(Input.mousePosition);
+            mouseCoords.z=0;
             float angulo=Mathf.Atan2(mouseCoords.y-transform.position.y,mouseCoords.x-transform.position.x);
             float anguloGrados=(180/Mathf.PI)*angulo;
             bool isMouseRight = transform.position.x < mouseCoords.x;
@@ -202,11 +203,15 @@ public class Player : MonoBehaviour
         //Crear flecha y asignarle la dirección
         GameObject ArrowGO=Instantiate(flech,arco.transform.position,Quaternion.identity);
         Flecha Arrow=ArrowGO.GetComponent<Flecha>();
-        Arrow.targetVector=mouseCoords-transform.position;
+        Arrow.targetVector=(mouseCoords-transform.position).normalized;
         //Ignorar colisiones con el jugador
         Collider2D playerCollider = GetComponent<Collider2D>();
         Collider2D arrowCollider = ArrowGO.GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(playerCollider, arrowCollider);
+
+        if (playerCollider != null && arrowCollider != null){
+            Physics2D.IgnoreCollision(playerCollider, arrowCollider);
+        }
+
 
     }
     public void DecreaseShootCooldown(){

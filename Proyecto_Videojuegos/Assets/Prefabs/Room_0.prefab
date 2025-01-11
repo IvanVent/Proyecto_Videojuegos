@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: -8112298745139627315}
   m_Layer: 0
   m_Name: Room_0
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 4267327319953173924}
   - component: {fileID: 7942285581964532889}
   - component: {fileID: 2690882675787709696}
+  - component: {fileID: 8299096667345686509}
   m_Layer: 0
   m_Name: Tilemap_Border
   m_TagString: Wall
@@ -1405,6 +1406,33 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!50 &8299096667345686509
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015082461464440845}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3170679071209949892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1902,9 +1930,10 @@ GameObject:
   - component: {fileID: 2234325025225173903}
   - component: {fileID: 4057155828254438678}
   - component: {fileID: 778130651909348820}
+  - component: {fileID: 4956169566313195222}
   m_Layer: 0
   m_Name: Tilemap_TopBorder
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2529,6 +2558,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.0721283, y: 1.1907463}
   m_EdgeRadius: 0
+--- !u!50 &4956169566313195222
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466695105146531311}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6111322106749560342
 GameObject:
   m_ObjectHideFlags: 0

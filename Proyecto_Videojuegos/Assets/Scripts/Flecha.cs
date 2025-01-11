@@ -6,10 +6,9 @@ using UnityEngine;
 public class Flecha : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float velocidad=55;
-    public float tiempo=3;
+    public float velocidad=15f;
+    public float tiempo=3f;
     public Vector2 targetVector;
-    private
     void Start()
     {
         Destroy(gameObject,tiempo);
@@ -20,7 +19,8 @@ public class Flecha : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       transform.Translate(velocidad*Vector2.right*Time.deltaTime); 
+        transform.Translate(Vector2.right * velocidad * Time.deltaTime);
+        
     }
     
 
@@ -35,7 +35,7 @@ public class Flecha : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         //La hitbox de la puerta se hace un trigger para que el jugador pueda pasar mientras que al mismo tiempo, destruya las flechas
-        if (other.gameObject.CompareTag("door") || other.gameObject.CompareTag("Enemy") )
+        if (other.gameObject.CompareTag("door") || other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
