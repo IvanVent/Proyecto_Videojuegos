@@ -14,6 +14,19 @@ public class VolumeControl : MonoBehaviour
 
     void Start()
     {
+        if(PlayerPrefs.HasKey("volmusic")){
+            safedvolume=PlayerPrefs.GetFloat("volmusic");
+        }
+        else{
+            PlayerPrefs.SetFloat("volmusic",safedvolume);
+        }
+        if(PlayerPrefs.HasKey("volsfx")){
+            sfxvolume=PlayerPrefs.GetFloat("volsfx");
+        }
+        else{
+            PlayerPrefs.SetFloat("volsfx",sfxvolume);
+        }
+
         UpdateVolumeUI(); // Actualiza el texto y el AudioMixer al iniciar
         UpdateSFx();
     }
@@ -22,6 +35,7 @@ public class VolumeControl : MonoBehaviour
     {
         safedvolume += 0.1f;
         safedvolume = Mathf.Clamp(safedvolume, 0.0001f, 1f);
+        PlayerPrefs.SetFloat("volmusic",safedvolume);
         UpdateVolumeUI();
     }
 
@@ -29,6 +43,7 @@ public class VolumeControl : MonoBehaviour
     {
         safedvolume -= 0.1f;
         safedvolume = Mathf.Clamp(safedvolume, 0.0001f, 1f);
+        PlayerPrefs.SetFloat("volmusic",safedvolume);
         UpdateVolumeUI();
     }
 
@@ -46,11 +61,13 @@ public class VolumeControl : MonoBehaviour
     public void AddSfx(){
         sfxvolume += 0.1f;
         sfxvolume = Mathf.Clamp(sfxvolume, 0.0001f, 1f);
+        PlayerPrefs.SetFloat("volsfx",sfxvolume);
         UpdateSFx();
     }
     public void LessSfx(){
         sfxvolume -= 0.1f;
         sfxvolume = Mathf.Clamp(sfxvolume, 0.0001f, 1f);
+        PlayerPrefs.SetFloat("volsfx",sfxvolume);
         UpdateSFx();
     }
     private void UpdateSFx(){

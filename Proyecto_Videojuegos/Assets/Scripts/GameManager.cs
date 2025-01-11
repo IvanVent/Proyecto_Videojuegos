@@ -38,7 +38,16 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-        optionText.text="Auto Pick Up: OFF";
+        if(PlayerPrefs.HasKey("autopick")){
+            playera.autorecolect=PlayerPrefs.GetInt("autopick");
+        }
+        if(playera.autorecolect==0){
+            optionText.text="Auto Pick Up: OFF";
+        }
+        else{
+            optionText.text="Auto Pick Up: ON";
+        }
+        
     }
     void Update(){
         if(SceneManager.GetSceneByBuildIndex(0).isLoaded){
@@ -215,11 +224,13 @@ public class GameManager : MonoBehaviour
     }
     public void toogleAutoPickUp(){
 
-        playera.autorecolect=!playera.autorecolect;
-        if(playera.autorecolect){
+        playera.autorecolect=playera.autorecolect==0?1:0;
+        if(playera.autorecolect==1){
+            PlayerPrefs.SetInt("autopick",1);
             optionText.text="Auto Pick Up: ON";
         }
         else{
+            PlayerPrefs.SetInt("autopick",0);
             optionText.text="Auto Pick Up: OFF";
         }
     }

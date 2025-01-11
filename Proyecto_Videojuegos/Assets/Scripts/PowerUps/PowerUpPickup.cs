@@ -26,7 +26,7 @@ public class PowerUpPickup : MonoBehaviour
         if(trigger.CompareTag("Player")){
             PopupEUI.SetActive(true);
         }
-        if(Input.GetKeyDown(KeyCode.E)||playera.autorecolect){
+        if(Input.GetKeyDown(KeyCode.E)||playera.autorecolect==1){
             if(trigger.CompareTag("Player")){
                 PowerUp powerUp=GetComponent<PowerUp>();
                 if(powerUp!=null){
@@ -38,7 +38,7 @@ public class PowerUpPickup : MonoBehaviour
     }
     public void OnTriggerStay2D(Collider2D trigger){
         playera=GameObject.Find("Player").GetComponent<Player>();
-        if(Input.GetKeyDown(KeyCode.E)||playera.autorecolect){
+        if(Input.GetKeyDown(KeyCode.E)||playera.autorecolect==1){
             if(trigger.CompareTag("Player")){
                 PowerUp powerUp=GetComponent<PowerUp>();
                 if(powerUp!=null){
