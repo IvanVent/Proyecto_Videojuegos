@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   src: {fileID: 730165875}
-  sfx1: {fileID: 8300000, guid: fc1b9773d475c454cb32450d1ad84245, type: 3}
+  sfx1: {fileID: 8300000, guid: f68f241d1d11e2642be6e2ce59546f20, type: 3}
   sfx2: {fileID: 8300000, guid: 7f6788f415d74fc45a69cab4cc6546b2, type: 3}
   rb: {fileID: 0}
   animator: {fileID: 0}
@@ -1169,7 +1169,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Que bien se estoy en Asgard con banquetes y estas
+  m_Text: 'Que bien se estoy en Vanaheim con banquetes y estas
 
     vistas hahahha.'
 --- !u!222 &871095720
