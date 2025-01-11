@@ -152,7 +152,7 @@ public class RoomController : MonoBehaviour
                 PUinstance.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
             }else{
                 random = Random.Range(0,100);
-                if (random < 75){                           //75% de probabilidad de que salga pocion
+                if (random < 70){                           //75% de probabilidad de que salga pocion
                     random = 0;
                 }else{                                      //25% de probabilidad de que salga otro PU
                     if(game_progress.GetDobleShotPicked()){ //si ya tiene el dobleShoot no se puede volver a coger

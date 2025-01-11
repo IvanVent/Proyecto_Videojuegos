@@ -13,7 +13,7 @@ public class Potion : PowerUp
     }
     public override void ApplyEffect(GameObject player)
     {
-        heartmanager.UpdateHearts(0.5f,3);
+        heartmanager.UpdateHearts(1f,3);
     }
         
     

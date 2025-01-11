@@ -62,8 +62,8 @@ public class HeartsGenerator : MonoBehaviour
                 if(max-health>=1){
                     if(health*10%10>0){
                         heartsList[pos].sprite=fullHeart_sprite;
-                        health+=0.5f;
-                        corazones-=0.5f;
+                        health+=1f;
+                        corazones-=1f;
                     }
                     else{
                         pos++;
