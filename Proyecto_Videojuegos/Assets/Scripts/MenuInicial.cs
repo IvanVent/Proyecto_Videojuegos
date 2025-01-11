@@ -30,7 +30,7 @@ public class MenuInicial : MonoBehaviour
     void Start(){
         escena=2;
         SceneManager.LoadScene(2,LoadSceneMode.Additive);
-        objetosprimeraescena=SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
+        objetosprimeraescena=SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
 
     }
     
@@ -47,7 +47,7 @@ public class MenuInicial : MonoBehaviour
         listo=true;
     }
     public void Jugar(){
-        SceneManager.LoadScene(0,LoadSceneMode.Single);
+        SceneManager.LoadScene(1,LoadSceneMode.Single);
         /*pause = Buscarhijo(canvas, "PauseButton");
         hearts = Buscarhijo(canvas, "hearts");
 

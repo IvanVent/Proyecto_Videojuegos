@@ -41,7 +41,10 @@ public class GameManager : MonoBehaviour
         optionText.text="Auto Pick Up: OFF";
     }
     void Update(){
-        if(SceneManager.GetActiveScene()!=SceneManager.GetSceneByBuildIndex(1)){
+        if(SceneManager.GetSceneByBuildIndex(0).isLoaded){
+            src.Stop();
+        }
+        if(SceneManager.GetActiveScene()!=SceneManager.GetSceneByBuildIndex(0)){
         if(alive){
             if(music){
                 StartCoroutine(backmusic());
@@ -172,8 +175,8 @@ public class GameManager : MonoBehaviour
     }
     // Acción del botón de Volver en la pantalla de pausa
     public void Volver(){
-        if(SceneManager.GetSceneByBuildIndex(1).isLoaded){
-            GameObject[] objetos= SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
+        if(SceneManager.GetSceneByBuildIndex(0).isLoaded){
+            GameObject[] objetos= SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
             GameObject[] otros=SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
             optionsUI.SetActive(false);
             foreach(GameObject obj in otros){

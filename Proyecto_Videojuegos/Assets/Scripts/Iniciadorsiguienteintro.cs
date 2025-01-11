@@ -14,7 +14,7 @@ public class Iniciadorsiguienteintro : MonoBehaviour
     public Image image;
     void Start()
     {
-        objetosintro=SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
+        objetosintro=SceneManager.GetSceneByBuildIndex(1).GetRootGameObjects();
         
     }
 

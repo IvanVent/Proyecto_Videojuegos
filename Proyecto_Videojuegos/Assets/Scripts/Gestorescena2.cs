@@ -42,7 +42,7 @@ public class Gestorescena2 : MonoBehaviour
         return null;
     }
     void Awake(){
-        if(SceneManager.GetActiveScene().name==SceneManager.GetSceneByBuildIndex(1).name){
+        if(SceneManager.GetActiveScene().name==SceneManager.GetSceneByBuildIndex(0).name){
             objetossegundaescena = SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
                 objetosprimeraescena = SceneManager.GetSceneByName("MainMenu").GetRootGameObjects();
                 // Imprime los objetos raíz en la escena
