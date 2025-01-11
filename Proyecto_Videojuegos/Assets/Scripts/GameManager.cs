@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     private bool music=true;
     private bool alive=true;
+    private bool isControlsScreen=false;
     
     public AudioClip sfx1,sfx2;
     public AudioSource src;
@@ -74,7 +75,11 @@ public class GameManager : MonoBehaviour
             else
             {
                 if(options){
-                    Volver();
+                    BackFromOptions();
+                }
+                else if (isControlsScreen)
+                {
+                    BackFromControls();
                 }
                 Continue();
             }
@@ -115,7 +120,6 @@ public class GameManager : MonoBehaviour
     // Pantalla de Game Over
     public void GameOver()
     {
-        
         music=false;
         alive=false;
         src.Stop();
@@ -179,11 +183,12 @@ public class GameManager : MonoBehaviour
 
     public void Controls()
     {
+        isControlsScreen = true;
         controlsUI.SetActive(true);
         pauseUI.SetActive(false);
     }
     // Acción del botón de Volver en la pantalla de pausa
-    public void Volver(){
+    public void BackFromOptions(){
         if(SceneManager.GetSceneByBuildIndex(0).isLoaded){
             GameObject[] objetos= SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
             GameObject[] otros=SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
@@ -205,8 +210,16 @@ public class GameManager : MonoBehaviour
             optionsUI.SetActive(false);
             pauseUI.SetActive(true);
         }
-       
     }
+
+    public void BackFromControls()
+    {
+        isControlsScreen = false;
+        controlsUI.SetActive(false);
+        pauseUI.SetActive(true);
+    }
+    
+    
     
     // Acciones de los botones de ajuste de opciones
     public void addVolume(){

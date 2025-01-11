@@ -55,8 +55,6 @@ public class RoomController : MonoBehaviour
     /* ----------------------------- M E T O D O S -------------------------------------- */
     private void Awake()
     {
-        //LoadColliders(); UPDATE: NEW TILES
-        
         doorsFather = GameObject.Find("Doors").transform;
         enemy_spawner = gameObject.GetComponent<EnemySpawner>();
         game_progress = GameObject.Find("GameManager").GetComponent<GameProgress>();

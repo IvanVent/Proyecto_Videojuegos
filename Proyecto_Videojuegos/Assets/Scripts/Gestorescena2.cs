@@ -48,7 +48,7 @@ public class Gestorescena2 : MonoBehaviour
                 // Imprime los objetos raíz en la escena
                 foreach (GameObject obj in objetossegundaescena)
                 {
-                    Debug.Log("Objeto raíz: " + obj.name);
+                    //Debug.Log("Objeto raíz: " + obj.name);
                 }
                 Buscaren2("EventSystem").SetActive(false);
                
@@ -69,20 +69,13 @@ public class Gestorescena2 : MonoBehaviour
                 }*/
         }
         else{
-            
-            Debug.Log("Escena cargada correctamente");
 
                 // ora podemos acceder a los objetos de la escena cargada
-            
-            
-            print("ns");
+                
             objetossegundaescena=SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
             print("rr");
             Buscaren2("Player").SetActive(true);
-            print("ss");
-            print("Se romperá?");
             Buscaren2("Main Camera").SetActive(true);
-            print("aaaaaaaaaaamatmé");
                 /*
                 objetosintro=SceneManager.GetSceneByName("Intro").GetRootGameObjects();
                 foreach (GameObject obj in objetosintro)

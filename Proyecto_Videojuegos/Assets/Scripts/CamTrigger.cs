@@ -15,7 +15,6 @@ public class CamTrigger : MonoBehaviour
         GameObject[] a =SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
         foreach(GameObject obj in a){
             if(obj.name=="Main Camera"){
-                print("lets goooooo");
                 camControl = obj.GetComponent<CamController>();
                 break;
             }
