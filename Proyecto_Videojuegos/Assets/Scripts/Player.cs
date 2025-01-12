@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public GameObject endingText;
     public GameObject endingButton;
     public GameObject tutorialPanel;
+    public GameObject tutorialPanel1;
+    public GameObject tutorialPanel2;
 
     private Vector3 mouseCoords;
     private Vector2 movement;
@@ -320,6 +322,29 @@ public class Player : MonoBehaviour
     public void OnIntroAnimationEnd(){
         animator.SetTrigger("IntroFinished");
         
+        StartCoroutine(WaitForTutorial());
+    }
+
+    private IEnumerator WaitForTutorial()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        tutorialPanel1.SetActive(true);
+    }
+
+    public void TutorialSwitchTo2()
+    {
+        tutorialPanel1.SetActive(false);
+        tutorialPanel2.SetActive(true);
+    }
+    public void TutorialSwitchTo1()
+    {
+        tutorialPanel2.SetActive(false);
+        tutorialPanel1.SetActive(true);
+    }
+
+    public void FinishTutorial()
+    {
+        tutorialPanel2.SetActive(false);
         IsInIntroAnim=false;
     }
 

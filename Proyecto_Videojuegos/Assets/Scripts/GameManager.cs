@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private bool alive=true;
     private bool isControlsScreen=false;
     private bool isEnding = false;
+    private bool isIntro = true;
     
     public AudioClip sfx1,sfx2;
     public AudioSource src;
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)  && !isEnding)
+        if (Input.GetKeyDown(KeyCode.Escape)  && !isEnding && !isIntro)
         {
             if (!isPaused)
             {
@@ -87,6 +89,11 @@ public class GameManager : MonoBehaviour
         }
         }
         
+    }
+
+    public void SetIsIntro()
+    {
+        isIntro = false;
     }
     
     // ---------------SONIDOS------------------
@@ -254,9 +261,6 @@ public class GameManager : MonoBehaviour
             optionText.text="Auto Pick Up: OFF";
         }
     }
-    
-    
-    
     
     
     
