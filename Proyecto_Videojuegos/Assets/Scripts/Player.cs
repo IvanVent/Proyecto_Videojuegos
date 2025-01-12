@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
