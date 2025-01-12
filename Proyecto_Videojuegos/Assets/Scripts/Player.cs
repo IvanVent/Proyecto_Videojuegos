@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public GameObject endingPanel;
     public GameObject endingText;
     public GameObject endingButton;
+    public GameObject tutorialPanel;
 
     private Vector3 mouseCoords;
     private Vector2 movement;
@@ -47,6 +48,9 @@ public class Player : MonoBehaviour
     public bool IsInIntroAnim;
     public int autorecolect=0;
     private bool isEnding = false;
+    
+    
+    
     void Start()
     {
         IsInIntroAnim=true;
@@ -315,6 +319,7 @@ public class Player : MonoBehaviour
 
     public void OnIntroAnimationEnd(){
         animator.SetTrigger("IntroFinished");
+        
         IsInIntroAnim=false;
     }
 

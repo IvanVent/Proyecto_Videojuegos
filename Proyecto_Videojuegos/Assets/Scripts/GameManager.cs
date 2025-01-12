@@ -229,8 +229,6 @@ public class GameManager : MonoBehaviour
         playera.SetIsEnding();
     }
     
-    
-    
     // Acciones de los botones de ajuste de opciones
     public void addVolume(){
         volumeControl.AddVolume();
@@ -239,7 +237,6 @@ public class GameManager : MonoBehaviour
         volumeControl.LessVolume();
     }
     public void addSfx(){
-        print("eh");
         volumeControl.AddSfx();
     }
     public void lessSfx(){
