@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     public GameObject endingPanel;
     public GameObject endingText;
     public GameObject endingButton;
-    public GameObject tutorialPanel;
     public GameObject tutorialPanel1;
     public GameObject tutorialPanel2;
 
@@ -321,7 +320,6 @@ public class Player : MonoBehaviour
 
     public void OnIntroAnimationEnd(){
         animator.SetTrigger("IntroFinished");
-        
         StartCoroutine(WaitForTutorial());
     }
 
