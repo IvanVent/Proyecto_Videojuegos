@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     private bool isFacingRight = true;
     private bool isDashing=false;
     private bool canDash;
-    public bool IsInIntroAnim;
+    private bool IsInIntroAnim;
     public int autorecolect=0;
     private bool isEnding = false;
     
@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator Doubleshot()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
         src.Play();
         Shoot();
     }

@@ -100,8 +100,8 @@ public class EnemySpawner : MonoBehaviour
                 big_e.transform.SetParent(enemiesFather);
                 if(enemiesKilled > 15)
                 {
-                    big_e.setHP(10);
-                    big_e.setSpeed(1.8f);
+                    big_e.setHP(11f);
+                    big_e.setSpeed(2.5f);
                     big_e.transform.localScale = new Vector3(0.075f, 0.075f, 0.075f);
                 }
                 big_list.Add(big_e);
