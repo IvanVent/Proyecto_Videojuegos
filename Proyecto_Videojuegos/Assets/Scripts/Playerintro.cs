@@ -32,9 +32,7 @@ public class Playerintro : MonoBehaviour
     }
     void Awake(){
         talkingtext.SetActive(true);
-        /*src.clip=sfx1;
-        src.Play();
-        StartCoroutine(waitandstart(9));*/
+        StartCoroutine(waitandstart(9));
     }
 
     IEnumerator waitandstart(float f)
