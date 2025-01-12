@@ -34,7 +34,6 @@ public class Playerintro : MonoBehaviour
         src.clip=sfx1;
         src.Play();
         StartCoroutine(waitandstart(9));
-        
     }
 
     IEnumerator waitandstart(float f)
@@ -50,6 +49,7 @@ public class Playerintro : MonoBehaviour
     void Update()
     {   
         if(anda){
+            
             movement = new UnityEngine.Vector2(0.25f, 0);
             rb.velocity = movement * speed;
             animator.SetFloat("Speed",Mathf.Abs(0.25f)+Mathf.Abs(0));
@@ -86,6 +86,7 @@ public class Playerintro : MonoBehaviour
     }
     IEnumerator parabola()
     {
+        animator.Play("Falling");
         while(true){
             yield return new WaitForSeconds(0.3f);
             caidax-=1;

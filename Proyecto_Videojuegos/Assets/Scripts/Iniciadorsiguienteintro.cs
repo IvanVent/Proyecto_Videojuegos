@@ -24,7 +24,6 @@ public class Iniciadorsiguienteintro : MonoBehaviour
         
     }
     public void siguiente(){
-        print("mmmmmm");
 
         StartCoroutine(transicion());
     }

@@ -3,6 +3,7 @@ using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
@@ -16,7 +17,10 @@ public class Player : MonoBehaviour
     public GameObject flech,arco,heart,halfheart,noheart;
     SpriteRenderer sprite_renderer;
     public Animator animator;
+    
     public GameObject endingPanel;
+    public GameObject endingText;
+    public GameObject endingButton;
 
     private Vector3 mouseCoords;
     private Vector2 movement;
@@ -179,35 +183,7 @@ public class Player : MonoBehaviour
         animator.Play("Idle");
         StartCoroutine("EndingCinematic");
     }
-
-    private IEnumerator EndingCinematic()
-    {
-        yield return new WaitForSeconds(1f);
-        endingPanel.SetActive(true);
-        //animator.Play("Falling");
-        float ascensionDuration = 4f; // Duración de la ascensionç
-        
-        float elapsed = 0f;
-        float playerPosY = transform.position.y;
-        
-        UnityEngine.UI.Image panelImage = endingPanel.GetComponent<Image>();
-        Color panelColor = panelImage.color;
-        panelColor.a = 0f;
-        panelImage.color = panelColor;
-        
-        while (elapsed < ascensionDuration)
-        {
-            elapsed += Time.deltaTime; // Incrementar el tiempo transcurrido
-            float newPos = Mathf.Lerp(playerPosY, playerPosY + 5, elapsed / ascensionDuration);
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, newPos, gameObject.transform.position.z);
-            
-            panelColor.a = Mathf.Lerp(0f, 1f, elapsed / ascensionDuration); // Interpolar opacidad
-            panelImage.color = panelColor;
-            yield return null;
-        }
-        yield return new WaitForSeconds(1.2f);
-        Debug.Log("GAME COMPLETED");
-    }
+    
     public void SetDoubleshot(){
         doubleshot=true;
     }
@@ -237,7 +213,60 @@ public class Player : MonoBehaviour
         src.Play();
         Shoot();
     }
+    
+      // CINEMATICA FINAL
+    private IEnumerator EndingCinematic()
+    {
+        yield return new WaitForSeconds(1.5f);
+        
+        endingPanel.SetActive(true);
+        animator.Play("Falling");
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        
+        float ascensionDuration = 4f; // Duración de la ascension
+        float elapsed = 0f;
+        float playerPosY = transform.position.y;
+        
+        // Color del Image del panel
+        UnityEngine.UI.Image panelImage = endingPanel.GetComponent<Image>();
+        Color panelColor = panelImage.color;
+        panelColor.a = 0f;
+        panelImage.color = panelColor;
+        
+        // Ascension y Fade a blanco
+        while (elapsed < ascensionDuration)
+        {
+            elapsed += Time.deltaTime; 
+            float newPos = Mathf.Lerp(playerPosY, playerPosY + 7, elapsed / ascensionDuration);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, newPos, gameObject.transform.position.z);
+            
+            panelColor.a = Mathf.Lerp(0f, 1f, elapsed / ascensionDuration); // Interpolar opacidad
+            panelImage.color = panelColor;
+            yield return null;
+        }
+        
+        yield return new WaitForSeconds(1f);
 
+        endingText.SetActive(true);
+        float textFadeDuration = 1f;
+        elapsed = 0f;
+
+        Text gameCompletedTxt = endingText.GetComponent<Text>();
+        Color textColor = gameCompletedTxt.color;
+        textColor.a = 0f;
+        gameCompletedTxt.color = textColor;
+        
+        while (elapsed < textFadeDuration)
+        {
+            elapsed += Time.deltaTime; 
+            
+            textColor.a = Mathf.Lerp(0f, 1f, elapsed / textFadeDuration); // Interpolar opacidad
+            gameCompletedTxt.color = textColor;
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        endingButton.SetActive(true);
+    }
     //----------------------FIN DE CORRUTINAS ----------------------
 
     //-------------------METODOS AUXILIARES-------------------

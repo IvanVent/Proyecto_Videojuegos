@@ -923,7 +923,7 @@ Animator:
   m_GameObject: {fileID: 730165874}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2b277c3ec8ad2e043bf2af265a353dc6, type: 2}
+  m_Controller: {fileID: 9100000, guid: eb3b501d8d0b9844386a64b137927dbd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1067,7 +1067,7 @@ Transform:
   m_GameObject: {fileID: 730165874}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.31, y: -0.14, z: 2}
+  m_LocalPosition: {x: -1.25, y: -0.14, z: 2}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 0}
   ini: {fileID: 423086530}
-  speed: 5
+  speed: 20
   segundapared: {fileID: 1005259766}
   arbol1: {fileID: 1612363409}
   arbol2: {fileID: 1954910457}

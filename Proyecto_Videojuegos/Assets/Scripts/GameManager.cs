@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private bool music=true;
     private bool alive=true;
     private bool isControlsScreen=false;
+    private bool isEnding = false;
     
     public AudioClip sfx1,sfx2;
     public AudioSource src;
@@ -55,18 +56,18 @@ public class GameManager : MonoBehaviour
             src.Stop();
         }
         if(SceneManager.GetActiveScene()!=SceneManager.GetSceneByBuildIndex(0)){
-        if(alive){
-            if(music){
-                StartCoroutine(backmusic());
+            if(alive && !isEnding){
+                if(music){
+                    StartCoroutine(backmusic());
+                }
             }
-        }
         else{
-            if(music){
+            if(music && !isEnding){
                 StartCoroutine(deadmusic());
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)  && !isEnding)
         {
             if (!isPaused)
             {
@@ -220,11 +221,12 @@ public class GameManager : MonoBehaviour
         pauseUI.SetActive(true);
     }
     
-    public void GameEnding(){
+    public void GameEnding()
+    {
+        isEnding = true;
         music=false;
         src.Stop();
         playera.SetIsEnding();
-        
     }
     
     
