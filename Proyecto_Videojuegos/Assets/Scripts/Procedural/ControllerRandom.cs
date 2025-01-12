@@ -19,6 +19,7 @@ public class ControllerRandom : MonoBehaviour
     {
        Application.targetFrameRate = 30;
        tileMap = GameObject.Find("TilemapGrid").GetComponent<TileMap>();
+       tileMap.SetRoomsNumber((maxX * maxY) - emptyCells);
        gameProgress = GetComponentInParent<GameProgress>();
        
        gameProgress.SetTotalRooms((maxX * maxY) - emptyCells);

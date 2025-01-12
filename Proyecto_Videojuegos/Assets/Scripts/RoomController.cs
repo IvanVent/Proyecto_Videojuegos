@@ -46,6 +46,7 @@ public class RoomController : MonoBehaviour
     /* Propiedades de la sala */
     private int room_id;
     private Vector3 roomPos;
+    private int listPos;
     private bool isCompleted = false;
     private float empty_room_probability = 0.1f; // 10% de probabilidad de sala vacía
     
@@ -85,11 +86,16 @@ public class RoomController : MonoBehaviour
     {
         this.roomPos = pos;
     }
-    
+
+    public void SetRoomListPos(int position)
+    {
+        listPos = position;
+    }
     // Instancia puertas abiertas donde corresponde
     public void OpenDoors()
     {
         game_progress.RoomCompleted();
+        game_progress.UpdateMap(listPos);
         isCompleted = true;
         
         if (!game_progress.GetIsEnding())
@@ -157,9 +163,9 @@ public class RoomController : MonoBehaviour
                 PUinstance.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
             }else{
                 random = Random.Range(0,100);
-                if (random < 60){                           //60% de probabilidad de que salga pocion
+                if (random < 59){                           //59% de probabilidad de que salga pocion
                     random = 0;
-                }else{                                      //40% de probabilidad de que salga otro PU
+                }else{                                      //41% de probabilidad de que salga otro PU
                     if(game_progress.GetDobleShotPicked()){ //si ya tiene el dobleShoot no se puede volver a coger
                         random = Random.Range(1, powerups.Length-1);
                     }else{

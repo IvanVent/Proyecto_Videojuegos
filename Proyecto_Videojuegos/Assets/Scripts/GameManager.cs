@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject deadPanel;
     public GameObject pauseButton;
     
+    
     private bool isPaused = false;
     private bool music=true;
     private bool alive=true;
@@ -31,8 +32,12 @@ public class GameManager : MonoBehaviour
     public Text optionText;
     private bool options=false;
     private GameObject []objetos;
+
+    private TileMap tileMap;
     private void Start()
     {
+        
+        tileMap = GameObject.Find("TilemapGrid").GetComponent<TileMap>();
         src.clip=sfx1;
         objetos=SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
         foreach(GameObject obj in objetos){
@@ -118,6 +123,7 @@ public class GameManager : MonoBehaviour
     {
         if (alive)
         {
+            tileMap.ShowRoomsMap();
             pauseUI.SetActive(true);
             Time.timeScale = 0f;
             isPaused = true;
@@ -168,6 +174,7 @@ public class GameManager : MonoBehaviour
     // Acción del botón de Salir
     public void MainMenu()
     {
+        tileMap.HideRoomsMap();
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
@@ -175,6 +182,7 @@ public class GameManager : MonoBehaviour
     // Acción del botón de Continuar en la pantalla de pausa
     public void Continue()
     {
+        tileMap.HideRoomsMap();
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
@@ -184,6 +192,7 @@ public class GameManager : MonoBehaviour
     // Acción del botón de Opciones en la pantalla de pausa
     public void Options(){
         options=true;
+        tileMap.HideRoomsMap();
         pauseUI.SetActive(false);
         optionsUI.SetActive(true);
     }
@@ -192,6 +201,7 @@ public class GameManager : MonoBehaviour
     {
         isControlsScreen = true;
         controlsUI.SetActive(true);
+        tileMap.HideRoomsMap();
         pauseUI.SetActive(false);
     }
     // Acción del botón de Back en la pantalla de Options
@@ -215,6 +225,7 @@ public class GameManager : MonoBehaviour
         else{
             options=false;
             optionsUI.SetActive(false);
+            tileMap.ShowRoomsMap();
             pauseUI.SetActive(true);
         }
     }
@@ -224,6 +235,7 @@ public class GameManager : MonoBehaviour
     {
         isControlsScreen = false;
         controlsUI.SetActive(false);
+        tileMap.ShowRoomsMap();
         pauseUI.SetActive(true);
     }
     

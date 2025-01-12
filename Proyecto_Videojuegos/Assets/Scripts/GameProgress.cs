@@ -12,10 +12,13 @@ public class GameProgress : MonoBehaviour
     private bool isEnding = false;
 
     private GameManager gameManager;
+    
+    public TileMap tileMap;
 
-    void Start()
+    void Awake()
     {
         gameManager = GetComponentInParent<GameManager>();
+        tileMap = GameObject.Find("TilemapGrid").GetComponent<TileMap>();
     }
     public void RoomCompleted()
     {
@@ -25,6 +28,11 @@ public class GameProgress : MonoBehaviour
             isEnding= true;
             gameManager.GameEnding();
         }
+    }
+
+    public void UpdateMap(int roomMapPos)
+    {
+        tileMap.UpdateMap(roomMapPos);
     }
 
     public void EnemyKilled()
