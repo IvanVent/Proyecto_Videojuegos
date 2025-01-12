@@ -1987,9 +1987,8 @@ MonoBehaviour:
   speed: 4.1
   dashSpeed: 7
   dashDuration: 0.5
-  dashCooldown: 1
+  dashCooldown: 0.7
   doubleshot: 0
-  IsInIntroAnim: 0
   autorecolect: 0
 --- !u!50 &540761535
 Rigidbody2D:
