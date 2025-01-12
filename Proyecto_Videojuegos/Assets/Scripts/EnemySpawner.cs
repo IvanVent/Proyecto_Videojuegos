@@ -84,7 +84,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 SmallEnemy small_e = Instantiate(smallEnemy_prefab, spawnPoint.position + room_pos, Quaternion.identity);
                 small_e.transform.SetParent(enemiesFather);
-                if (enemiesKilled > 15)
+                if (enemiesKilled > 24)
                 {
                     small_e.setHP(4);
                     small_e.setSpeed(8f);
@@ -98,7 +98,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 BigEnemy big_e = Instantiate(bigEnemy_prefab, spawnPoint.position + room_pos, Quaternion.identity);
                 big_e.transform.SetParent(enemiesFather);
-                if(enemiesKilled > 15)
+                if(enemiesKilled > 24)
                 {
                     big_e.setHP(11f);
                     big_e.setSpeed(2.5f);
