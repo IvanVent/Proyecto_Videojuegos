@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class GameProgress : MonoBehaviour
 {
-    private int roomsCompleted = 0; // -1 para que no cuente la sala de inicio como completada
+    private int roomsCompleted = 0;
+    private int totalRooms;
     private int enemiesKilled = 0;
-
+    
     private bool dobleShotPU_picked = false;
+    private bool isEnding = false;
 
+    private GameManager gameManager;
+
+    void Start()
+    {
+        gameManager = GetComponentInParent<GameManager>();
+    }
     public void RoomCompleted()
     {
         roomsCompleted++;
+        if (roomsCompleted == totalRooms)
+        {
+            isEnding= true;
+            gameManager.GameEnding();
+        }
     }
 
     public void EnemyKilled()
@@ -24,9 +37,13 @@ public class GameProgress : MonoBehaviour
         dobleShotPU_picked = true;
     }
 
+    public bool GetIsEnding()
+    {
+        return isEnding;
+    }
+
     public int GetRoomsCompleted()
     {
-        Debug.Log("Rooms completed: " + roomsCompleted);
         return roomsCompleted;
     }
 
@@ -38,5 +55,10 @@ public class GameProgress : MonoBehaviour
     public bool GetDobleShotPicked()
     {
         return dobleShotPU_picked;
+    }
+
+    public void SetTotalRooms(int rooms)
+    {
+        totalRooms = rooms;
     }
 }

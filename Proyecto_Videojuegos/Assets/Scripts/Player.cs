@@ -1,7 +1,10 @@
 using System.Collections;
+using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +16,7 @@ public class Player : MonoBehaviour
     public GameObject flech,arco,heart,halfheart,noheart;
     SpriteRenderer sprite_renderer;
     public Animator animator;
+    public GameObject endingPanel;
 
     private Vector3 mouseCoords;
     private Vector2 movement;
@@ -38,6 +42,7 @@ public class Player : MonoBehaviour
     private bool canDash;
     public bool IsInIntroAnim;
     public int autorecolect=0;
+    private bool isEnding = false;
     void Start()
     {
         IsInIntroAnim=true;
@@ -56,7 +61,7 @@ public class Player : MonoBehaviour
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;        
         if (Time.timeScale == 0) return;
-        if (!isDead)
+        if (!isDead && !isEnding)
         {
             mouseCoords=camara.ScreenToWorldPoint(Input.mousePosition);
             mouseCoords.z=0;
@@ -110,7 +115,7 @@ public class Player : MonoBehaviour
 
         if (IsInIntroAnim) return;
   
-        if (!isDead)
+        if (!isDead && !isEnding)
         {
             if (isDashing) return;//si se hace un dash no queremos que se ejecute nada mas durante el dash
 
@@ -163,6 +168,45 @@ public class Player : MonoBehaviour
         animator.SetBool("Dead",true);
         isDead=true;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public void SetIsEnding()
+    {
+        isEnding=true;
+        rb.velocity = Vector2.zero;
+        animator.SetFloat("Speed",0f);
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        animator.Play("Idle");
+        StartCoroutine("EndingCinematic");
+    }
+
+    private IEnumerator EndingCinematic()
+    {
+        yield return new WaitForSeconds(1f);
+        endingPanel.SetActive(true);
+        //animator.Play("Falling");
+        float ascensionDuration = 4f; // Duración de la ascensionç
+        
+        float elapsed = 0f;
+        float playerPosY = transform.position.y;
+        
+        UnityEngine.UI.Image panelImage = endingPanel.GetComponent<Image>();
+        Color panelColor = panelImage.color;
+        panelColor.a = 0f;
+        panelImage.color = panelColor;
+        
+        while (elapsed < ascensionDuration)
+        {
+            elapsed += Time.deltaTime; // Incrementar el tiempo transcurrido
+            float newPos = Mathf.Lerp(playerPosY, playerPosY + 5, elapsed / ascensionDuration);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, newPos, gameObject.transform.position.z);
+            
+            panelColor.a = Mathf.Lerp(0f, 1f, elapsed / ascensionDuration); // Interpolar opacidad
+            panelImage.color = panelColor;
+            yield return null;
+        }
+        yield return new WaitForSeconds(1.2f);
+        Debug.Log("GAME COMPLETED");
     }
     public void SetDoubleshot(){
         doubleshot=true;
@@ -217,8 +261,6 @@ public class Player : MonoBehaviour
         if (playerCollider != null && arrowCollider != null){
             Physics2D.IgnoreCollision(playerCollider, arrowCollider);
         }
-
-
     }
     public void DecreaseShootCooldown(){
         if(shootCooldown>0.3f){
