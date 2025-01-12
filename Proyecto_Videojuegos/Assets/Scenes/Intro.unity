@@ -1248,7 +1248,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Que bien que estoy en Vanaheim con banquetes y estasvistas hahahha.
+  m_Text: Que bien que estoy en Vanaheim con banquetes y estas vistas hahahha.
 --- !u!222 &871095720
 CanvasRenderer:
   m_ObjectHideFlags: 0
