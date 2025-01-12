@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class Playerintro : MonoBehaviour
 {
     public AudioSource src;
-    public AudioClip sfx1,sfx2;
+    public AudioClip sfx1;
     public Rigidbody2D rb;
     SpriteRenderer sprite_renderer;
     public Animator animator;
@@ -17,8 +17,9 @@ public class Playerintro : MonoBehaviour
     float caiday=0f;
     public Iniciadorsiguienteintro ini;
     private bool cae=false;
+    private bool music=true;
     [FormerlySerializedAs("velocidad")] [SerializeField]private float speed=0f;
-    public GameObject segundapared,arbol1,arbol2,nubes1,nubes2,talkingtext;
+    public GameObject segundapared,arbol1,arbol2,nubes1,nubes2,talkingtext,talkingtext2;
     private bool anda=false;
     // Start is called before the first frame update
     void Start()
@@ -31,9 +32,9 @@ public class Playerintro : MonoBehaviour
     }
     void Awake(){
         talkingtext.SetActive(true);
-        src.clip=sfx1;
+        /*src.clip=sfx1;
         src.Play();
-        StartCoroutine(waitandstart(9));
+        StartCoroutine(waitandstart(9));*/
     }
 
     IEnumerator waitandstart(float f)
@@ -48,6 +49,9 @@ public class Playerintro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        if(music){
+            StartCoroutine(backmusic());
+        }
         if(anda){
             
             movement = new UnityEngine.Vector2(0.25f, 0);
@@ -63,6 +67,16 @@ public class Playerintro : MonoBehaviour
             animator.SetFloat("Speed",Mathf.Abs(0)+Mathf.Abs(0));
         }
         
+    }
+    private IEnumerator backmusic(){
+        float startTime=Time.unscaledTime;
+        music=false;
+        src.clip=sfx1;
+        src.Play();
+        while(Time.unscaledTime-startTime<12){
+            yield return null;
+        }
+        music=true;
     }
     public void para(){
         anda=false;
@@ -80,12 +94,13 @@ public class Playerintro : MonoBehaviour
     }
     public void Cae(){
         cae=true;
-        src.clip=sfx2;
+        
         src.Play();
         StartCoroutine(parabola());
     }
     IEnumerator parabola()
     {
+        talkingtext2.SetActive(true);
         animator.Play("Falling");
         while(true){
             yield return new WaitForSeconds(0.3f);
@@ -99,6 +114,7 @@ public class Playerintro : MonoBehaviour
         
         
         if(trigger.CompareTag("abajo")){
+            talkingtext2.SetActive(false);
             ini.siguiente();
             gameObject.SetActive(false);
         }
