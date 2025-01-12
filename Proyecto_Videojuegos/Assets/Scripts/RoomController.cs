@@ -69,7 +69,10 @@ public class RoomController : MonoBehaviour
             yield return new WaitForSeconds(0.08f);
         }
         OpenDoors();
-        SpawnPowerUp();
+        if (!game_progress.GetIsEnding())
+        {
+            SpawnPowerUp();
+        }
         yield return null;
     }
     
@@ -86,51 +89,55 @@ public class RoomController : MonoBehaviour
     // Instancia puertas abiertas donde corresponde
     public void OpenDoors()
     {
-        var doorPos = new Vector3();
+        game_progress.RoomCompleted();
+        isCompleted = true;
         
-        // Se destruyen las instancias de las puertas cerradas
-        foreach (var door in closedDoors)
+        if (!game_progress.GetIsEnding())
         {
-            Destroy(door);
-        }
+            var doorPos = new Vector3();
         
-        for (int i = 0; i < 4; i++)
-        {
-            int mask = 1 << i;
-            if ((room_id & mask) != 0)
+            // Se destruyen las instancias de las puertas cerradas
+            foreach (var door in closedDoors)
             {
-                if (i == 0) // puerta arriba
+                Destroy(door);
+            }
+        
+            for (int i = 0; i < 4; i++)
+            {
+                int mask = 1 << i;
+                if ((room_id & mask) != 0)
                 {
-                    doorPos.x = roomPos.x- 2;
-                    doorPos.y = roomPos.y + 4;
-                    Instantiate(open_upDoorPrefab, doorPos, Quaternion.identity);
-                }
-                else if (i == 1) // puerta derecha
-                {
-                    doorPos.x = roomPos.x + 6;
-                    doorPos.y = roomPos.y;
-                    Instantiate(open_rightDoorPrefab, doorPos, Quaternion.identity);
-                }
-                else if (i == 2) // puerta abajo
-                {
-                    doorPos.x = roomPos.x-2;
-                    doorPos.y = roomPos.y - 4;
-                    Instantiate(open_downDoorPrefab, doorPos, Quaternion.identity);
-                }
-                else if (i == 3) // puerta izquierda
-                {
-                    doorPos.x = roomPos.x - 9;
-                    doorPos.y = roomPos.y;
-                    Instantiate(open_leftDoorPrefab, doorPos, Quaternion.identity);
-                }
-                else
-                {
-                    throw new Exception("Invalid bit number of the room id");
+                    if (i == 0) // puerta arriba
+                    {
+                        doorPos.x = roomPos.x- 2;
+                        doorPos.y = roomPos.y + 4;
+                        Instantiate(open_upDoorPrefab, doorPos, Quaternion.identity);
+                    }
+                    else if (i == 1) // puerta derecha
+                    {
+                        doorPos.x = roomPos.x + 6;
+                        doorPos.y = roomPos.y;
+                        Instantiate(open_rightDoorPrefab, doorPos, Quaternion.identity);
+                    }
+                    else if (i == 2) // puerta abajo
+                    {
+                        doorPos.x = roomPos.x-2;
+                        doorPos.y = roomPos.y - 4;
+                        Instantiate(open_downDoorPrefab, doorPos, Quaternion.identity);
+                    }
+                    else if (i == 3) // puerta izquierda
+                    {
+                        doorPos.x = roomPos.x - 9;
+                        doorPos.y = roomPos.y;
+                        Instantiate(open_leftDoorPrefab, doorPos, Quaternion.identity);
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid bit number of the room id");
+                    }
                 }
             }
         }
-        isCompleted = true;
-        game_progress.RoomCompleted();
     }
     
     private void SpawnPowerUp()

@@ -73,7 +73,7 @@ public class Gestorescena2 : MonoBehaviour
                 // ora podemos acceder a los objetos de la escena cargada
                 
             objetossegundaescena=SceneManager.GetSceneByBuildIndex(2).GetRootGameObjects();
-            print("rr");
+            
             Buscaren2("Player").SetActive(true);
             Buscaren2("Main Camera").SetActive(true);
                 /*

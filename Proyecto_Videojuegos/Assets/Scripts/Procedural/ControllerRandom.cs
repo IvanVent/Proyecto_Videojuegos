@@ -13,11 +13,15 @@ public class ControllerRandom : MonoBehaviour
     MemTurtle turtle;
     MemMaze maze;
     TileMap tileMap;
+    GameProgress gameProgress;
 
     void Start()
     {
        Application.targetFrameRate = 30;
        tileMap = GameObject.Find("TilemapGrid").GetComponent<TileMap>();
+       gameProgress = GetComponentInParent<GameProgress>();
+       
+       gameProgress.SetTotalRooms((maxX * maxY) - emptyCells);
        
        turtle = new MemTurtle();
        turtle.SetClamp(maxX, maxY);

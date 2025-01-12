@@ -124,10 +124,10 @@ public class GameManager : MonoBehaviour
         alive=false;
         src.Stop();
         src.clip=sfx2;
-        StartCoroutine(effectBeforeGameOver());
+        StartCoroutine(EffectBeforeGameOver());
     }
     
-    private IEnumerator effectBeforeGameOver()
+    private IEnumerator EffectBeforeGameOver()
     {
         deadPanel.SetActive(true);
         Image panel = deadPanel.GetComponent<Image>();
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
         controlsUI.SetActive(true);
         pauseUI.SetActive(false);
     }
-    // Acción del botón de Volver en la pantalla de pausa
+    // Acción del botón de Back en la pantalla de Options
     public void BackFromOptions(){
         if(SceneManager.GetSceneByBuildIndex(0).isLoaded){
             GameObject[] objetos= SceneManager.GetSceneByBuildIndex(0).GetRootGameObjects();
@@ -212,11 +212,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Acción del botón de Back en la pantalla de Controls
     public void BackFromControls()
     {
         isControlsScreen = false;
         controlsUI.SetActive(false);
         pauseUI.SetActive(true);
+    }
+    
+    public void GameEnding(){
+        music=false;
+        src.Stop();
+        playera.SetIsEnding();
+        
     }
     
     
